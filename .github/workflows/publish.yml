@@ -1,10 +1,13 @@
 name: Publish
 
-# Same as local: prepublishOnly runs `npm run build`, then publish to GitHub Packages.
-# Bump version in package.json, commit, then tag and push:
-#   npm version patch   # or edit version manually
-#   git push origin main && git push origin v0.1.2
-# Or run this workflow manually from the Actions tab (workflow_dispatch).
+# Publishes to GitHub Packages. Requires a repo secret — see below.
+#
+# 1. GitHub → Settings → Secrets and variables → Actions → New repository secret
+# 2. Name: NPM_PUBLISH_TOKEN
+# 3. Value: a PAT with at least read:packages + write:packages (classic), or a
+#    fine-grained token with Packages read/write for this repository.
+#
+# The default GITHUB_TOKEN often returns 403 for org-scoped npm packages; a PAT fixes that.
 
 on:
   push:
@@ -37,4 +40,4 @@ jobs:
       - name: Publish to GitHub Packages
         run: npm publish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
