@@ -1,0 +1,40 @@
+name: Publish
+
+# Same as local: prepublishOnly runs `npm run build`, then publish to GitHub Packages.
+# Bump version in package.json, commit, then tag and push:
+#   npm version patch   # or edit version manually
+#   git push origin main && git push origin v0.1.2
+# Or run this workflow manually from the Actions tab (workflow_dispatch).
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          registry-url: https://npm.pkg.github.com
+          scope: "@softwareify"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Publish to GitHub Packages
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
