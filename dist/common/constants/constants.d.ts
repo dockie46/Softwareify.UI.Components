@@ -1,0 +1,10 @@
+export declare const dateFormat = "DD.MM.YYYY";
+export declare const dateTimeFormat = "DD.MM.YYYY HH:mm:ss";
+export declare const dateTimeFormatWithoutSeconds = "DD.MM.YYYY HH:mm";
+export declare const dateFormatISO = "YYYY-MM-DDTHH:mm:ss.SSS[Z]";
+export declare const isoDateFormatRegex: RegExp;
+export declare const passwordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$";
+export declare const defaultTablePageSize = 50;
+export declare const uriRegex = "^https?:\\/\\/(?:www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_\\+.~#?&\\/\\=]*)$";
+export declare const phoneFormatRegex: RegExp;
+export declare const dropdownItemsMaxTake = 2147483646;

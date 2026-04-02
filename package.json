@@ -15,12 +15,14 @@
     "./styles.css": "./dist/style.css"
   },
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "scripts": {
     "dev": "vite build --watch",
     "build": "tsc --noEmit && vite build",
     "lint": "eslint src --ext .ts,.tsx",
+    "prepare": "npm run build",
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
