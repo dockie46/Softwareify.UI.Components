@@ -8,7 +8,7 @@ export {
   TimePickerFormItem,
   CheckboxFormItem,
 } from './components/forms/inputs'
-export { FormItemWrapper } from './components/forms'
+export { FormItem, FormItemWrapper } from './components/forms'
 
 
 export {

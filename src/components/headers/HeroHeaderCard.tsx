@@ -18,7 +18,8 @@ const HeroHeaderCard = ({
   meta,
   rightContent,
   brandPrimary = '#ED1C24',
-  cardGradient = 'linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)',
+  /** Same surface as the app top bar (`--color-header-gradient`). */
+  cardGradient = 'var(--color-header-gradient)',
 }: HeroHeaderCardProps) => {
   const screens = Grid.useBreakpoint()
   const isMobile = !screens.md
@@ -26,11 +27,16 @@ const HeroHeaderCard = ({
 
   return (
     <Card
-      style={{ flexShrink: 0 }}
+      variant="borderless"
+      style={{
+        flexShrink: 0,
+        background: cardGradient,
+        borderRadius: 'var(--radius-lg)',
+        overflow: 'hidden',
+      }}
       styles={{
         body: {
-          background: cardGradient,
-          borderRadius: 'var(--radius-lg)',
+          background: 'transparent',
           padding: isMobile ? '16px 16px' : '28px 32px',
         },
       }}

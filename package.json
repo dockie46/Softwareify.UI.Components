@@ -1,6 +1,6 @@
 {
   "name": "@softwareify/ui-components",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Shared UI components for Softwareify projects",
   "type": "module",
   "main": "./dist/index.cjs.js",
@@ -8,9 +8,10 @@
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.es.js",
       "require": "./dist/index.cjs.js",
-      "types": "./dist/index.d.ts"
+      "default": "./dist/index.es.js"
     },
     "./styles.css": "./dist/style.css"
   },
@@ -22,7 +23,6 @@
     "dev": "vite build --watch",
     "build": "tsc --noEmit && vite build",
     "lint": "eslint src --ext .ts,.tsx",
-    "prepare": "npm run build",
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
@@ -38,10 +38,18 @@
     "react-string-format": ">=1.0.0"
   },
   "peerDependenciesMeta": {
-    "react-dnd": { "optional": true },
-    "react-dnd-html5-backend": { "optional": true },
-    "react-resize-detector": { "optional": true },
-    "react-string-format": { "optional": true }
+    "react-dnd": {
+      "optional": true
+    },
+    "react-dnd-html5-backend": {
+      "optional": true
+    },
+    "react-resize-detector": {
+      "optional": true
+    },
+    "react-string-format": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@ant-design/icons": "^5.5.2",
