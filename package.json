@@ -1,0 +1,72 @@
+{
+  "name": "@softwareify/ui-components",
+  "version": "0.1.0",
+  "description": "Shared UI components for Softwareify projects",
+  "type": "module",
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/index.es.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.cjs.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./styles.css": "./dist/style.css"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite build --watch",
+    "build": "tsc --noEmit && vite build",
+    "lint": "eslint src --ext .ts,.tsx",
+    "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {
+    "antd": ">=5.0.0",
+    "dayjs": ">=1.11.0",
+    "i18next": ">=23.0.0",
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0",
+    "react-dnd": ">=16.0.0",
+    "react-dnd-html5-backend": ">=16.0.0",
+    "react-i18next": ">=14.0.0",
+    "react-resize-detector": ">=10.0.0",
+    "react-string-format": ">=1.0.0"
+  },
+  "peerDependenciesMeta": {
+    "react-dnd": { "optional": true },
+    "react-dnd-html5-backend": { "optional": true },
+    "react-resize-detector": { "optional": true },
+    "react-string-format": { "optional": true }
+  },
+  "devDependencies": {
+    "@ant-design/icons": "^5.5.2",
+    "@types/node": "^22.5.3",
+    "@types/react": "^18.3.5",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "antd": "^5.22.5",
+    "dayjs": "^1.11.13",
+    "i18next": "^24.1.2",
+    "react": "^18.3.1",
+    "react-dnd": "^16.0.1",
+    "react-dnd-html5-backend": "^16.0.1",
+    "react-dom": "^18.3.1",
+    "react-i18next": "^15.2.0",
+    "react-resize-detector": "^12.0.2",
+    "react-string-format": "^1.2.0",
+    "typescript": "^5.5.4",
+    "vite": "^5.4.3",
+    "vite-plugin-dts": "^4.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/softwareify/Softwareify.UI.Components.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "license": "PRIVATE"
+}

@@ -1,0 +1,13 @@
+import type { FormItemProps } from 'antd'
+import type { NamePath } from 'antd/es/form/interface'
+
+export interface BaseFormItemProps extends FormItemProps {
+  label?: string
+  name: NamePath
+  hidden?: boolean
+}
+
+export interface FormItemWrapperProps<TForm extends BaseFormItemProps, TElement> {
+  formProps?: TForm
+  elementProps?: TElement
+}
