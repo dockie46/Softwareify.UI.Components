@@ -47,5 +47,18 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      # If this fails, the workflow is not running on a commit with the renamed package (push + new tag).
+      - name: Verify package name (must be @softwareifycz/*)
+        run: |
+          NAME=$(node -p "require('./package.json').name")
+          echo "package.json name: $NAME"
+          case "$NAME" in
+            @softwareifycz/*) ;;
+            *)
+              echo "::error::Still seeing old scope? Push your rename commit to GitHub, then run this workflow again (or move your v* tag to the new commit)."
+              exit 1
+              ;;
+          esac
+
       - name: Publish to GitHub Packages
         run: npm publish
