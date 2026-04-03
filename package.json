@@ -73,7 +73,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/softwareify/Softwareify.UI.Components.git"
+    "url": "git+https://github.com/softwareifycz/Softwareify.UI.Components.git"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
