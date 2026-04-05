@@ -1,4 +1,4 @@
-import type { ColumnTitle } from 'antd/es/table/interface'
+import type { ReactNode } from 'react'
 
 export type FixedStatus = 'left' | 'right' | boolean
 
@@ -9,8 +9,8 @@ export type TableColumnConfig = {
   originalIndex: number
 }
 
-export interface DraggableHeaderProps<T> {
-  title: ColumnTitle<T>
+export interface DraggableHeaderProps {
+  title: ReactNode
   columnKey: string
   index: number
   moveColumn: (dragIndex: number, hoverIndex: number) => void
@@ -21,7 +21,7 @@ export interface DraggableMenuItemProps {
   index: number
   isVisible: boolean
   fixed: FixedStatus
-  title: React.ReactNode
+  title: ReactNode
   moveColumn: (dragIndex: number, hoverIndex: number) => void
   toggleVisibility: (key: string) => void
   setFixedStatus: (key: string, status: FixedStatus) => void

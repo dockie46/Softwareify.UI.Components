@@ -1,0 +1,12 @@
+import { Meta, StoryObj } from '@storybook/react';
+import { default as DetailLoader } from './DetailLoader';
+declare const meta: Meta<typeof DetailLoader>;
+export default meta;
+type Story = StoryObj<typeof DetailLoader>;
+export declare const User: Story;
+export declare const UserNoAvatar: Story;
+export declare const Project: Story;
+export declare const Simple: Story;
+export declare const Form: Story;
+export declare const CardsOnly: Story;
+export declare const List: Story;

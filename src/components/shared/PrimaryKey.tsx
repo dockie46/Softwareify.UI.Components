@@ -1,13 +1,17 @@
 import { Typography } from 'antd'
+import { useTranslation } from 'react-i18next'
 
 const { Text } = Typography
 
 type PrimaryKeyProps = {
   value: string | undefined
   label?: string
+  copyTooltip?: string
+  copiedTooltip?: string
 }
 
-const PrimaryKey = ({ value, label = 'Primary key' }: PrimaryKeyProps) => {
+const PrimaryKey = ({ value, label, copyTooltip, copiedTooltip }: PrimaryKeyProps) => {
+  const { t } = useTranslation()
   if (!value) return null
 
   return (
@@ -32,10 +36,15 @@ const PrimaryKey = ({ value, label = 'Primary key' }: PrimaryKeyProps) => {
           flexShrink: 0,
         }}
       >
-        {label}
+        {label ?? t('global.labels.primaryKey')}
       </Text>
       <Text
-        copyable={{ tooltips: ['Copy', 'Copied!'] }}
+        copyable={{
+          tooltips: [
+            copyTooltip ?? t('global.btns.copy'),
+            copiedTooltip ?? t('global.btns.copied'),
+          ],
+        }}
         style={{
           fontFamily: 'monospace',
           fontSize: 15,

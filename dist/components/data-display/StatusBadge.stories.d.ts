@@ -1,0 +1,10 @@
+import { Meta, StoryObj } from '@storybook/react';
+import { default as StatusBadge } from './StatusBadge';
+declare const meta: Meta<typeof StatusBadge>;
+export default meta;
+type Story = StoryObj<typeof StatusBadge>;
+export declare const Success: Story;
+export declare const Warning: Story;
+export declare const Error: Story;
+export declare const Info: Story;
+export declare const Default: Story;

@@ -8,7 +8,8 @@ export {
   TimePickerFormItem,
   CheckboxFormItem,
 } from './components/forms/inputs'
-export { FormItem, FormItemWrapper } from './components/forms'
+export { FormItem, FormItemWrapper, FormSection } from './components/forms'
+export type { FormSectionProps } from './components/forms'
 
 
 export {
@@ -34,6 +35,7 @@ export {
 export type {
   TableFilterType,
   TableSorterType,
+  MainTableProps,
 } from './components/tables'
 export type {
   FixedStatus,
@@ -44,10 +46,17 @@ export type {
 } from './components/tables'
 
 // ─── Modal Components ───────────────────────────────────────
-export { BaseEditModal, FullscreenMobileModal } from './components/modals'
+export { BaseEditModal, FullscreenMobileModal, ConfirmModal } from './components/modals'
+export type { ConfirmModalProps } from './components/modals'
 
-// ─── Header Components (from CDL) ──────────────────────────
-export { SectionHeader, HeroHeaderCard } from './components/headers'
+// ─── Header Components ─────────────────────────────────────
+export { MainHeader, SectionHeader, PageHeader } from './components/headers'
+export type {
+  MainHeaderProps,
+  MainHeaderVariant,
+  PageHeaderProps,
+  SectionHeaderProps,
+} from './components/headers'
 
 // ─── Card Components ────────────────────────────────────────
 export { StatCard, SkeletonCard } from './components/cards'
@@ -56,10 +65,19 @@ export { StatCard, SkeletonCard } from './components/cards'
 export { MobileActionSplitRow } from './components/mobile'
 
 // ─── Loader Components ──────────────────────────────────────
-export { DetailSkeleton } from './components/loaders'
+export { DetailLoader } from './components/loaders'
+export type { DetailLoaderProps, DetailLoaderVariant } from './components/loaders'
 
 // ─── Shared Components ──────────────────────────────────────
 export { SignatureCanvas, PrimaryKey } from './components/shared'
+
+// ─── Feedback Components ───────────────────────────────────
+export { EmptyState } from './components/feedback'
+export type { EmptyStateProps } from './components/feedback'
+
+// ─── Data Display Components ───────────────────────────────
+export { StatusBadge, DescriptionList } from './components/data-display'
+export type { StatusBadgeProps, DescriptionListProps, DescriptionListItem } from './components/data-display'
 
 // ─── Hooks ──────────────────────────────────────────────────
 export { useResponsive } from './common/responsive'

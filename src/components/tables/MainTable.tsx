@@ -1,45 +1,42 @@
-import { Button, Dropdown, Grid, Input, Space, Table, Tooltip } from 'antd'
+import { Button, Dropdown, Input, Space, Table, Tooltip } from 'antd'
 import type { TableProps } from 'antd'
 import type { FilterValue, SorterResult } from 'antd/es/table/interface'
+import type { ColumnsType } from 'antd/es/table'
 import { MenuOutlined, SearchOutlined, TableOutlined } from '@ant-design/icons'
-import { type ReactNode, useEffect, useMemo, useRef, useState } from 'react'
+import { type ReactNode, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import type { BaseModel } from '@/common/models'
 import ColumnManager from './components/ColumnManager'
-import type { ColumnsType } from 'antd/es/table'
 import { DndProvider } from 'react-dnd'
 import DraggableHeader from './components/DraggableHeader'
 import { HTML5Backend } from 'react-dnd-html5-backend'
+import { TABLE_THEME } from './theme'
 import { defaultTablePageSize } from '@/common/constants'
 import { useColumnManager } from './hooks/useColumnManager'
+import { useResponsive } from '@/common/responsive/hooks'
 import { useTableFullHeightCalculator } from './hooks/useTableFullHeightCalculator'
 import { useTranslation } from 'react-i18next'
 
-const THEME = {
-  primary: '#1890ff',
-  secondary: '#f5f7fa',
-  accent: '#e6f7ff',
-  border: '#e8e8e8',
-}
+export type TableFilterType = Record<string, FilterValue | null>
+export type TableSorterType<T = unknown> = SorterResult<T> | SorterResult<T>[]
 
-export type TableFilterType = Record<string, FilterValue | null | any>
-export type TableSorterType<T = any> = SorterResult<T> | SorterResult<T>[]
-
-interface Props<T extends BaseModel<number>> extends TableProps<T> {
+export interface MainTableProps<T extends BaseModel<number | string>> extends TableProps<T> {
   totalCount: number
   onSearch?: (searchText: string) => void
   actionButtons?: ReactNode
+  searchDebounceMs?: number
 }
 
-const MainTable = <T extends BaseModel<number>>({
+const MainTable = <T extends BaseModel<number | string>>({
   totalCount,
   onSearch,
   actionButtons,
+  searchDebounceMs = 300,
   ...restProps
-}: Props<T>) => {
+}: MainTableProps<T>) => {
   const tableHeaderRef = useRef<HTMLDivElement>(null)
+  const searchTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const { t } = useTranslation()
-  const { useBreakpoint } = Grid
-  const screens = useBreakpoint()
+  const { isMobile, screens } = useResponsive()
   const { tableWrapperRef, tableRef, getTableHeight } = useTableFullHeightCalculator(
     restProps.scroll?.y,
     tableHeaderRef,
@@ -47,7 +44,7 @@ const MainTable = <T extends BaseModel<number>>({
   )
   const columns = restProps.columns || []
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
-  const [searchText, setSearchText] = useState<string>('')
+  const [searchText, setSearchText] = useState('')
 
   const {
     getColumnKey,
@@ -68,9 +65,24 @@ const MainTable = <T extends BaseModel<number>>({
     }
   }, [isDropdownOpen])
 
-  const handleOpenChange = (open: boolean) => {
-    setIsDropdownOpen(open)
-  }
+  useEffect(() => {
+    return () => {
+      if (searchTimerRef.current) clearTimeout(searchTimerRef.current)
+    }
+  }, [])
+
+  const handleSearchChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value
+      setSearchText(value)
+
+      if (searchTimerRef.current) clearTimeout(searchTimerRef.current)
+      searchTimerRef.current = setTimeout(() => {
+        onSearch?.(value)
+      }, searchDebounceMs)
+    },
+    [onSearch, searchDebounceMs],
+  )
 
   const handleApply = () => {
     applyChanges()
@@ -93,19 +105,19 @@ const MainTable = <T extends BaseModel<number>>({
 
         return {
           ...col,
-          fixed: screens.xs ? false : config.fixed,
-          title: <DraggableHeader title={col.title} columnKey={config.key} index={index} moveColumn={moveColumn} />,
+          fixed: isMobile ? false : config.fixed,
+          title: <DraggableHeader title={col.title as ReactNode} columnKey={config.key} index={index} moveColumn={moveColumn} />,
           ellipsis: true,
           onCell: () => ({
             style: {
-              whiteSpace: screens.xs ? 'normal' : ('nowrap' as const),
-              padding: screens.xs ? '8px 4px' : undefined,
+              whiteSpace: isMobile ? 'normal' : ('nowrap' as const),
+              padding: isMobile ? '8px 4px' : undefined,
             },
           }),
         }
       })
       .filter(Boolean) as ColumnsType<T>
-  }, [columns, getVisibleColumns, screens])
+  }, [columns, getVisibleColumns, isMobile, screens])
 
   const columnManagerItems = useMemo(() => {
     const editingColumns = getEditingColumns()
@@ -119,72 +131,47 @@ const MainTable = <T extends BaseModel<number>>({
     }))
   }, [columns, getEditingColumns])
 
-  const columnManagementDropdown = (
-    <ColumnManager
-      columns={columnManagerItems}
-      moveColumn={moveColumn}
-      toggleVisibility={toggleVisibility}
-      setFixedStatus={setFixedStatus}
-      resetToDefault={resetToDefault}
-      onCancel={handleCancel}
-      onApply={handleApply}
-    />
-  )
-
   return (
     <DndProvider backend={HTML5Backend}>
       <div style={{ height: '100%', width: '100%' }}>
         <div
           ref={tableHeaderRef}
           style={{
-            marginBottom: '16px',
+            marginBottom: 16,
             display: 'flex',
-            flexDirection: screens.xs ? 'column' : 'row',
+            flexDirection: isMobile ? 'column' : 'row',
             justifyContent: 'space-between',
-            alignItems: screens.xs ? 'stretch' : 'center',
-            background: THEME.secondary,
-            padding: screens.xs ? '12px 12px' : '12px 16px',
-            borderRadius: '8px',
+            alignItems: isMobile ? 'stretch' : 'center',
+            background: TABLE_THEME.secondary,
+            padding: isMobile ? '12px 12px' : '12px 16px',
+            borderRadius: 8,
             boxShadow: '0 2px 8px rgba(0, 0, 0, 0.05)',
-            gap: screens.xs ? '12px' : '0',
+            gap: isMobile ? 12 : 0,
           }}
         >
-          <div
-            style={{
-              position: 'relative',
-              width: screens.xs ? '100%' : '320px',
-            }}
-          >
-            <Input
-              placeholder={t('global.labels.search')}
-              allowClear
-              prefix={<SearchOutlined style={{ color: THEME.primary, fontSize: '16px' }} />}
-              style={{
-                borderRadius: '6px',
-                padding: '8px 12px',
-                boxShadow: '0 2px 5px rgba(0, 0, 0, 0.03)',
-                border: `1px solid ${THEME.border}`,
-                width: '100%',
-              }}
-              onChange={(e) => {
-                const value = e.target.value
-                setSearchText(value)
-
-                clearTimeout((window as any).searchTimeout)
-                ;(window as any).searchTimeout = setTimeout(() => {
-                  if (onSearch) {
-                    onSearch(value)
-                  }
-                }, 300)
-              }}
-              value={searchText}
-            />
-          </div>
+          {onSearch && (
+            <div style={{ position: 'relative', width: isMobile ? '100%' : 320 }}>
+              <Input
+                placeholder={t('global.labels.search')}
+                allowClear
+                prefix={<SearchOutlined style={{ color: TABLE_THEME.primary, fontSize: 16 }} />}
+                style={{
+                  borderRadius: 6,
+                  padding: '8px 12px',
+                  boxShadow: '0 2px 5px rgba(0, 0, 0, 0.03)',
+                  border: `1px solid ${TABLE_THEME.border}`,
+                  width: '100%',
+                }}
+                onChange={handleSearchChange}
+                value={searchText}
+              />
+            </div>
+          )}
           <Space
-            size={screens.xs ? 'small' : 'middle'}
-            direction={screens.xs ? 'vertical' : 'horizontal'}
+            size={isMobile ? 'small' : 'middle'}
+            direction={isMobile ? 'vertical' : 'horizontal'}
             style={{
-              width: screens.xs ? '100%' : 'auto',
+              width: isMobile ? '100%' : 'auto',
               justifyContent: 'flex-end',
               display: 'flex',
             }}
@@ -192,25 +179,35 @@ const MainTable = <T extends BaseModel<number>>({
             <Tooltip title={t('global.labels.customizeTableColumns')}>
               <Dropdown
                 open={isDropdownOpen}
-                onOpenChange={handleOpenChange}
-                overlay={columnManagementDropdown}
+                onOpenChange={setIsDropdownOpen}
+                dropdownRender={() => (
+                  <ColumnManager
+                    columns={columnManagerItems}
+                    moveColumn={moveColumn}
+                    toggleVisibility={toggleVisibility}
+                    setFixedStatus={setFixedStatus}
+                    resetToDefault={resetToDefault}
+                    onCancel={handleCancel}
+                    onApply={handleApply}
+                  />
+                )}
                 trigger={['click']}
               >
                 <Button
-                  icon={screens.xs ? <MenuOutlined /> : <TableOutlined />}
+                  icon={isMobile ? <MenuOutlined /> : <TableOutlined />}
                   style={{
-                    borderRadius: '6px',
+                    borderRadius: 6,
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '8px',
-                    backgroundColor: isDropdownOpen ? THEME.accent : 'white',
-                    borderColor: isDropdownOpen ? THEME.primary : THEME.border,
-                    color: isDropdownOpen ? THEME.primary : 'inherit',
-                    boxShadow: isDropdownOpen ? `0 0 0 2px ${THEME.accent}` : 'none',
-                    padding: screens.xs ? '6px 12px' : '6px 16px',
+                    gap: 8,
+                    backgroundColor: isDropdownOpen ? TABLE_THEME.accent : 'white',
+                    borderColor: isDropdownOpen ? TABLE_THEME.primary : TABLE_THEME.border,
+                    color: isDropdownOpen ? TABLE_THEME.primary : 'inherit',
+                    boxShadow: isDropdownOpen ? `0 0 0 2px ${TABLE_THEME.accent}` : 'none',
+                    padding: isMobile ? '6px 12px' : '6px 16px',
                     height: 'auto',
-                    width: screens.xs ? '100%' : 'auto',
-                    justifyContent: screens.xs ? 'center' : 'flex-start',
+                    width: isMobile ? '100%' : 'auto',
+                    justifyContent: isMobile ? 'center' : 'flex-start',
                   }}
                 >
                   {t('global.btns.columns')}
@@ -231,16 +228,16 @@ const MainTable = <T extends BaseModel<number>>({
               total: totalCount ?? 0,
               defaultPageSize: defaultTablePageSize,
               showSizeChanger: false,
-              size: screens.xs ? 'small' : 'default',
+              size: isMobile ? 'small' : 'default',
               ...(restProps.pagination || {}),
             }}
             className={`w-full h-full ${restProps.className || ''}`}
             scroll={{
-              x: restProps.scroll?.x ? restProps.scroll.x : (draggableColumns?.length ?? 0) * (screens.xs ? 150 : 200),
+              x: restProps.scroll?.x ?? (draggableColumns?.length ?? 0) * (isMobile ? 150 : 200),
               y: getTableHeight(),
             }}
             rowKey={(x) => x.id}
-            size={screens.xs ? 'small' : 'middle'}
+            size={isMobile ? 'small' : 'middle'}
           />
         </div>
       </div>

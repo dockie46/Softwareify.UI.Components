@@ -1,16 +1,9 @@
 import { Badge, Button, Divider, Tooltip, Typography } from 'antd'
 import DraggableMenuItem from './DraggableMenuItem'
 import type { FixedStatus } from '../types'
+import { TABLE_THEME } from '../theme'
 import { UndoOutlined } from '@ant-design/icons'
 import { useTranslation } from 'react-i18next'
-
-const THEME = {
-  primary: '#1890ff',
-  secondary: '#f5f7fa',
-  accent: '#e6f7ff',
-  border: '#e8e8e8',
-  success: '#52c41a',
-}
 
 interface ColumnManagerProps {
   columns: {
@@ -45,23 +38,31 @@ const ColumnManager: React.FC<ColumnManagerProps> = ({
 
   return (
     <div className="bg-white shadow-lg rounded-lg w-80 max-h-[500px] flex flex-col overflow-hidden">
-      <div className="p-4 font-bold border-b flex justify-between items-center bg-[#f5f7fa]">
+      <div
+        style={{ background: TABLE_THEME.secondary }}
+        className="p-4 font-bold border-b flex justify-between items-center"
+      >
         <Typography.Title level={5} style={{ margin: 0 }}>
           {t('global.labels.customizeTableColumns')}
         </Typography.Title>
         <Tooltip title={t('global.btns.reset')}>
-          <Button type="text" icon={<UndoOutlined />} onClick={resetToDefault} className="text-[#1890ff]" />
+          <Button
+            type="text"
+            icon={<UndoOutlined />}
+            onClick={resetToDefault}
+            style={{ color: TABLE_THEME.primary }}
+          />
         </Tooltip>
       </div>
 
-      <div className="px-3 py-2 flex justify-between bg-[#fafafa] border-b">
+      <div className="px-3 py-2 flex justify-between border-b" style={{ background: TABLE_THEME.secondary }}>
         <div className="flex items-center">
           <Badge
             count={visibleCount}
-            color={THEME.primary}
+            color={TABLE_THEME.primary}
             size="small"
             overflowCount={999}
-            style={{ marginRight: '8px' }}
+            style={{ marginRight: 8 }}
           />
           <Typography.Text type="secondary" className="text-xs">
             {t('global.texts.columnsVisible', { count: visibleCount, total: totalCount })}
@@ -70,14 +71,14 @@ const ColumnManager: React.FC<ColumnManagerProps> = ({
         {(leftFixedCount > 0 || rightFixedCount > 0) && (
           <div className="flex items-center">
             {leftFixedCount > 0 && (
-              <Badge count={leftFixedCount} size="small" color={THEME.primary} style={{ marginRight: '4px' }} />
+              <Badge count={leftFixedCount} size="small" color={TABLE_THEME.primary} style={{ marginRight: 4 }} />
             )}
-            {rightFixedCount > 0 && <Badge count={rightFixedCount} size="small" color={THEME.success} />}
+            {rightFixedCount > 0 && <Badge count={rightFixedCount} size="small" color={TABLE_THEME.success} />}
           </div>
         )}
       </div>
 
-      <div className="overflow-auto flex-grow scrollbar-thin scrollbar-thumb-[#e8e8e8] scrollbar-track-transparent">
+      <div className="overflow-auto flex-grow">
         {columns.map((col, index) => (
           <DraggableMenuItem
             key={col.key}
@@ -95,7 +96,7 @@ const ColumnManager: React.FC<ColumnManagerProps> = ({
 
       <Divider className="my-0" />
 
-      <div className="py-3 px-4 flex justify-end gap-2 bg-[#fafafa]">
+      <div className="py-3 px-4 flex justify-end gap-2" style={{ background: TABLE_THEME.secondary }}>
         <Button block size="middle" onClick={onCancel}>
           {t('global.btns.cancel')}
         </Button>

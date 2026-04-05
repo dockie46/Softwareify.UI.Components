@@ -1,15 +1,16 @@
 import { useDrag, useDrop } from 'react-dnd'
-import type { BaseModel } from '@/common/models'
 import { DRAG_TYPE } from '../types'
-import type { DraggableHeaderProps } from '../types'
+import type { ReactNode } from 'react'
 import { useRef } from 'react'
 
-function DraggableHeader<T extends BaseModel<number>>({
-  title,
-  columnKey,
-  index,
-  moveColumn,
-}: DraggableHeaderProps<T>) {
+interface DraggableHeaderProps {
+  title: ReactNode
+  columnKey: string
+  index: number
+  moveColumn: (dragIndex: number, hoverIndex: number) => void
+}
+
+const DraggableHeader = ({ title, columnKey, index, moveColumn }: DraggableHeaderProps) => {
   const ref = useRef<HTMLDivElement>(null)
 
   const [, drop] = useDrop({
@@ -44,7 +45,7 @@ function DraggableHeader<T extends BaseModel<number>>({
         alignItems: 'center',
       }}
     >
-      {title?.toString()}
+      {typeof title === 'string' || typeof title === 'number' ? title : String(title ?? '')}
     </div>
   )
 }

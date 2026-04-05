@@ -2,16 +2,12 @@ import { Button, Switch, Tooltip } from 'antd'
 import { DRAG_TYPE } from '../types'
 import type { DraggableMenuItemProps, FixedStatus } from '../types'
 import { MenuOutlined, PushpinOutlined } from '@ant-design/icons'
+import { TABLE_THEME } from '../theme'
 import { useDrag, useDrop } from 'react-dnd'
 import { useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 
-const THEME = {
-  primary: '#1890ff',
-  secondary: '#f5f7fa',
-  accent: '#e6f7ff',
-  border: '#e8e8e8',
-  success: '#52c41a',
-}
+const ITEM_HEIGHT = 44
 
 const DraggableMenuItem: React.FC<DraggableMenuItemProps> = ({
   columnKey,
@@ -24,7 +20,7 @@ const DraggableMenuItem: React.FC<DraggableMenuItemProps> = ({
   setFixedStatus,
 }) => {
   const ref = useRef<HTMLDivElement>(null)
-  const ITEM_HEIGHT = 44
+  const { t } = useTranslation()
 
   const [, drop] = useDrop({
     accept: DRAG_TYPE,
@@ -60,9 +56,9 @@ const DraggableMenuItem: React.FC<DraggableMenuItemProps> = ({
   drag(drop(ref))
 
   const getPinColor = () => {
-    if (fixed === 'left') return THEME.primary
-    if (fixed === 'right') return THEME.success
-    return '#d9d9d9'
+    if (fixed === 'left') return TABLE_THEME.primary
+    if (fixed === 'right') return TABLE_THEME.success
+    return TABLE_THEME.muted
   }
 
   const handlePinClick = (e: React.MouseEvent) => {
@@ -71,6 +67,12 @@ const DraggableMenuItem: React.FC<DraggableMenuItemProps> = ({
     if (fixed === false) newStatus = 'left'
     else if (fixed === 'left') newStatus = 'right'
     setFixedStatus(columnKey, newStatus)
+  }
+
+  const getPinTooltip = () => {
+    if (fixed === 'left') return t('global.labels.fixedLeft')
+    if (fixed === 'right') return t('global.labels.fixedRight')
+    return t('global.labels.pinColumn')
   }
 
   return (
@@ -82,9 +84,9 @@ const DraggableMenuItem: React.FC<DraggableMenuItemProps> = ({
         display: 'flex',
         alignItems: 'center',
         padding: '8px 12px',
-        borderBottom: `1px solid ${THEME.border}`,
-        height: `${ITEM_HEIGHT}px`,
-        backgroundColor: isDragging ? '#f5f5f5' : index % 2 === 0 ? '#ffffff' : '#fafafa',
+        borderBottom: `1px solid ${TABLE_THEME.border}`,
+        height: ITEM_HEIGHT,
+        backgroundColor: isDragging ? TABLE_THEME.secondary : index % 2 === 0 ? '#ffffff' : TABLE_THEME.secondary,
         transition: 'all 0.2s',
         position: 'relative',
       }}
@@ -96,7 +98,7 @@ const DraggableMenuItem: React.FC<DraggableMenuItemProps> = ({
             left: 0,
             top: 0,
             bottom: 0,
-            width: '3px',
+            width: 3,
             backgroundColor: fixed ? getPinColor() : 'transparent',
           }}
         />
@@ -106,8 +108,8 @@ const DraggableMenuItem: React.FC<DraggableMenuItemProps> = ({
         style={{
           marginRight: 12,
           cursor: 'grab',
-          color: '#8c8c8c',
-          fontSize: '14px',
+          color: TABLE_THEME.muted,
+          fontSize: 14,
         }}
       />
 
@@ -139,13 +141,13 @@ const DraggableMenuItem: React.FC<DraggableMenuItemProps> = ({
                 marginRight: 6,
                 fontSize: 12,
                 padding: '1px 4px',
-                background: fixed === 'left' ? THEME.accent : '#f6ffed',
-                color: fixed === 'left' ? THEME.primary : THEME.success,
+                background: fixed === 'left' ? TABLE_THEME.accent : '#f6ffed',
+                color: fixed === 'left' ? TABLE_THEME.primary : TABLE_THEME.success,
                 borderRadius: 4,
                 flexShrink: 0,
               }}
             >
-              {fixed === 'left' ? 'LEFT' : 'RIGHT'}
+              {fixed === 'left' ? t('global.labels.left') : t('global.labels.right')}
             </span>
           )}
           <span
@@ -160,7 +162,7 @@ const DraggableMenuItem: React.FC<DraggableMenuItemProps> = ({
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center' }}>
-          <Tooltip title={fixed ? `Fixed ${fixed}` : 'Pin column'}>
+          <Tooltip title={getPinTooltip()}>
             <Button
               type="text"
               icon={
@@ -173,10 +175,7 @@ const DraggableMenuItem: React.FC<DraggableMenuItemProps> = ({
                 />
               }
               onClick={handlePinClick}
-              style={{
-                marginRight: 4,
-                padding: '0 8px',
-              }}
+              style={{ marginRight: 4, padding: '0 8px' }}
             />
           </Tooltip>
 
@@ -184,9 +183,6 @@ const DraggableMenuItem: React.FC<DraggableMenuItemProps> = ({
             checked={isVisible}
             size="small"
             onChange={() => toggleVisibility(columnKey)}
-            style={{
-              backgroundColor: isVisible ? THEME.primary : undefined,
-            }}
           />
         </div>
       </div>
