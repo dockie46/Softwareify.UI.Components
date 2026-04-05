@@ -1,5 +1,5 @@
-import type { FixedStatus, TableColumnConfig } from '../types'
-import { useEffect, useMemo, useState } from 'react'
+import type { FixedStatus, TableColumnConfig } from "../types"
+import { useCallback, useEffect, useMemo, useState } from "react"
 
 export function useColumnManager(columns: any[]) {
   const getColumnKey = (col: any) => (col.key || col.dataIndex) as string
@@ -36,10 +36,10 @@ export function useColumnManager(columns: any[]) {
     setEditingOrderConfig(newOrder)
   }, [columns])
 
-  const startEditing = () => {
+  const startEditing = useCallback(() => {
     setEditingConfig({ ...columnConfig })
     setEditingOrderConfig([...orderConfig])
-  }
+  }, [columnConfig, orderConfig])
 
   const applyChanges = () => {
     setColumnConfig(editingConfig)
