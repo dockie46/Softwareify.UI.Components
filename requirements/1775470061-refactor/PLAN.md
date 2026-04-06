@@ -6,6 +6,7 @@ progress: "Steps 1-6 complete (66/95 items). Steps 7-8 remaining."
 approved_by: jakubkacik
 approved_date: 2026-04-06
 ---
+<!-- SDD-EXECUTING: phases 7-8 -->
 
 # 1775470061 — Production-Ready Code Quality Refactor: Implementation Plan
 
@@ -351,27 +352,34 @@ Upgrade peer dependency and fix breaking API changes.
 Final pass: remove anti-patterns, ensure consistency, document exceptions.
 
 #### 7.1: Console.log audit
-<!-- CHECKPOINT: Done 66/95 items. Step ? in progress. Reason: stop. -->
-- [ ] **7.1a**: Grep src/ for all console.log statements (excluding .stories.tsx)
-- [ ] **7.1b**: Remove any found (should be zero from previous session, but verify)
-- [ ] **7.1c**: Confirm zero console.log in production code
+- [x] **7.1a**: Grep src/ for all console.log statements (excluding .stories.tsx)
+  - Result: 7 occurrences, all in .stories.tsx files (SignatureCanvas.stories, MainTable.stories)
+  - Zero console.log in production code
+  - console.warn found in 6 places — all legitimate optional dependency fallback paths
+- [x] **7.1b**: Remove any found (should be zero from previous session, but verify)
+  - No production console.log to remove
+- [x] **7.1c**: Confirm zero console.log in production code
+  - Confirmed: zero console.log in non-stories src/ files
 
 #### 7.2: Component pattern consistency
-- [ ] **7.2a**: Audit all components in src/components/ for pattern adherence
-  - Verify: Props interface → arrow function → default export
-  - Find any React.FC usage (should be only 2: ColumnManager, DraggableMenuItem)
-  - Verify exceptions are justified in inline comments
-
-- [ ] **7.2b**: Review ColumnManager and DraggableMenuItem
-  - Document why React.FC is used (if valid)
-  - OR convert to arrow functions with arrow function signature
+- [x] **7.2a**: Audit all components in src/components/ for pattern adherence
+  - Found 5 React.FC usages across ColumnManager.tsx and DraggableMenuItem.tsx
+  - All other components follow Props interface → arrow function → default export pattern
+- [x] **7.2b**: Review ColumnManager and DraggableMenuItem
+  - Converted all 5 React.FC usages to standard arrow function with typed props parameter
+  - ColumnManager: `React.FC<ColumnManagerProps>` → `({ ... }: ColumnManagerProps)`
+  - DraggableMenuItem: 3 internal components converted (Fallback, WithDnd, main)
+  - Build passes ✓
 
 #### 7.3: Barrel files
-- [ ] **7.3a**: Verify every component directory has index.ts re-exporting
-- [ ] **7.3b**: Create missing barrel files for 9 directories identified in previous session
-  - Each barrel exports: component + exported types
+- [x] **7.3a**: Verify every component directory has index.ts re-exporting
+  - 20 barrel files found across all component directories and subdirectories
+  - All 9 top-level dirs + 11 nested dirs have index.ts
+- [x] **7.3b**: Create missing barrel files for 9 directories identified in previous session
+  - All barrel files already exist — created in previous Steps
 
 #### 7.4: DOM manipulation refactor
+<!-- CHECKPOINT: Done 73/95 items. Step ? in progress. Authorized-scope: phases 7-8. Reason: stop. -->
 - [ ] **7.4a**: Verify `useTableFullHeightCalculator` no longer uses querySelector/setAttribute
 - [ ] **7.4b**: All DOM access via React refs
 - [ ] **7.4c**: Test height calculation on all breakpoints
