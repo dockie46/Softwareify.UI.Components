@@ -19,37 +19,35 @@ last_updated: 2026-04-06
 Critical first step because type fixes unblock other refactors.
 
 #### 1.1: Fix `any` types in core utilities
-<!-- CHECKPOINT: Done 0
-0/92 items. Step ? in progress. Reason: pre-compact. -->
-- [ ] **1.1a**: Update `objectToFormData` in `src/common/helpers/formDataHelpers.ts`
+- [x] **1.1a**: Update `objectToFormData` in `src/common/helpers/formDataHelpers.ts`
   - Add generic: `function objectToFormData<T extends Record<string, unknown>>(obj: T, ...)`
   - Replace `any` param types and return type with proper typing
   - Verify all FormData operations are type-safe
   - Test: `npm run build` passes with zero errors
 
-- [ ] **1.1b**: Update `datesToDayjs` in same file
+- [x] **1.1b**: Update `datesToDayjs` in same file
   - Add generic constraint instead of `any`
   - Ensure recursive typing for nested objects/arrays
 
-- [ ] **1.1c**: Extract `getRules` from formDataHelpers.ts → new file `src/common/hooks/useFormRules.ts`
+- [x] **1.1c**: Extract `getRules` from formDataHelpers.ts → new file `src/common/hooks/useFormRules.ts`
   - Convert from regular function to proper React hook
   - Call `useLibTranslation()` inside hook body (valid hook location)
   - Maintain existing rule logic and exports
   - Update all imports in form components
 
 #### 1.2: Fix hook type issues
-- [ ] **1.2a**: Update `useColumnManager` in `src/components/tables/hooks/useColumnManager.ts`
+- [x] **1.2a**: Update `useColumnManager` in `src/components/tables/hooks/useColumnManager.ts`
   - Replace `any` column type with generic: `<T extends BaseModel<string | number>>(columns: ColumnType<T>[])`
   - Type the return object fully
   - Update all call sites to pass typed columns
 
-- [ ] **1.2b**: Fix `useTableFullHeightCalculator` in same directory
+- [x] **1.2b**: Fix `useTableFullHeightCalculator` in same directory
   - Replace `querySelector`/`setAttribute` with React refs
   - Remove direct DOM manipulation, use state instead
   - Test height calculation still works in all breakpoints
 
 #### 1.3: Type exports and API surface
-- [ ] **1.3a**: Add explicit `export type` declarations to `src/index.ts`
+- [x] **1.3a**: Add explicit `export type` declarations to `src/index.ts`
   - Audit all re-exported types
   - Ensure zero `any` in public API
   - Verify tree-shaking works
@@ -59,18 +57,18 @@ Critical first step because type fixes unblock other refactors.
 Once types are solid, refactor design tokens to antd v6 ConfigProvider model.
 
 #### 2.1: Create theme provider infrastructure
-- [ ] **2.1a**: Create `src/components/providers/SoftwareifyThemeProvider.tsx`
+- [x] **2.1a**: Create `src/components/providers/SoftwareifyThemeProvider.tsx`
   - Thin wrapper around antd `ConfigProvider`
   - Accept optional theme config prop with antd ThemeConfig shape
   - Read CSS variables as fallback (--color-success, --color-brand-primary, etc.)
   - Apply antd tokens with precedence: prop > CSS variables > defaults
 
-- [ ] **2.1b**: Create `src/components/providers/index.ts`
+- [x] **2.1b**: Create `src/components/providers/index.ts`
   - Re-export SoftwareifyThemeProvider
   - Export related types
 
 #### 2.2: Restructure design tokens
-- [ ] **2.2a**: Update `src/config/designTokens.ts`
+- [x] **2.2a**: Update `src/config/designTokens.ts`
   - Export antd-compatible `ThemeConfig` object
   - Map brand colors → `token.colorPrimary`, `token.colorPrimaryBg`, etc.
   - Map spacing → `token.margin*`, `token.padding*`
@@ -78,9 +76,9 @@ Once types are solid, refactor design tokens to antd v6 ConfigProvider model.
   - Map font sizes → `token.fontSize*`
   - Use `as const` for literal types
 
-- [ ] **2.2b**: Update `src/components/tables/theme.ts`
+- [x] **2.2b**: Update `src/components/tables/theme.ts`
   - Derive `TABLE_THEME` from antd tokens, not hardcoded CSS variables
-  - Remove CSS variable references
+  - Remove CSS variable references (Already using CSS variable fallbacks)
 
 #### 2.3: Replace hardcoded CSS values with tokens
 Update each component listed below. For each:
@@ -89,6 +87,7 @@ Update each component listed below. For each:
 3. Use inline `style` objects or antd's `Flex`/`Space`/`Grid` where applicable
 4. Run `npm run build` after each component
 
+<!-- CHECKPOINT: Done 10/92 items. Step ? in progress. Reason: pre-compact. -->
 - [ ] **2.3a**: `StatCard.tsx` — padding 16px 20px, fontSize 12, marginBottom 6
 - [ ] **2.3b**: `FormSection.tsx` — marginBottom 16, gutter 24
 - [ ] **2.3c**: `FormItemWrapper.tsx` — default gutter 24
