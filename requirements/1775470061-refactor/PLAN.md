@@ -253,6 +253,7 @@ Make optional dependencies truly optional with graceful fallbacks.
   - Verified: package.json peerDependenciesMeta updated correctly
 
 #### 5.2: Add dynamic imports with fallbacks
+<!-- CHECKPOINT: Done 49/95 items. Step ? in progress. Reason: pre-compact. -->
 - [ ] **5.2a**: Create `src/common/models/optionalDeps.ts`
   - Type guards for detecting optional dependencies
   - Safe dynamic import helpers
