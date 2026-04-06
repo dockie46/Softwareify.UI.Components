@@ -82,10 +82,19 @@ export type { StatusBadgeProps, EntityInfoProps, EntityInfoItem, EntityInfoSourc
 // ─── Hooks ──────────────────────────────────────────────────
 export { useResponsive } from './common/responsive'
 export { useFormRules } from './common/hooks'
+export { useLibTranslation } from './common/i18n'
 export { RESPONSIVE_BREAKPOINTS, MOBILE_FULLSCREEN_MODAL_CLASS } from './common/responsive'
 
+// ─── i18n Utilities ─────────────────────────────────────────
+export { registerLocale } from './common/i18n'
+
+// ─── Providers ──────────────────────────────────────────────
+export { SoftwareifyThemeProvider } from './components/providers'
+export type { SoftwareifyThemeProviderProps } from './components/providers'
+
 // ─── Design Tokens ──────────────────────────────────────────
-export { brand, colors, fontSize, fontWeight, spacing, radius } from './config'
+export { brand, colors, fontSize, fontWeight, spacing, radius, softwareifyTheme } from './config'
+export type { ThemeConfig } from './config'
 
 // ─── Helpers ────────────────────────────────────────────────
 export { objectToFormData, datesToDayjs } from './common/helpers'

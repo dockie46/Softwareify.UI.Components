@@ -1,5 +1,6 @@
 import { Typography } from 'antd'
-import { useTranslation } from 'react-i18next'
+import { useLibTranslation } from '@/common/i18n'
+import { fontSize, fontWeight, radius, spacing } from '@/config'
 
 const { Text } = Typography
 
@@ -11,7 +12,7 @@ type PrimaryKeyProps = {
 }
 
 const PrimaryKey = ({ value, label, copyTooltip, copiedTooltip }: PrimaryKeyProps) => {
-  const { t } = useTranslation()
+  const { t } = useLibTranslation()
   if (!value) return null
 
   return (
@@ -19,17 +20,17 @@ const PrimaryKey = ({ value, label, copyTooltip, copiedTooltip }: PrimaryKeyProp
       style={{
         background: 'var(--color-highlight-bg, #f6f8fa)',
         border: '1px solid var(--color-highlight-border, #e1e4e8)',
-        borderRadius: 8,
-        padding: '16px 24px',
+        borderRadius: radius.lg,
+        padding: `${spacing.md}px ${spacing['2xl']}px`,
         display: 'flex',
         alignItems: 'center',
-        gap: 20,
+        gap: spacing.xl,
       }}
     >
       <Text
         style={{
-          fontSize: 12,
-          fontWeight: 700,
+          fontSize: fontSize.xs,
+          fontWeight: fontWeight.bold,
           color: 'var(--color-highlight-text, #586069)',
           textTransform: 'uppercase',
           letterSpacing: 1.5,
@@ -47,8 +48,8 @@ const PrimaryKey = ({ value, label, copyTooltip, copiedTooltip }: PrimaryKeyProp
         }}
         style={{
           fontFamily: 'monospace',
-          fontSize: 15,
-          fontWeight: 700,
+          fontSize: fontSize.md,
+          fontWeight: fontWeight.bold,
           color: 'var(--color-text-primary, #24292e)',
         }}
       >

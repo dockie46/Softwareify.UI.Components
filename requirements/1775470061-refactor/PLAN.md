@@ -237,13 +237,20 @@ Create library-namespaced i18n with unified translation system.
 Make optional dependencies truly optional with graceful fallbacks.
 
 #### 5.1: Move dependencies to peerDependencies
-<!-- CHECKPOINT: Done 47/95 items. Step ? in progress. Reason: pre-compact. -->
-- [ ] **5.1a**: Update package.json `peerDependencies`:
+- [x] **5.1a**: Update package.json `peerDependencies`:
   - Move `react-dnd` and `react-dnd-html5-backend` (mark as `optional: true`)
   - Move `react-resize-detector` (mark as `optional: true`)
   - Remove `react-string-format` entirely
+  - Updated: Removed react-string-format from peerDependencies
+  - Updated: useFormRules.ts to use i18next interpolation instead of react-string-format
+  - Updated: translation key from {0} to {{fieldName}} in src/locales/en.json
+  - Updated: vite.config.ts external list to remove react-string-format
 
-- [ ] **5.1b**: Update `peerDependenciesMeta` with optional flags
+- [x] **5.1b**: Update `peerDependenciesMeta` with optional flags
+  - react-dnd marked optional: true
+  - react-dnd-html5-backend marked optional: true
+  - react-resize-detector marked optional: true
+  - Verified: package.json peerDependenciesMeta updated correctly
 
 #### 5.2: Add dynamic imports with fallbacks
 - [ ] **5.2a**: Create `src/common/models/optionalDeps.ts`

@@ -2,6 +2,7 @@ import { Breadcrumb, Button, Space, Typography } from "antd"
 import type { BreadcrumbProps } from "antd"
 import { ArrowLeftOutlined } from "@ant-design/icons"
 import type { ReactNode } from "react"
+import { spacing } from "@/config"
 import { useResponsive } from "@/common/responsive/hooks"
 
 const { Title, Text } = Typography
@@ -33,8 +34,8 @@ const MainHeader = ({
   const { isMobile } = useResponsive()
   const isPage = variant === "page"
   const titleLevel = isPage ? 4 : 5
-  const outerMb = isPage ? 16 : 12
-  const rowGap = isPage ? 12 : 8
+  const outerMb = isPage ? spacing.lg : spacing.md
+  const rowGap = isPage ? spacing.md : spacing.sm
 
   const hasRight = Boolean(filters || actions)
 
@@ -48,8 +49,8 @@ const MainHeader = ({
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            gap: 12,
-            marginBottom: 8,
+            gap: spacing.md,
+            marginBottom: spacing.sm,
             flexWrap: "wrap",
           }}
         >
@@ -57,7 +58,7 @@ const MainHeader = ({
             {breadcrumb ? <Breadcrumb {...breadcrumb} /> : null}
           </div>
           {breadcrumbExtra ? (
-            <Space size={8} wrap style={{ flexShrink: 0 }}>
+            <Space size={spacing.sm} wrap style={{ flexShrink: 0 }}>
               {breadcrumbExtra}
             </Space>
           ) : null}
@@ -72,7 +73,7 @@ const MainHeader = ({
           gap: isMobile ? rowGap : 0,
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: spacing.md }}>
           {isPage && onBack && (
             <Button type="text" icon={<ArrowLeftOutlined />} onClick={onBack} size="small" aria-label="back" />
           )}
@@ -81,14 +82,14 @@ const MainHeader = ({
               {title}
             </Title>
             {subtitle && (
-              <Text type="secondary" style={{ marginTop: 2, display: "block" }}>
+              <Text type="secondary" style={{ marginTop: spacing.xs, display: "block" }}>
                 {subtitle}
               </Text>
             )}
           </div>
         </div>
         {hasRight && (
-          <Space size={8} wrap style={{ width: isMobile ? "100%" : undefined }}>
+          <Space size={spacing.sm} wrap style={{ width: isMobile ? "100%" : undefined }}>
             {filters}
             {actions}
           </Space>

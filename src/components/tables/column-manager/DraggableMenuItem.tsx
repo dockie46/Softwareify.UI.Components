@@ -3,9 +3,10 @@ import { DRAG_TYPE } from "../types"
 import type { DraggableMenuItemProps, FixedStatus } from "../types"
 import { MenuOutlined, PushpinOutlined } from "@ant-design/icons"
 import { TABLE_THEME } from "../theme"
+import { fontSize, radius, spacing } from "@/config"
 import { useDrag, useDrop } from "react-dnd"
 import { useRef } from "react"
-import { useTranslation } from "react-i18next"
+import { useLibTranslation } from "@/common/i18n"
 
 const ITEM_HEIGHT = 44
 
@@ -20,7 +21,7 @@ const DraggableMenuItem: React.FC<DraggableMenuItemProps> = ({
   setFixedStatus,
 }) => {
   const ref = useRef<HTMLDivElement>(null)
-  const { t } = useTranslation()
+  const { t } = useLibTranslation()
 
   const [, drop] = useDrop({
     accept: DRAG_TYPE,
@@ -70,9 +71,9 @@ const DraggableMenuItem: React.FC<DraggableMenuItemProps> = ({
   }
 
   const getPinTooltip = () => {
-    if (fixed === "left") return t("global.labels.fixedLeft")
-    if (fixed === "right") return t("global.labels.fixedRight")
-    return t("global.labels.pinColumn")
+    if (fixed === "left") return t("labels.fixedLeft")
+    if (fixed === "right") return t("labels.fixedRight")
+    return t("labels.pinColumn")
   }
 
   return (
@@ -83,7 +84,7 @@ const DraggableMenuItem: React.FC<DraggableMenuItemProps> = ({
         cursor: "move",
         display: "flex",
         alignItems: "center",
-        padding: "8px 12px",
+        padding: `${spacing.sm}px ${spacing.md}px`,
         borderBottom: `1px solid ${TABLE_THEME.border}`,
         height: ITEM_HEIGHT,
         backgroundColor: isDragging ? TABLE_THEME.secondary : index % 2 === 0 ? "#ffffff" : TABLE_THEME.secondary,
@@ -106,7 +107,7 @@ const DraggableMenuItem: React.FC<DraggableMenuItemProps> = ({
 
       <MenuOutlined
         style={{
-          marginRight: 12,
+          marginRight: spacing.md,
           cursor: "grab",
           color: TABLE_THEME.muted,
           fontSize: 14,
@@ -138,16 +139,16 @@ const DraggableMenuItem: React.FC<DraggableMenuItemProps> = ({
           {fixed && (
             <span
               style={{
-                marginRight: 6,
-                fontSize: 12,
-                padding: "1px 4px",
+                marginRight: spacing.xs,
+                fontSize: fontSize.xs,
+                padding: `1px ${spacing.xs}px`,
                 background: fixed === "left" ? TABLE_THEME.accent : "#f6ffed",
                 color: fixed === "left" ? TABLE_THEME.primary : TABLE_THEME.success,
-                borderRadius: 4,
+                borderRadius: radius.sm,
                 flexShrink: 0,
               }}
             >
-              {fixed === "left" ? t("global.labels.left") : t("global.labels.right")}
+              {fixed === "left" ? t("labels.left") : t("labels.right")}
             </span>
           )}
           <span
@@ -175,7 +176,7 @@ const DraggableMenuItem: React.FC<DraggableMenuItemProps> = ({
                 />
               }
               onClick={handlePinClick}
-              style={{ marginRight: 4, padding: "0 8px" }}
+              style={{ marginRight: spacing.xs, padding: `0 ${spacing.sm}px` }}
             />
           </Tooltip>
 

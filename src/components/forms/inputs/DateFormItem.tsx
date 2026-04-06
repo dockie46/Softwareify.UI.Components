@@ -14,7 +14,7 @@ const DateFormItem = ({ formProps, elementProps }: Props) => {
       <DatePicker
         {...elementProps}
         format={elementProps?.format ?? elementProps?.showTime ? dateTimeFormat : dateFormat}
-        className="w-full"
+        style={{ width: '100%', ...elementProps?.style }}
       />
     </Form.Item>
   )

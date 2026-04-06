@@ -10,7 +10,7 @@ const TimePickerFormItem = ({ formProps, elementProps }: Props) => {
 
   return (
     <Form.Item {...formProps} rules={formProps?.rules ?? rules}>
-      <TimePicker {...elementProps} className="w-full" />
+      <TimePicker {...elementProps} style={{ width: '100%', ...elementProps?.style }} />
     </Form.Item>
   )
 }

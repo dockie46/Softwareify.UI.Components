@@ -6,5 +6,5 @@ import { Reference } from 'rc-table/lib/interface';
 export declare const useTableFullHeightCalculator: (scrollY: string | number | undefined, tableHeaderRef: React.RefObject<HTMLDivElement | null>, isMobile: boolean) => {
     tableWrapperRef: import('node_modules/react-resize-detector/build/types').OnRefChangeType<HTMLDivElement>;
     tableRef: import('react').RefObject<Reference>;
-    getTableHeight: () => number | string;
+    getTableHeight: () => number | string | undefined;
 };

@@ -1,5 +1,6 @@
 import { Card, Skeleton, Space } from "antd"
 import type { CSSProperties, ReactNode } from "react"
+import { spacing } from "@/config"
 
 const rootStyle = (gap: number): CSSProperties => ({
   display: "flex",
@@ -34,7 +35,7 @@ const ContentLoader = ({
   rows,
   inputRows = 5,
   showAvatar = true,
-  gap = 16,
+  gap = spacing.lg,
   className,
   style,
   footer,
@@ -94,7 +95,7 @@ const ContentLoader = ({
           style={{
             display: "grid",
             gridTemplateColumns: `repeat(${Math.max(1, cards)}, 1fr)`,
-            gap: 12,
+            gap: spacing.md,
           }}
         >
           {[...Array(Math.max(1, cards))].map((_, i) => (
@@ -112,7 +113,7 @@ const ContentLoader = ({
     return (
       <div className={className} style={{ ...rootStyle(g), ...style }}>
         <Card>
-          <Space direction="vertical" style={{ width: "100%" }} size={12}>
+          <Space direction="vertical" style={{ width: "100%" }} size={spacing.md}>
             {Array.from({ length: rowLines }).map((_, i) => (
               <Skeleton key={i} active title={false} paragraph={{ rows: 1, width: "100%" }} />
             ))}
@@ -137,7 +138,7 @@ const ContentLoader = ({
         style={{
           display: "grid",
           gridTemplateColumns: `repeat(${Math.max(1, cards)}, 1fr)`,
-          gap: 12,
+          gap: spacing.md,
         }}
       >
         {[...Array(Math.max(1, cards))].map((_, i) => (

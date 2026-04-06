@@ -1,5 +1,6 @@
 import { Badge, Typography } from 'antd'
 import type { ReactNode } from 'react'
+import { spacing } from '@/config'
 
 const { Text } = Typography
 
@@ -20,7 +21,7 @@ const statusColorMap: Record<StatusType, string> = {
 
 const StatusBadge = ({ status, label }: StatusBadgeProps) => {
   return (
-    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: spacing.sm }}>
       <Badge color={statusColorMap[status]} />
       <Text>{label}</Text>
     </span>

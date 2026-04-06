@@ -10,7 +10,7 @@ const NumberFormItem = ({ elementProps, formProps }: Props) => {
 
   return (
     <Form.Item {...formProps} rules={formProps?.rules ?? rules}>
-      <InputNumber {...elementProps} className="w-full" />
+      <InputNumber {...elementProps} style={{ width: '100%', ...elementProps?.style }} />
     </Form.Item>
   )
 }

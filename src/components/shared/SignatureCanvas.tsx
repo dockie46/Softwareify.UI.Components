@@ -1,7 +1,8 @@
 import { useRef, useEffect, useCallback, useState } from 'react'
 import { Button, Space } from 'antd'
 import { ClearOutlined } from '@ant-design/icons'
-import { useTranslation } from 'react-i18next'
+import { radius, spacing } from '@/config'
+import { useLibTranslation } from '@/common/i18n'
 
 type SignatureCanvasProps = {
   width?: number
@@ -20,7 +21,7 @@ const SignatureCanvas = ({
   clearLabel,
   confirmLabel,
 }: SignatureCanvasProps) => {
-  const { t } = useTranslation()
+  const { t } = useLibTranslation()
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [isDrawing, setIsDrawing] = useState(false)
   const [hasDrawn, setHasDrawn] = useState(false)
@@ -101,14 +102,14 @@ const SignatureCanvas = ({
   }
 
   return (
-    <div className="flex flex-col gap-2">
+    <div style={{ display: 'flex', flexDirection: 'column', gap: spacing.xs }}>
       <canvas
         ref={canvasRef}
         width={width}
         height={height}
         style={{
           border: '1px solid var(--color-border, #d9d9d9)',
-          borderRadius: 8,
+          borderRadius: radius.lg,
           cursor: disabled ? 'default' : 'crosshair',
           touchAction: 'none',
           width: '100%',

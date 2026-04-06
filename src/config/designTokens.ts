@@ -1,3 +1,5 @@
+import type { ThemeConfig } from 'antd'
+
 // ─── Brand Colors ───────────────────────────────────────────
 export const brand = {
   primary: '#ED1C24',
@@ -70,3 +72,56 @@ export const radius = {
   xl: 12,
   round: 20,
 } as const
+
+// ─── Ant Design Theme Config ────────────────────────────────
+/**
+ * antd v6 ConfigProvider theme configuration.
+ * Maps Softwareify design tokens to antd tokens.
+ * 
+ * Precedence:
+ * 1. Explicit theme prop passed to SoftwareifyThemeProvider
+ * 2. CSS variables (--color-* et al)
+ * 3. These defaults
+ */
+export const softwareifyTheme: ThemeConfig = {
+  token: {
+    // Brand colors
+    colorPrimary: brand.primary,
+    colorBgContainer: colors.bgPrimary,
+    colorBorder: colors.border,
+    colorError: colors.error,
+    colorSuccess: colors.success,
+    colorWarning: colors.warning,
+    colorInfo: colors.info,
+
+    // Typography
+    fontSize: fontSize.base,
+    fontSizeHeading1: fontSize['3xl'],
+    fontSizeHeading2: fontSize['2xl'],
+    fontSizeHeading3: fontSize.xl,
+    fontSizeHeading4: fontSize.lg,
+    fontSizeHeading5: fontSize.md,
+    fontWeightStrong: fontWeight.semibold,
+
+    // Spacing and sizing (antd uses margin/padding as base, with XS/SM/MD/LG/XL variants)
+    margin: spacing.md,
+    marginXS: spacing.xs,
+    marginSM: spacing.sm,
+    marginLG: spacing.lg,
+    marginXL: spacing.xl,
+
+    padding: spacing.md,
+    paddingXS: spacing.xs,
+    paddingSM: spacing.sm,
+    paddingLG: spacing.lg,
+    paddingXL: spacing.xl,
+
+    // Border radius
+    borderRadius: radius.md,
+    borderRadiusLG: radius.lg,
+    borderRadiusSM: radius.sm,
+
+    // Other common tokens
+    lineHeight: 1.5,
+  },
+}

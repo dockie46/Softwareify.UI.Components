@@ -12,7 +12,7 @@ import { defaultTablePageSize } from "@/common/constants"
 import { useColumnManager } from "../hooks/useColumnManager"
 import { useResponsive } from "@/common/responsive/hooks"
 import { useTableFullHeightCalculator } from "../hooks/useTableFullHeightCalculator"
-import { useTranslation } from "react-i18next"
+import { useLibTranslation } from "@/common/i18n"
 import MainTableToolbar from "./MainTableToolbar"
 
 export type TableFilterType = Record<string, FilterValue | null>
@@ -34,7 +34,7 @@ const MainTable = <T extends BaseModel<number | string>>({
 }: MainTableProps<T>) => {
   const tableHeaderRef = useRef<HTMLDivElement>(null)
   const searchTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
-  const { t } = useTranslation()
+  const { t } = useLibTranslation()
   const { isMobile } = useResponsive()
   const { tableWrapperRef, tableRef, getTableHeight } = useTableFullHeightCalculator(
     restProps.scroll?.y,
@@ -136,9 +136,9 @@ const MainTable = <T extends BaseModel<number | string>>({
         <MainTableToolbar
           headerRef={tableHeaderRef}
           isMobile={isMobile}
-          searchLabel={t("global.labels.search")}
-          columnsLabel={t("global.btns.columns")}
-          customizeColumnsTooltip={t("global.labels.customizeTableColumns")}
+          searchLabel={t("labels.search")}
+          columnsLabel={t("btns.columns")}
+          customizeColumnsTooltip={t("labels.customizeTableColumns")}
           onSearchInputChange={onSearch ? handleSearchChange : undefined}
           searchText={searchText}
           columnMenuOpen={isDropdownOpen}

@@ -1,4 +1,5 @@
 import { Fragment, type CSSProperties, type ReactNode } from "react"
+import { spacing } from "@/config"
 
 export type ActionColumnRowProps = {
   items?: ReactNode[]
@@ -24,7 +25,7 @@ const ActionColumnRow = ({
   left,
   right,
   className,
-  gap = 12,
+  gap = spacing.md,
   dividerColor = "var(--color-border-light, rgba(0,0,0,0.06))",
 }: ActionColumnRowProps) => {
   const cells = items !== undefined ? items : [left, right].filter((x) => x != null)

@@ -1,3 +1,4 @@
+import { ThemeConfig } from 'antd';
 export declare const brand: {
     readonly primary: "#ED1C24";
     readonly dark: "#080808";
@@ -56,3 +57,13 @@ export declare const radius: {
     readonly xl: 12;
     readonly round: 20;
 };
+/**
+ * antd v6 ConfigProvider theme configuration.
+ * Maps Softwareify design tokens to antd tokens.
+ *
+ * Precedence:
+ * 1. Explicit theme prop passed to SoftwareifyThemeProvider
+ * 2. CSS variables (--color-* et al)
+ * 3. These defaults
+ */
+export declare const softwareifyTheme: ThemeConfig;
