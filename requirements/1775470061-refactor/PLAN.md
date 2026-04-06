@@ -508,6 +508,7 @@ Fixes 5 findings from visual QA review (Storybook audit vs OCPP Server reference
 
 #### 9.1: Replace CSS variable tokens with concrete defaults (FND-1, FND-4)
 
+<!-- CHECKPOINT: Done 95/111 items. Step ? in progress. Reason: stop. -->
 - [ ] [FND-1/FR-3] Replace CSS variable color values in `colors` object in `src/config/designTokens.ts` with concrete hex defaults matching OCPP Server: `bgPrimary: '#ffffff'`, `bgSecondary: '#fafafa'`, `bgElevated: '#ffffff'`, `border: '#E7EAF0'`, `borderLight: '#F0F0F0'`, `textPrimary: '#262626'`, `textSecondary: '#595959'`, `textMuted: '#8c8c8c'`, `textInverse: '#ffffff'`, `headerBg: '#000000'`
 - [ ] [FND-1/FR-3] Verify `softwareifyTheme.token.colorBgContainer` and `colorBorder` now resolve to real colors — run `npm run build` ← VERIFY_COMMAND
 - [ ] [FND-4/FR-3] Verify checkbox border is now visible in Storybook CheckboxFormItem story (auto-fixed by concrete `colorBorder`)
