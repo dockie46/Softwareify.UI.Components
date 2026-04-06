@@ -1,4 +1,3 @@
-import type { Reference } from 'rc-table/lib/interface'
 import { useCallback, useRef, useEffect, useState } from 'react'
 import { isResizeDetectorAvailable } from '@/common/models/optionalDeps'
 
@@ -25,7 +24,8 @@ export const useTableFullHeightCalculator = (
   tableHeaderRef: React.RefObject<HTMLDivElement | null>,
   isMobile: boolean,
 ) => {
-  const tableRef = useRef<Reference>(null)
+  // In antd v6, rc-table ref is just a standard HTML div ref
+  const tableRef = useRef<HTMLDivElement>(null)
 
   const recalculateTableHeight = useCallback(
     (wrapper: HTMLDivElement | null): number | string | undefined => {

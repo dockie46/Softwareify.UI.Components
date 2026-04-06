@@ -161,13 +161,12 @@ const MainTable = <T extends BaseModel<number | string>>({
             {...restProps}
             columns={draggableColumns}
             virtual={restProps.virtual ?? true}
-            ref={tableRef}
             pagination={{
               position: ["bottomCenter"],
               total: totalCount ?? 0,
               defaultPageSize: defaultTablePageSize,
               showSizeChanger: false,
-              size: isMobile ? "small" : "default",
+              size: isMobile ? "small" : "middle",
               ...(restProps.pagination || {}),
             }}
             className={`w-full h-full ${restProps.className || ""}`}
