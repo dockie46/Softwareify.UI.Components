@@ -1,5 +1,2 @@
-import { BaseFormItemProps } from '../models/form';
-import { Rule } from 'antd/es/form';
-export declare const objectToFormData: (obj: any, rootName?: any, ignoreList?: any[]) => FormData;
-export declare const getRules: (props: BaseFormItemProps | undefined, type?: "email" | "url" | "phone" | string, placeholder?: string) => Rule[];
-export declare const datesToDayjs: (model: any) => any;
+export declare const objectToFormData: <T extends Record<string, unknown>>(obj: T, rootName?: string, ignoreList?: string[]) => FormData;
+export declare const datesToDayjs: <T extends Record<string, unknown>>(model: T) => T;

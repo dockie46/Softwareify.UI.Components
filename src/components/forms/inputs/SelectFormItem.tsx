@@ -1,13 +1,15 @@
 import type { BaseFormItemProps, FormItemWrapperProps } from '@/common/models/form'
 import { Form, Select } from 'antd'
 import type { SelectProps } from 'antd'
-import { getRules } from '@/common/helpers/formDataHelpers'
+import { useFormRules } from '@/common/hooks'
 
 interface Props extends FormItemWrapperProps<BaseFormItemProps, SelectProps> {}
 
 const SelectFormItem = ({ elementProps, formProps }: Props) => {
+  const rules = useFormRules(formProps)
+
   return (
-    <Form.Item {...formProps} rules={formProps?.rules ?? getRules(formProps)}>
+    <Form.Item {...formProps} rules={formProps?.rules ?? rules}>
       <Select
         showSearch
         filterOption={(input, option) => {

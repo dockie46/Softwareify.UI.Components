@@ -22,8 +22,10 @@ export declare const StackedValues: Story;
 export declare const SpanColumns: Story;
 export declare const Loading: Story;
 /**
- * Two columns: **no section `title`** on either side (title misaligns the panels). Right: value-only stacked
- * lines. `Row align="top"` + `alignSelf` on `Col`.
+ * Two columns: **section `title` on the left**; right uses an **invisible** copy of the same `<span>`
+ * so header height matches. **CSS Grid** (`minmax(0, 1fr)`) avoids flex/`Col` sub-pixel width rounding.
+ * When side-by-side (`lg+`), both panels **stretch to the same row height** (shorter card grows; bordered
+ * `view` + table fill the cell — same idea as `FiveLeftOneRight`).
  */
 export declare const TwoColumnRightStacked: Story;
 /** One `EntityInfo`, two label/value pairs **per row** (`column={2}`). Not the same as page two-column layout. */

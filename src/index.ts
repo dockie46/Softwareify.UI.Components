@@ -81,13 +81,14 @@ export type { StatusBadgeProps, EntityInfoProps, EntityInfoItem, EntityInfoSourc
 
 // ─── Hooks ──────────────────────────────────────────────────
 export { useResponsive } from './common/responsive'
+export { useFormRules } from './common/hooks'
 export { RESPONSIVE_BREAKPOINTS, MOBILE_FULLSCREEN_MODAL_CLASS } from './common/responsive'
 
 // ─── Design Tokens ──────────────────────────────────────────
 export { brand, colors, fontSize, fontWeight, spacing, radius } from './config'
 
 // ─── Helpers ────────────────────────────────────────────────
-export { objectToFormData, getRules, datesToDayjs } from './common/helpers'
+export { objectToFormData, datesToDayjs } from './common/helpers'
 
 // ─── Constants ──────────────────────────────────────────────
 export {
