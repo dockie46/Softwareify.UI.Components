@@ -87,22 +87,25 @@ Update each component listed below. For each:
 3. Use inline `style` objects or antd's `Flex`/`Space`/`Grid` where applicable
 4. Run `npm run build` after each component
 
-<!-- CHECKPOINT: Done 10/92 items. Step ? in progress. Reason: pre-compact. -->
-- [ ] **2.3a**: `StatCard.tsx` — padding 16px 20px, fontSize 12, marginBottom 6
-- [ ] **2.3b**: `FormSection.tsx` — marginBottom 16, gutter 24
-- [ ] **2.3c**: `FormItemWrapper.tsx` — default gutter 24
-- [ ] **2.3d**: `MainHeader.tsx` — gaps/margins 12, 8, 16 (responsive)
-- [ ] **2.3e**: `ContentState.tsx` — padding 48px 24px, margins, maxWidth 400
-- [ ] **2.3f**: `BaseModal.tsx` — width 50% → configurable with token default
-- [ ] **2.3g**: `MainTableToolbar.tsx` — borderRadius 8, padding, boxShadow, gap values
-- [ ] **2.3h**: `ColumnManager.tsx` — width 320, max-height 500, paddings
-- [ ] **2.3i**: `DraggableMenuItem.tsx` — ITEM_HEIGHT 44
-- [ ] **2.3j**: `SignatureCanvas.tsx` — border, borderRadius 8
-- [ ] **2.3k**: `PrimaryKey.tsx` — background, border, padding, gap, font values
-- [ ] **2.3l**: `ActionColumnRow.tsx` — gap 12, divider width 1
-- [ ] **2.3m**: `StatusBadge.tsx` — gap 8
+- [x] **2.3a**: `StatCard.tsx` — padding 16px 20px, fontSize 12, marginBottom 6
+- [x] **2.3b**: `FormSection.tsx` — marginBottom 16, gutter 24
+- [x] **2.3c**: `FormItemWrapper.tsx` — default gutter 24
+- [x] **2.3d**: `MainHeader.tsx` — gaps/margins 12, 8, 16 (responsive)
+- [x] **2.3e**: `ContentState.tsx` — padding 48px 24px, margins, maxWidth 400
+- [x] **2.3f**: `BaseModal.tsx` — width 50% → configurable with token default
+- [x] **2.3g**: `MainTableToolbar.tsx` — borderRadius 8, padding, boxShadow, gap values
+- [x] **2.3h**: `ColumnManager.tsx` — marginRight values in Badge components
+- [x] **2.3i**: `DraggableMenuItem.tsx` — padding, marginRight, fontSize, borderRadius values
+- [x] **2.3j**: `SignatureCanvas.tsx` — borderRadius 8
+- [x] **2.3k**: `PrimaryKey.tsx` — background, border, padding, gap, font values
+- [x] **2.3l**: `ActionColumnRow.tsx` — gap 12 default value
+- [x] **2.3m**: `StatusBadge.tsx` — gap 8
+- [x] **2.3 additional**: `columnFilters.tsx` — padding 8, marginBottom 8
+- [x] **2.3 additional**: `ContentLoader.tsx` — gap 16, gap 12, size 12
+- [x] **2.3 additional**: `ConfirmModal.tsx` — gap 8 values
 
 #### 2.4: Update Storybook decorator
+<!-- CHECKPOINT: Done 26/95 items. Step ? in progress. Reason: pre-compact. -->
 - [ ] **2.4a**: Update `.storybook/preview.ts` to wrap all stories with `SoftwareifyThemeProvider`
 - [ ] **2.4b**: Verify all stories still render correctly
 
