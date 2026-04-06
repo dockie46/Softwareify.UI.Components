@@ -1,5 +1,5 @@
 ---
-status: implemented
+status: approved
 # status lifecycle: draft → approved → implemented | cancelled
 #
 # draft:       requirements being written; Claude will not implement
@@ -13,6 +13,7 @@ approved_by: jakubkacik
 approved_date: 2026-04-06
 implemented_by: Claude
 implemented_date: 2026-04-06
+# Reverted to approved by /capture-findings Revision 1 (2026-04-06) — see FINDINGS.md
 ---
 
 # 1775470061 — Production-Ready Code Quality Refactor
@@ -59,7 +60,8 @@ We are refactoring @softwareifycz/ui-components to production quality: upgrading
 
 **Acceptance Criteria**:
 - New `src/components/providers/SoftwareifyThemeProvider.tsx` exports a thin wrapper around antd's `ConfigProvider`
-- `designTokens.ts` restructured to export an antd-compatible `ThemeConfig` object (mapping brand colors, spacing, radius, typography to antd's `token` API)
+- `designTokens.ts` restructured to export an antd-compatible `ThemeConfig` object (mapping brand colors, spacing, radius, typography to antd's `token` API). All color tokens in `softwareifyTheme` must use **concrete values** (hex/rgb) as defaults — not bare CSS variables. CSS variables may be used as an optional override mechanism but the theme must render correctly out of the box without any CSS variable definitions.
+<!-- Updated by FND-1 (Revision 1): CSS variable tokens resolve to black when undefined, breaking the theme out of the box -->
 - All hardcoded CSS values in components replaced with tokens from the unified system:
   - `StatCard`: padding `16px 20px` → spacing tokens
   - `FormSection`: gap `16` → spacing token
@@ -75,7 +77,8 @@ We are refactoring @softwareifycz/ui-components to production quality: upgrading
   - `ActionColumnRow`: gap `12px`, divider width `1px` → tokens
   - `StatusBadge`: gap `8px` → token
   - `EntityInfo`: font-size already uses token (keep)
-- Custom CSS variables (`--color-success`, `--color-brand-primary`, etc.) retained as optional overrides consumed by `SoftwareifyThemeProvider` (reads CSS vars at mount, antd tokens take precedence if both set). Hardcoded CSS variable references in individual components removed — only ThemeProvider reads them
+- Custom CSS variables (`--color-success`, `--color-brand-primary`, etc.) retained as optional overrides consumed by `SoftwareifyThemeProvider` (reads CSS vars at mount, antd tokens take precedence if both set). Hardcoded CSS variable references in individual components removed — only ThemeProvider reads them. `borderRadius` default must be `4` to match the OCPP Server reference app.
+<!-- Updated by FND-5 (Revision 1): borderRadius 6 vs 4 mismatch with OCPP Server -->
 - `TABLE_THEME` in `src/components/tables/theme.ts` derived from antd tokens, not hardcoded CSS variables
 - ThemeProvider exported from `src/index.ts`
 - Storybook decorator updated to wrap all stories with `SoftwareifyThemeProvider`
@@ -97,7 +100,8 @@ We are refactoring @softwareifycz/ui-components to production quality: upgrading
 
 **Acceptance Criteria**:
 - All components use a library-internal `useLibTranslation()` hook that calls `useTranslation('softwareify-ui')`
-- Translation keys renamed from `global.*` to flat namespace keys (e.g., `btns.save`, `validations.input.isRequiredField`)
+- Translation keys renamed from `global.*` to flat namespace keys (e.g., `btns.save`, `validations.input.isRequiredField`). **All** component `t()` calls must use the flat keys (no `global.` prefix) — i.e. `t("btns.save")` not `t("global.btns.save")`.
+<!-- Updated by FND-2 (Revision 1): 6 files still used global. prefix, showing raw keys in Storybook -->
 - Default locale file exported at `src/locales/en.json` with all translation keys used by components
 - Locale file included in the published npm package (`files` field in package.json)
 - `src/index.ts` exports the locale type and a `registerLocale()` helper that consumers call to merge translations into their i18n instance
@@ -126,6 +130,8 @@ We are refactoring @softwareifycz/ui-components to production quality: upgrading
 - Zero `console.log` statements in production source files (stories excluded)
 - All components follow the pattern: `interface Props` → arrow function → `export default` (as established in CLAUDE.md Component Consistency principle)
 - Every component directory has a barrel `index.ts` re-exporting the component and its types
+- All form input story decorators use `<Form layout="vertical">` to match the OCPP Server's form pattern (labels above inputs)
+<!-- Updated by FND-3 (Revision 1): Form stories used horizontal layout, making labels appear beside inputs -->
 - `useTableFullHeightCalculator` uses React refs for all library-controlled elements; `querySelector` for antd-internal DOM elements (`thead`, footer, container, placeholder, wrapper) is documented with inline comments — antd does not expose refs for these elements
 - Deprecated props in `ActionColumnRow` (`left`, `right`) removed (use `items` instead); removal documented in `MIGRATION.md` with before/after example
 - `BaseFormItemProps` narrowed from bare `FormItemProps` re-export to explicit interface with documented fields

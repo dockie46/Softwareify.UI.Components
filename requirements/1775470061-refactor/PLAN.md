@@ -1,13 +1,11 @@
 ---
-status: implemented
-phase: 4
+status: approved
+phase: 3
 last_updated: 2026-04-06
-progress: "Phase 4 Fulfillment Audit complete. All FR/NFR criteria met. Ready for deployment."
+progress: "Revision 1: 5 findings captured. Step 9 added with revision items. Ready for /implement-phase 9."
 approved_by: jakubkacik
 approved_date: 2026-04-06
-implemented_by: Claude
-implemented_date: 2026-04-06
-audit_status: passed
+# Reverted to approved by /capture-findings Revision 1 (2026-04-06) — see FINDINGS.md
 ---
 
 # 1775470061 — Production-Ready Code Quality Refactor: Implementation Plan
@@ -498,6 +496,43 @@ When complete:
 - ✅ Bundle size within 10% of baseline
 - ✅ Tree-shaking verified (single-component import <50KB)
 - ✅ All acceptance criteria mapped to code evidence in Phase 4 audit
+
+---
+
+<!-- ⛔ IMPLEMENTATION ENDS HERE — everything below is audit/close, not executable by /implement-phase -->
+
+### Step 9: Revision 1 — Visual QA Findings
+<!-- depends: Step 8 | revision items from FINDINGS.md -->
+
+Fixes 5 findings from visual QA review (Storybook audit vs OCPP Server reference).
+
+#### 9.1: Replace CSS variable tokens with concrete defaults (FND-1, FND-4)
+
+- [ ] [FND-1/FR-3] Replace CSS variable color values in `colors` object in `src/config/designTokens.ts` with concrete hex defaults matching OCPP Server: `bgPrimary: '#ffffff'`, `bgSecondary: '#fafafa'`, `bgElevated: '#ffffff'`, `border: '#E7EAF0'`, `borderLight: '#F0F0F0'`, `textPrimary: '#262626'`, `textSecondary: '#595959'`, `textMuted: '#8c8c8c'`, `textInverse: '#ffffff'`, `headerBg: '#000000'`
+- [ ] [FND-1/FR-3] Verify `softwareifyTheme.token.colorBgContainer` and `colorBorder` now resolve to real colors — run `npm run build` ← VERIFY_COMMAND
+- [ ] [FND-4/FR-3] Verify checkbox border is now visible in Storybook CheckboxFormItem story (auto-fixed by concrete `colorBorder`)
+- [ ] [FND-1/FR-3] Verify table headers in MainTable Default story show white background with visible text (not black)
+
+#### 9.2: Fix i18n key prefix mismatch (FND-2)
+
+- [ ] [FND-2/FR-5] In `src/components/modals/base-modal/BaseModal.tsx`, replace `t("global.btns.cancelChanges")` → `t("btns.cancelChanges")` and `t("global.btns.saveChanges")` → `t("btns.saveChanges")`
+- [ ] [FND-2/FR-5] In `src/components/modals/confirm/ConfirmModal.tsx`, replace `t("global.btns.cancel")` → `t("btns.cancel")` and `t("global.btns.confirm")` → `t("btns.confirm")`
+- [ ] [FND-2/FR-5] In `src/components/shared/PrimaryKey.tsx`, replace `t('global.labels.primaryKey')` → `t('labels.primaryKey')`, `t('global.btns.copy')` → `t('btns.copy')`, `t('global.btns.copied')` → `t('btns.copied')`
+- [ ] [FND-2/FR-5] In `src/components/shared/SignatureCanvas.tsx`, replace `t('global.btns.clear')` → `t('btns.clear')` and `t('global.btns.confirm')` → `t('btns.confirm')`
+- [ ] [FND-2/FR-5] In `src/components/tables/filters/columnFilters.tsx`, replace `t("global.btns.ok")` → `t("btns.ok")` and `t("global.btns.reset")` → `t("btns.reset")`
+- [ ] [FND-2/FR-5] Run `npm run build` and verify zero errors ← VERIFY_COMMAND
+
+#### 9.3: Fix form story decorators to vertical layout (FND-3)
+
+- [ ] [FND-3/FR-7] In all 10 form story files (`InputFormItem.stories.tsx`, `CheckboxFormItem.stories.tsx`, `SelectFormItem.stories.tsx`, `SwitchFormItem.stories.tsx`, `NumberFormItem.stories.tsx`, `DateFormItem.stories.tsx`, `TimePickerFormItem.stories.tsx`, `TextAreaFormItem.stories.tsx`, `FormItemWrapper.stories.tsx`, `FormSection.stories.tsx`), change decorator from `<Form>` to `<Form layout="vertical">`
+- [ ] [FND-3/FR-7] Verify InputFormItem Default story shows label above input in Storybook
+- [ ] [FND-3/FR-7] Verify CheckboxFormItem Default story shows checkbox control with label
+- [ ] [FND-3/FR-7] Run `npm run build` ← VERIFY_COMMAND
+
+#### 9.4: Align borderRadius with OCPP Server (FND-5)
+
+- [ ] [FND-5/FR-3] In `src/config/designTokens.ts`, change `radius.md` from `6` to `4` to match OCPP Server's `borderRadius: 4`
+- [ ] [FND-5/FR-3] Run `npm run build` ← VERIFY_COMMAND
 
 ---
 
