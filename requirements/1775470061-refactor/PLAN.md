@@ -349,6 +349,7 @@ Upgrade peer dependency and fix breaking API changes.
 Final pass: remove anti-patterns, ensure consistency, document exceptions.
 
 #### 7.1: Console.log audit
+<!-- CHECKPOINT: Done 66/95 items. Step ? in progress. Reason: pre-compact. -->
 - [ ] **7.1a**: Grep src/ for all console.log statements (excluding .stories.tsx)
 - [ ] **7.1b**: Remove any found (should be zero from previous session, but verify)
 - [ ] **7.1c**: Confirm zero console.log in production code
