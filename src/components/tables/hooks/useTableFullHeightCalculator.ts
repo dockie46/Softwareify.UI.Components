@@ -1,10 +1,24 @@
 import type { Reference } from 'rc-table/lib/interface'
-import { useCallback, useRef } from 'react'
-import { useResizeDetector } from 'react-resize-detector'
+import { useCallback, useRef, useEffect, useState } from 'react'
+import { isResizeDetectorAvailable } from '@/common/models/optionalDeps'
+
+// Conditionally import react-resize-detector
+let useResizeDetectorHook: any = null
+const isResizeDetectorEnabled = isResizeDetectorAvailable()
+
+if (isResizeDetectorEnabled) {
+  try {
+    const module = require('react-resize-detector')
+    useResizeDetectorHook = module.useResizeDetector
+  } catch {
+    console.warn('react-resize-detector is marked as available but failed to import')
+  }
+}
 
 /**
  * Measures the wrapper and header filter row so the table body gets a usable `scroll.y`.
  * When `scrollY` is set, that value wins; otherwise height is derived from the container.
+ * Falls back to CSS-based height (100% of parent) if react-resize-detector is not installed.
  */
 export const useTableFullHeightCalculator = (
   scrollY: string | number | undefined,
@@ -61,24 +75,58 @@ export const useTableFullHeightCalculator = (
     [scrollY, tableHeaderRef, isMobile]
   )
 
-  const tableWrapperResizeDetector = useResizeDetector<HTMLDivElement>({
-    refreshMode: 'debounce',
-    onResize: () => {
-      if (tableWrapperResizeDetector.ref.current) {
-        recalculateTableHeight(tableWrapperResizeDetector.ref.current)
+  // State for resize detection fallback (when react-resize-detector is not available)
+  const [resizeObserver, setResizeObserver] = useState<ResizeObserver | null>(null)
+  const tableWrapperRefFallback = useRef<HTMLDivElement>(null)
+
+  // Initialize ResizeObserver fallback if react-resize-detector is not available
+  useEffect(() => {
+    if (isResizeDetectorEnabled || !tableWrapperRefFallback.current) {
+      return
+    }
+
+    const observerCallback = () => {
+      if (tableWrapperRefFallback.current) {
+        recalculateTableHeight(tableWrapperRefFallback.current)
       }
-    },
-    refreshRate: 1,
-  })
+    }
+
+    const observer = new ResizeObserver(observerCallback)
+    observer.observe(tableWrapperRefFallback.current)
+    setResizeObserver(observer)
+
+    return () => {
+      observer.disconnect()
+    }
+  }, [recalculateTableHeight])
+
+  let tableWrapperRef: React.RefObject<HTMLDivElement>
+
+  // Use react-resize-detector if available, otherwise use ResizeObserver fallback
+  if (isResizeDetectorEnabled && useResizeDetectorHook) {
+    const tableWrapperResizeDetector = useResizeDetectorHook({
+      refreshMode: 'debounce',
+      onResize: () => {
+        if (tableWrapperResizeDetector.ref.current) {
+          recalculateTableHeight(tableWrapperResizeDetector.ref.current)
+        }
+      },
+      refreshRate: 1,
+    })
+    tableWrapperRef = tableWrapperResizeDetector.ref as React.RefObject<HTMLDivElement>
+  } else {
+    // Fallback to manual ResizeObserver
+    tableWrapperRef = tableWrapperRefFallback as React.RefObject<HTMLDivElement>
+  }
 
   const getTableHeight = useCallback((): number | string | undefined => {
-    const wrapper = tableWrapperResizeDetector.ref.current
+    const wrapper = tableWrapperRef.current
     if (!wrapper) return undefined
     return recalculateTableHeight(wrapper)
-  }, [recalculateTableHeight, tableWrapperResizeDetector.ref])
+  }, [recalculateTableHeight, tableWrapperRef])
 
   return {
-    tableWrapperRef: tableWrapperResizeDetector.ref,
+    tableWrapperRef: tableWrapperRef,
     tableRef: tableRef,
     getTableHeight: getTableHeight,
   }
