@@ -171,6 +171,8 @@ const MainTable = <T extends BaseModel<number | string>>({
             }}
             className={`w-full h-full ${restProps.className || ""}`}
             scroll={{
+              // Column width multipliers: Mobile friendly (150px per column) vs Desktop (200px per column).
+              // These ensure horizontal scrolling area is sized for content without layout thrashing.
               x: restProps.scroll?.x ?? (draggableColumns?.length ?? 0) * (isMobile ? 150 : 200),
               y: getTableHeight(),
             }}

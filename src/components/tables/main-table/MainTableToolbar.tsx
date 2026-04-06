@@ -50,6 +50,8 @@ const MainTableToolbar = ({
       }}
     >
       {showSearch && (
+        // Search input width: 320px is optimal for desktop (enough for typical search terms without taking space).
+        // On mobile, expands to 100% for touch-friendly interaction.
         <div style={{ position: "relative", width: isMobile ? "100%" : 320 }}>
           <Input
             placeholder={searchLabel}

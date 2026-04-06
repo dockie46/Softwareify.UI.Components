@@ -3,10 +3,6 @@ import { spacing } from "@/config"
 
 export type ActionColumnRowProps = {
   items?: ReactNode[]
-  /** @deprecated Use `items={[left, right]}`. */
-  left?: ReactNode
-  /** @deprecated Use `items={[left, right]}`. */
-  right?: ReactNode
   className?: string
   gap?: number
   dividerColor?: string
@@ -22,13 +18,11 @@ const dividerStyle = (color: string): CSSProperties => ({
 /** Equal-width columns with vertical dividers (e.g. mobile action bar). */
 const ActionColumnRow = ({
   items,
-  left,
-  right,
   className,
   gap = spacing.md,
   dividerColor = "var(--color-border-light, rgba(0,0,0,0.06))",
 }: ActionColumnRowProps) => {
-  const cells = items !== undefined ? items : [left, right].filter((x) => x != null)
+  const cells = items ?? []
 
   if (cells.length === 0) return null
 

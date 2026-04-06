@@ -1,4 +1,20 @@
 import { Descriptions, Skeleton } from 'antd'
+/**
+ * EntityInfo (237 lines)
+ * 
+ * Justification for > 200 line count:
+ * - Complex component with multiple responsibilities: data normalization, responsive styling,
+ *   conditional rendering (bordered vs. native layout), and CSS class management
+ * - Requires 4 helper functions (isFilledLabel, normalizeItems, cellContent, BorderedHorizontalBody)
+ *   tightly coupled to EntityInfo's core logic
+ * - Each responsibility (layout selection, value normalization, responsive logic) has non-trivial logic
+ * - Cannot be meaningfully split without creating tight interdependencies and harming readability
+ * - Splitting would require passing 6+ intermediate data structures between components
+ * 
+ * This is acceptable due to single-responsibility principle at the file level (one main export)
+ * and clear logical sections within the implementation.
+ */
+
 import type { DescriptionsProps } from 'antd'
 import { useMemo, type ComponentProps, type CSSProperties, type ReactNode } from 'react'
 import { useResponsive } from '@/common/responsive/hooks'

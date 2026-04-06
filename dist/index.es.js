@@ -161,7 +161,7 @@ const ut = "DD.MM.YYYY", gt = "DD.MM.YYYY HH:mm:ss", en = "DD.MM.YYYY HH:mm", tn
   medium: 500,
   semibold: 600,
   bold: 700
-}, a = {
+}, s = {
   xs: 4,
   sm: 8,
   md: 12,
@@ -195,16 +195,16 @@ const ut = "DD.MM.YYYY", gt = "DD.MM.YYYY HH:mm:ss", en = "DD.MM.YYYY HH:mm", tn
     fontSizeHeading5: H.md,
     fontWeightStrong: se.semibold,
     // Spacing and sizing (antd uses margin/padding as base, with XS/SM/MD/LG/XL variants)
-    margin: a.md,
-    marginXS: a.xs,
-    marginSM: a.sm,
-    marginLG: a.lg,
-    marginXL: a.xl,
-    padding: a.md,
-    paddingXS: a.xs,
-    paddingSM: a.sm,
-    paddingLG: a.lg,
-    paddingXL: a.xl,
+    margin: s.md,
+    marginXS: s.xs,
+    marginSM: s.sm,
+    marginLG: s.lg,
+    marginXL: s.xl,
+    padding: s.md,
+    paddingXS: s.xs,
+    paddingSM: s.sm,
+    paddingLG: s.lg,
+    paddingXL: s.xl,
     // Border radius
     borderRadius: O.md,
     borderRadiusLG: O.lg,
@@ -212,7 +212,7 @@ const ut = "DD.MM.YYYY", gt = "DD.MM.YYYY HH:mm:ss", en = "DD.MM.YYYY HH:mm", tn
     // Other common tokens
     lineHeight: 1.5
   }
-}, mn = ({ firstItem: e, secondItem: t, style: l, gutter: r = a["2xl"] }) => /* @__PURE__ */ m(Z, { gutter: r, style: l, children: [
+}, mn = ({ firstItem: e, secondItem: t, style: l, gutter: r = s["2xl"] }) => /* @__PURE__ */ m(Z, { gutter: r, style: l, children: [
   /* @__PURE__ */ n(ae, { xl: 12, md: 24, sm: 24, xs: 24, children: e }),
   /* @__PURE__ */ n(ae, { xl: 12, md: 24, sm: 24, xs: 24, children: t })
 ] }), P = () => {
@@ -231,12 +231,12 @@ const ut = "DD.MM.YYYY", gt = "DD.MM.YYYY HH:mm:ss", en = "DD.MM.YYYY HH:mm", tn
   loading: i = !1
 }) => {
   const { isMobile: d } = P(), o = d ? 1 : r;
-  return /* @__PURE__ */ m(F, { style: { marginBottom: a.lg }, children: [
-    /* @__PURE__ */ m("div", { style: { marginBottom: a.lg }, children: [
+  return /* @__PURE__ */ m(F, { style: { marginBottom: s.lg }, children: [
+    /* @__PURE__ */ m("div", { style: { marginBottom: s.lg }, children: [
       /* @__PURE__ */ n(bt, { level: 5, style: { margin: 0 }, children: e }),
-      t && /* @__PURE__ */ n(xt, { type: "secondary", style: { display: "block", marginTop: a.xs }, children: t })
+      t && /* @__PURE__ */ n(xt, { type: "secondary", style: { display: "block", marginTop: s.xs }, children: t })
     ] }),
-    i ? /* @__PURE__ */ n(E, { active: !0, paragraph: { rows: 4 } }) : /* @__PURE__ */ n(Z, { gutter: a["2xl"], children: o === 1 ? /* @__PURE__ */ n(ae, { span: 24, children: l }) : l })
+    i ? /* @__PURE__ */ n(E, { active: !0, paragraph: { rows: 4 } }) : /* @__PURE__ */ n(Z, { gutter: s["2xl"], children: o === 1 ? /* @__PURE__ */ n(ae, { span: 24, children: l }) : l })
   ] });
 }, le = "DraggableColumn", b = {
   primary: "var(--color-brand-primary, var(--ant-color-primary, #1890ff))",
@@ -277,11 +277,11 @@ const Re = 44, De = ({
   toggleVisibility: d,
   setFixedStatus: o
 }) => {
-  const { t: c } = B(), s = () => r === "left" ? b.primary : r === "right" ? b.success : b.muted, h = (p) => {
+  const { t: a } = B(), c = () => r === "left" ? b.primary : r === "right" ? b.success : b.muted, h = (p) => {
     p.stopPropagation();
     let f = !1;
     r === !1 ? f = "left" : r === "left" && (f = "right"), o(e, f);
-  }, u = () => c(r === "left" ? "labels.fixedLeft" : r === "right" ? "labels.fixedRight" : "labels.pinColumn");
+  }, u = () => a(r === "left" ? "labels.fixedLeft" : r === "right" ? "labels.fixedRight" : "labels.pinColumn");
   return /* @__PURE__ */ m(
     "div",
     {
@@ -290,7 +290,7 @@ const Re = 44, De = ({
         cursor: "default",
         display: "flex",
         alignItems: "center",
-        padding: `${a.sm}px ${a.md}px`,
+        padding: `${s.sm}px ${s.md}px`,
         borderBottom: `1px solid ${b.border}`,
         height: Re,
         backgroundColor: t % 2 === 0 ? "#ffffff" : b.secondary,
@@ -307,7 +307,7 @@ const Re = 44, De = ({
               top: 0,
               bottom: 0,
               width: 3,
-              backgroundColor: r ? s() : "transparent"
+              backgroundColor: r ? c() : "transparent"
             }
           }
         ),
@@ -315,7 +315,7 @@ const Re = 44, De = ({
           ye,
           {
             style: {
-              marginRight: a.md,
+              marginRight: s.md,
               cursor: "default",
               color: b.muted,
               fontSize: 14,
@@ -353,15 +353,15 @@ const Re = 44, De = ({
                       "span",
                       {
                         style: {
-                          marginRight: a.xs,
+                          marginRight: s.xs,
                           fontSize: H.xs,
-                          padding: `1px ${a.xs}px`,
+                          padding: `1px ${s.xs}px`,
                           background: r === "left" ? b.accent : "#f6ffed",
                           color: r === "left" ? b.primary : b.success,
                           borderRadius: O.sm,
                           flexShrink: 0
                         },
-                        children: c(r === "left" ? "labels.left" : "labels.right")
+                        children: a(r === "left" ? "labels.left" : "labels.right")
                       }
                     ),
                     /* @__PURE__ */ n(
@@ -387,14 +387,14 @@ const Re = 44, De = ({
                       Te,
                       {
                         style: {
-                          color: s(),
+                          color: c(),
                           transform: r ? "rotate(-45deg)" : "none",
                           transition: "transform 0.2s, color 0.2s"
                         }
                       }
                     ),
                     onClick: h,
-                    style: { marginRight: a.xs, padding: `0 ${a.sm}px` }
+                    style: { marginRight: s.xs, padding: `0 ${s.sm}px` }
                   }
                 ) }),
                 /* @__PURE__ */ n(me, { checked: l, size: "small", onChange: () => d(e) })
@@ -413,19 +413,19 @@ const Re = 44, De = ({
   title: i,
   moveColumn: d,
   toggleVisibility: o,
-  setFixedStatus: c
+  setFixedStatus: a
 }) => {
-  const s = q(null), { t: h } = B();
+  const c = q(null), { t: h } = B();
   if (!de || !ce)
-    return /* @__PURE__ */ n(De, { columnKey: e, index: t, isVisible: l, fixed: r, title: i, toggleVisibility: o, setFixedStatus: c, moveColumn: () => {
+    return /* @__PURE__ */ n(De, { columnKey: e, index: t, isVisible: l, fixed: r, title: i, toggleVisibility: o, setFixedStatus: a, moveColumn: () => {
     } });
   const [, u] = de({
     accept: le,
     hover(R, k) {
-      if (!s.current) return;
+      if (!c.current) return;
       const D = R.index, y = t;
       if (D === y) return;
-      const w = s.current.getBoundingClientRect(), g = (w.bottom - w.top) / 2, x = k.getClientOffset();
+      const w = c.current.getBoundingClientRect(), g = (w.bottom - w.top) / 2, x = k.getClientOffset();
       if (!x) return;
       const C = x.y - w.top;
       D < y && C < g || D > y && C > g || (d(D, y), R.index = y);
@@ -437,22 +437,22 @@ const Re = 44, De = ({
       isDragging: R.isDragging()
     })
   });
-  f(u(s));
+  f(u(c));
   const S = () => r === "left" ? b.primary : r === "right" ? b.success : b.muted, T = (R) => {
     R.stopPropagation();
     let k = !1;
-    r === !1 ? k = "left" : r === "left" && (k = "right"), c(e, k);
+    r === !1 ? k = "left" : r === "left" && (k = "right"), a(e, k);
   }, I = () => h(r === "left" ? "labels.fixedLeft" : r === "right" ? "labels.fixedRight" : "labels.pinColumn");
   return /* @__PURE__ */ m(
     "div",
     {
-      ref: s,
+      ref: c,
       style: {
         opacity: p ? 0.5 : 1,
         cursor: "move",
         display: "flex",
         alignItems: "center",
-        padding: `${a.sm}px ${a.md}px`,
+        padding: `${s.sm}px ${s.md}px`,
         borderBottom: `1px solid ${b.border}`,
         height: Re,
         backgroundColor: p ? b.secondary : t % 2 === 0 ? "#ffffff" : b.secondary,
@@ -477,7 +477,7 @@ const Re = 44, De = ({
           ye,
           {
             style: {
-              marginRight: a.md,
+              marginRight: s.md,
               cursor: "grab",
               color: b.muted,
               fontSize: 14
@@ -514,9 +514,9 @@ const Re = 44, De = ({
                       "span",
                       {
                         style: {
-                          marginRight: a.xs,
+                          marginRight: s.xs,
                           fontSize: H.xs,
-                          padding: `1px ${a.xs}px`,
+                          padding: `1px ${s.xs}px`,
                           background: r === "left" ? b.accent : "#f6ffed",
                           color: r === "left" ? b.primary : b.success,
                           borderRadius: O.sm,
@@ -555,7 +555,7 @@ const Re = 44, De = ({
                       }
                     ),
                     onClick: T,
-                    style: { marginRight: a.xs, padding: `0 ${a.sm}px` }
+                    style: { marginRight: s.xs, padding: `0 ${s.sm}px` }
                   }
                 ) }),
                 /* @__PURE__ */ n(me, { checked: l, size: "small", onChange: () => o(e) })
@@ -575,7 +575,7 @@ const Re = 44, De = ({
   onCancel: d,
   onApply: o
 }) => {
-  const c = e.filter((f) => f.visible).length, s = e.length, { t: h } = B(), u = e.filter((f) => f.fixed === "left").length, p = e.filter((f) => f.fixed === "right").length;
+  const a = e.filter((f) => f.visible).length, c = e.length, { t: h } = B(), u = e.filter((f) => f.fixed === "left").length, p = e.filter((f) => f.fixed === "right").length;
   return /* @__PURE__ */ m(
     "div",
     {
@@ -595,7 +595,7 @@ const Re = 44, De = ({
           {
             style: {
               background: b.secondary,
-              padding: a.md,
+              padding: s.md,
               fontWeight: 700,
               borderBottom: `1px solid ${b.border}`,
               display: "flex",
@@ -612,10 +612,10 @@ const Re = 44, De = ({
           "div",
           {
             style: {
-              paddingLeft: a.sm,
-              paddingRight: a.sm,
-              paddingTop: a.xs,
-              paddingBottom: a.xs,
+              paddingLeft: s.sm,
+              paddingRight: s.sm,
+              paddingTop: s.xs,
+              paddingBottom: s.xs,
               display: "flex",
               justifyContent: "space-between",
               borderBottom: `1px solid ${b.border}`,
@@ -626,17 +626,17 @@ const Re = 44, De = ({
                 /* @__PURE__ */ n(
                   ne,
                   {
-                    count: c,
+                    count: a,
                     color: b.primary,
                     size: "small",
                     overflowCount: 999,
-                    style: { marginRight: a.sm }
+                    style: { marginRight: s.sm }
                   }
                 ),
-                /* @__PURE__ */ n(A.Text, { type: "secondary", style: { fontSize: 12 }, children: h("texts.columnsVisible", { count: c, total: s }) })
+                /* @__PURE__ */ n(A.Text, { type: "secondary", style: { fontSize: 12 }, children: h("texts.columnsVisible", { count: a, total: c }) })
               ] }),
               (u > 0 || p > 0) && /* @__PURE__ */ m("div", { style: { display: "flex", alignItems: "center" }, children: [
-                u > 0 && /* @__PURE__ */ n(ne, { count: u, size: "small", color: b.primary, style: { marginRight: a.xs } }),
+                u > 0 && /* @__PURE__ */ n(ne, { count: u, size: "small", color: b.primary, style: { marginRight: s.xs } }),
                 p > 0 && /* @__PURE__ */ n(ne, { count: p, size: "small", color: b.success })
               ] })
             ]
@@ -661,13 +661,13 @@ const Re = 44, De = ({
           "div",
           {
             style: {
-              paddingTop: a.md,
-              paddingBottom: a.md,
-              paddingLeft: a.lg,
-              paddingRight: a.lg,
+              paddingTop: s.md,
+              paddingBottom: s.md,
+              paddingLeft: s.lg,
+              paddingRight: s.lg,
               display: "flex",
               justifyContent: "flex-end",
-              gap: a.xs,
+              gap: s.xs,
               background: b.secondary
             },
             children: [
@@ -682,19 +682,19 @@ const Re = 44, De = ({
 }, kt = ({ title: e, columnKey: t, index: l, moveColumn: r }) => {
   const i = q(null), [, d] = nt({
     accept: le,
-    hover(s) {
+    hover(c) {
       if (!i.current) return;
-      const h = s.index, u = l;
-      h !== u && (r(h, u), s.index = u);
+      const h = c.index, u = l;
+      h !== u && (r(h, u), c.index = u);
     }
-  }), [{ isDragging: o }, c] = rt({
+  }), [{ isDragging: o }, a] = rt({
     type: le,
     item: { index: l, columnKey: t },
-    collect: (s) => ({
-      isDragging: s.isDragging()
+    collect: (c) => ({
+      isDragging: c.isDragging()
     })
   });
-  return c(d(i)), /* @__PURE__ */ n(
+  return a(d(i)), /* @__PURE__ */ n(
     "div",
     {
       ref: i,
@@ -723,17 +723,17 @@ function It(e) {
       });
     }
     return g;
-  }, [i, d] = j(() => r()), [o, c] = j(() => r()), [s, h] = j(() => l), [u, p] = j(() => l);
+  }, [i, d] = j(() => r()), [o, a] = j(() => r()), [c, h] = j(() => l), [u, p] = j(() => l);
   Q(() => {
     const g = r(), x = e.map(t).filter(Boolean);
-    d(g), c(g), h(x), p(x);
+    d(g), a(g), h(x), p(x);
   }, [e]);
   const f = J(() => {
-    c({ ...i }), p([...s]);
-  }, [i, s]);
+    a({ ...i }), p([...c]);
+  }, [i, c]);
   return {
     getColumnKey: t,
-    getVisibleColumns: () => s.filter((g) => {
+    getVisibleColumns: () => c.filter((g) => {
       var x;
       return (x = i[g]) == null ? void 0 : x.visible;
     }).map((g) => {
@@ -756,10 +756,10 @@ function It(e) {
       d(o), h(u);
     },
     cancelChanges: () => {
-      c({ ...i }), p([...s]);
+      a({ ...i }), p([...c]);
     },
     resetToDefault: () => {
-      c(r()), p([...l]);
+      a(r()), p([...l]);
     },
     moveColumn: (g, x) => {
       const C = [...u], v = C[g];
@@ -768,7 +768,7 @@ function It(e) {
     toggleVisibility: (g) => {
       var C;
       const x = Object.values(o).filter((v) => v.visible).length;
-      (C = o[g]) != null && C.visible && x <= 1 || c((v) => {
+      (C = o[g]) != null && C.visible && x <= 1 || a((v) => {
         var M;
         return {
           ...v,
@@ -780,7 +780,7 @@ function It(e) {
       });
     },
     setFixedStatus: (g, x) => {
-      c((C) => ({
+      a((C) => ({
         ...C,
         [g]: {
           ...C[g],
@@ -814,18 +814,18 @@ const Rt = (e, t, l) => {
       return y instanceof HTMLElement && (y.style.maxHeight = `${D + p}px`, y.style.height = "100%"), D;
     },
     [e, t, l]
-  ), [d, o] = j(null), c = q(null);
+  ), [d, o] = j(null), a = q(null);
   Q(() => {
-    if (ge || !c.current)
+    if (ge || !a.current)
       return;
     const u = () => {
-      c.current && i(c.current);
+      a.current && i(a.current);
     }, p = new ResizeObserver(u);
-    return p.observe(c.current), o(p), () => {
+    return p.observe(a.current), o(p), () => {
       p.disconnect();
     };
   }, [i]);
-  let s;
+  let c;
   if (ge && ue) {
     const u = ue({
       refreshMode: "debounce",
@@ -834,16 +834,16 @@ const Rt = (e, t, l) => {
       },
       refreshRate: 1
     });
-    s = u.ref;
+    c = u.ref;
   } else
-    s = c;
+    c = a;
   const h = J(() => {
-    const u = s.current;
+    const u = c.current;
     if (u)
       return i(u);
-  }, [i, s]);
+  }, [i, c]);
   return {
-    tableWrapperRef: s,
+    tableWrapperRef: c,
     tableRef: r,
     getTableHeight: h
   };
@@ -855,8 +855,8 @@ const Rt = (e, t, l) => {
   customizeColumnsTooltip: i,
   onSearchInputChange: d,
   searchText: o = "",
-  columnMenuOpen: c,
-  onColumnMenuOpenChange: s,
+  columnMenuOpen: a,
+  onColumnMenuOpenChange: c,
   columnManagerPanel: h,
   actionButtons: u
 }) => {
@@ -866,19 +866,21 @@ const Rt = (e, t, l) => {
     {
       ref: e,
       style: {
-        marginBottom: a.lg,
+        marginBottom: s.lg,
         display: "flex",
         flexDirection: t ? "column" : "row",
         justifyContent: "space-between",
         alignItems: t ? "stretch" : "center",
         background: b.secondary,
-        padding: t ? `${a.sm}px` : `${a.sm}px ${a.md}px`,
+        padding: t ? `${s.sm}px` : `${s.sm}px ${s.md}px`,
         borderRadius: O.lg,
         boxShadow: "0 2px 8px rgba(0, 0, 0, 0.05)",
-        gap: t ? a.sm : 0
+        gap: t ? s.sm : 0
       },
       children: [
-        p && /* @__PURE__ */ n("div", { style: { position: "relative", width: t ? "100%" : 320 }, children: /* @__PURE__ */ n(
+        p && // Search input width: 320px is optimal for desktop (enough for typical search terms without taking space).
+        // On mobile, expands to 100% for touch-friendly interaction.
+        /* @__PURE__ */ n("div", { style: { position: "relative", width: t ? "100%" : 320 }, children: /* @__PURE__ */ n(
           ie,
           {
             placeholder: l,
@@ -886,7 +888,7 @@ const Rt = (e, t, l) => {
             prefix: /* @__PURE__ */ n(be, { style: { color: b.primary, fontSize: 16 } }),
             style: {
               borderRadius: O.md,
-              padding: `${a.sm}px ${a.md}px`,
+              padding: `${s.sm}px ${s.md}px`,
               boxShadow: "0 2px 5px rgba(0, 0, 0, 0.03)",
               border: `1px solid ${b.border}`,
               width: "100%"
@@ -909,8 +911,8 @@ const Rt = (e, t, l) => {
               /* @__PURE__ */ n(oe, { title: i, children: /* @__PURE__ */ n(
                 Ye,
                 {
-                  open: c,
-                  onOpenChange: s,
+                  open: a,
+                  onOpenChange: c,
                   dropdownRender: () => h,
                   trigger: ["click"],
                   children: /* @__PURE__ */ n(
@@ -921,12 +923,12 @@ const Rt = (e, t, l) => {
                         borderRadius: O.md,
                         display: "flex",
                         alignItems: "center",
-                        gap: a.sm,
-                        backgroundColor: c ? b.accent : "white",
-                        borderColor: c ? b.primary : b.border,
-                        color: c ? b.primary : "inherit",
-                        boxShadow: c ? `0 0 0 2px ${b.accent}` : "none",
-                        padding: t ? `${a.xs}px ${a.md}px` : `${a.xs}px ${a.lg}px`,
+                        gap: s.sm,
+                        backgroundColor: a ? b.accent : "white",
+                        borderColor: a ? b.primary : b.border,
+                        color: a ? b.primary : "inherit",
+                        boxShadow: a ? `0 0 0 2px ${b.accent}` : "none",
+                        padding: t ? `${s.xs}px ${s.md}px` : `${s.xs}px ${s.lg}px`,
                         height: "auto",
                         width: t ? "100%" : "auto",
                         justifyContent: t ? "center" : "flex-start"
@@ -951,10 +953,10 @@ const Rt = (e, t, l) => {
   ...i
 }) => {
   var xe, ve;
-  const d = q(null), o = q(null), { t: c } = B(), { isMobile: s } = P(), { tableWrapperRef: h, tableRef: u, getTableHeight: p } = Rt(
+  const d = q(null), o = q(null), { t: a } = B(), { isMobile: c } = P(), { tableWrapperRef: h, tableRef: u, getTableHeight: p } = Rt(
     (xe = i.scroll) == null ? void 0 : xe.y,
     d,
-    s
+    c
   ), f = i.columns || [], [S, T] = j(!1), [I, R] = j(""), {
     getColumnKey: k,
     getVisibleColumns: D,
@@ -990,18 +992,18 @@ const Rt = (e, t, l) => {
       const K = V.get(z.key);
       return K ? {
         ...K,
-        fixed: s ? !1 : z.fixed,
+        fixed: c ? !1 : z.fixed,
         title: /* @__PURE__ */ n(kt, { title: K.title, columnKey: z.key, index: te, moveColumn: v }),
         ellipsis: !0,
         onCell: () => ({
           style: {
-            whiteSpace: s ? "normal" : "nowrap",
-            padding: s ? "8px 4px" : void 0
+            whiteSpace: c ? "normal" : "nowrap",
+            padding: c ? "8px 4px" : void 0
           }
         })
       } : null;
     }).filter(Boolean);
-  }, [f, D, k, s, v]), He = re(() => {
+  }, [f, D, k, c, v]), He = re(() => {
     const W = y(), V = new Map(f.map((z) => [k(z), z]));
     return W.map((z) => {
       var te, K;
@@ -1018,10 +1020,10 @@ const Rt = (e, t, l) => {
       Dt,
       {
         headerRef: d,
-        isMobile: s,
-        searchLabel: c("labels.search"),
-        columnsLabel: c("btns.columns"),
-        customizeColumnsTooltip: c("labels.customizeTableColumns"),
+        isMobile: c,
+        searchLabel: a("labels.search"),
+        columnsLabel: a("btns.columns"),
+        customizeColumnsTooltip: a("labels.customizeTableColumns"),
         onSearchInputChange: t ? Me : void 0,
         searchText: I,
         columnMenuOpen: S,
@@ -1052,16 +1054,18 @@ const Rt = (e, t, l) => {
           total: e ?? 0,
           defaultPageSize: ft,
           showSizeChanger: !1,
-          size: s ? "small" : "middle",
+          size: c ? "small" : "middle",
           ...i.pagination || {}
         },
         className: `w-full h-full ${i.className || ""}`,
         scroll: {
-          x: ((ve = i.scroll) == null ? void 0 : ve.x) ?? ((ee == null ? void 0 : ee.length) ?? 0) * (s ? 150 : 200),
+          // Column width multipliers: Mobile friendly (150px per column) vs Desktop (200px per column).
+          // These ensure horizontal scrolling area is sized for content without layout thrashing.
+          x: ((ve = i.scroll) == null ? void 0 : ve.x) ?? ((ee == null ? void 0 : ee.length) ?? 0) * (c ? 150 : 200),
           y: p()
         },
         rowKey: (W) => W.id,
-        size: s ? "small" : "middle"
+        size: c ? "small" : "middle"
       }
     ) })
   ] }) });
@@ -1090,7 +1094,7 @@ const Rt = (e, t, l) => {
   placeholder: i
 }) => {
   const { t: d } = B();
-  return /* @__PURE__ */ m("div", { style: { padding: a.sm }, children: [
+  return /* @__PURE__ */ m("div", { style: { padding: s.sm }, children: [
     /* @__PURE__ */ n(
       ie,
       {
@@ -1098,7 +1102,7 @@ const Rt = (e, t, l) => {
         value: t[0],
         onChange: (o) => e(o.target.value ? [o.target.value] : []),
         onPressEnter: () => l(),
-        style: { marginBottom: a.sm, display: "block" }
+        style: { marginBottom: s.sm, display: "block" }
       }
     ),
     /* @__PURE__ */ m(Y, { children: [
@@ -1134,7 +1138,7 @@ const Rt = (e, t, l) => {
       onFilter: (i, d) => {
         const o = String(i).toLowerCase();
         return e.some(
-          (c) => String(d[c] ?? "").toLowerCase().includes(o)
+          (a) => String(d[a] ?? "").toLowerCase().includes(o)
         );
       }
     }
@@ -1169,13 +1173,13 @@ const Rt = (e, t, l) => {
   title: i,
   width: d = "50%",
   footer: o,
-  loading: c = !1,
-  btns: s
+  loading: a = !1,
+  btns: c
 }) => {
   var p, f;
   const { t: h } = B(), u = /* @__PURE__ */ m(Z, { align: "middle", justify: "space-between", children: [
-    /* @__PURE__ */ n($, { disabled: c, onClick: () => e(), type: "default", children: ((p = s == null ? void 0 : s.cancel) == null ? void 0 : p.label) ?? h("global.btns.cancelChanges") }),
-    /* @__PURE__ */ n($, { disabled: c, onClick: t, block: !1, type: "primary", loading: c, children: ((f = s == null ? void 0 : s.save) == null ? void 0 : f.label) ?? h("global.btns.saveChanges") })
+    /* @__PURE__ */ n($, { disabled: a, onClick: () => e(), type: "default", children: ((p = c == null ? void 0 : c.cancel) == null ? void 0 : p.label) ?? h("global.btns.cancelChanges") }),
+    /* @__PURE__ */ n($, { disabled: a, onClick: t, block: !1, type: "primary", loading: a, children: ((f = c == null ? void 0 : c.save) == null ? void 0 : f.label) ?? h("global.btns.saveChanges") })
   ] });
   return /* @__PURE__ */ n(
     pe,
@@ -1187,7 +1191,7 @@ const Rt = (e, t, l) => {
       open: l,
       footer: o ?? u,
       title: !!i && /* @__PURE__ */ n(Z, { justify: "start", align: "middle", children: /* @__PURE__ */ n(A.Title, { level: 2, children: i }) }),
-      children: /* @__PURE__ */ n(Ge, { spinning: c, style: { maxHeight: "100%" }, children: r })
+      children: /* @__PURE__ */ n(Ge, { spinning: a, style: { maxHeight: "100%" }, children: r })
     }
   );
 }, $t = "mobile-fullscreen-modal", Rn = ({
@@ -1198,26 +1202,26 @@ const Rt = (e, t, l) => {
   styles: i,
   okButtonProps: d,
   cancelButtonProps: o,
-  ...c
+  ...a
 }) => {
-  const { isMobile: s } = P(), h = [t, s ? $t : ""].filter(Boolean).join(" "), u = s ? {
+  const { isMobile: c } = P(), h = [t, c ? $t : ""].filter(Boolean).join(" "), u = c ? {
     top: 0,
     maxWidth: "100%",
     margin: 0,
     ...r
-  } : r, p = s && e ? {
+  } : r, p = c && e ? {
     ...d,
     style: { flex: 1, ...(d == null ? void 0 : d.style) ?? {} }
-  } : d, f = s && e ? {
+  } : d, f = c && e ? {
     ...o,
     style: { flex: 1, ...(o == null ? void 0 : o.style) ?? {} }
   } : o;
   return /* @__PURE__ */ n(
     pe,
     {
-      ...c,
+      ...a,
       rootClassName: h || void 0,
-      width: s ? "100%" : l,
+      width: c ? "100%" : l,
       style: u,
       styles: i,
       okButtonProps: p,
@@ -1236,8 +1240,8 @@ const Rt = (e, t, l) => {
   description: i,
   confirmLabel: d,
   cancelLabel: o,
-  variant: c = "danger",
-  loading: s = !1,
+  variant: a = "danger",
+  loading: c = !1,
   icon: h,
   children: u
 }) => {
@@ -1249,13 +1253,13 @@ const Rt = (e, t, l) => {
       onCancel: l,
       centered: !0,
       maskClosable: !1,
-      title: /* @__PURE__ */ m(Z, { align: "middle", style: { gap: a.sm }, children: [
+      title: /* @__PURE__ */ m(Z, { align: "middle", style: { gap: s.sm }, children: [
         h ?? /* @__PURE__ */ n(Pe, { style: { color: "var(--color-warning, #faad14)", fontSize: 20 } }),
         /* @__PURE__ */ n("span", { children: r })
       ] }),
-      footer: /* @__PURE__ */ m(Z, { align: "middle", justify: "end", style: { gap: a.sm }, children: [
-        /* @__PURE__ */ n($, { disabled: s, onClick: l, children: o ?? p("global.btns.cancel") }),
-        /* @__PURE__ */ n($, { type: "primary", ...Mt[c], loading: s, onClick: t, children: d ?? p("global.btns.confirm") })
+      footer: /* @__PURE__ */ m(Z, { align: "middle", justify: "end", style: { gap: s.sm }, children: [
+        /* @__PURE__ */ n($, { disabled: c, onClick: l, children: o ?? p("global.btns.cancel") }),
+        /* @__PURE__ */ n($, { type: "primary", ...Mt[a], loading: c, onClick: t, children: d ?? p("global.btns.confirm") })
       ] }),
       children: [
         i && /* @__PURE__ */ n(Lt, { type: "secondary", children: i }),
@@ -1271,9 +1275,9 @@ const Rt = (e, t, l) => {
   breadcrumbExtra: i,
   onBack: d,
   filters: o,
-  actions: c
+  actions: a
 }) => {
-  const { isMobile: s } = P(), h = t === "page", u = h ? 4 : 5, p = h ? a.lg : a.md, f = h ? a.md : a.sm, S = !!(o || c);
+  const { isMobile: c } = P(), h = t === "page", u = h ? 4 : 5, p = h ? s.lg : s.md, f = h ? s.md : s.sm, S = !!(o || a);
   return /* @__PURE__ */ m("div", { style: { marginBottom: p }, children: [
     h && (r || i) && /* @__PURE__ */ m(
       "div",
@@ -1282,13 +1286,13 @@ const Rt = (e, t, l) => {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          gap: a.md,
-          marginBottom: a.sm,
+          gap: s.md,
+          marginBottom: s.sm,
           flexWrap: "wrap"
         },
         children: [
           /* @__PURE__ */ n("div", { style: { flex: "1 1 auto", minWidth: 0 }, children: r ? /* @__PURE__ */ n(Ve, { ...r }) : null }),
-          i ? /* @__PURE__ */ n(Y, { size: a.sm, wrap: !0, style: { flexShrink: 0 }, children: i }) : null
+          i ? /* @__PURE__ */ n(Y, { size: s.sm, wrap: !0, style: { flexShrink: 0 }, children: i }) : null
         ]
       }
     ),
@@ -1298,21 +1302,21 @@ const Rt = (e, t, l) => {
         style: {
           display: "flex",
           justifyContent: "space-between",
-          alignItems: s ? "flex-start" : "center",
-          flexDirection: s ? "column" : "row",
-          gap: s ? f : 0
+          alignItems: c ? "flex-start" : "center",
+          flexDirection: c ? "column" : "row",
+          gap: c ? f : 0
         },
         children: [
-          /* @__PURE__ */ m("div", { style: { display: "flex", alignItems: "center", gap: a.md }, children: [
+          /* @__PURE__ */ m("div", { style: { display: "flex", alignItems: "center", gap: s.md }, children: [
             h && d && /* @__PURE__ */ n($, { type: "text", icon: /* @__PURE__ */ n(et, {}), onClick: d, size: "small", "aria-label": "back" }),
             /* @__PURE__ */ m("div", { children: [
               /* @__PURE__ */ n(Ft, { level: u, style: { margin: 0 }, children: e }),
-              l && /* @__PURE__ */ n(Et, { type: "secondary", style: { marginTop: a.xs, display: "block" }, children: l })
+              l && /* @__PURE__ */ n(Et, { type: "secondary", style: { marginTop: s.xs, display: "block" }, children: l })
             ] })
           ] }),
-          S && /* @__PURE__ */ m(Y, { size: a.sm, wrap: !0, style: { width: s ? "100%" : void 0 }, children: [
+          S && /* @__PURE__ */ m(Y, { size: s.sm, wrap: !0, style: { width: c ? "100%" : void 0 }, children: [
             o,
-            c
+            a
           ] })
         ]
       }
@@ -1322,7 +1326,7 @@ const Rt = (e, t, l) => {
   F,
   {
     size: "small",
-    styles: { body: { padding: `${a.md}px ${a.lg}px` } },
+    styles: { body: { padding: `${s.md}px ${s.lg}px` } },
     style: l,
     children: [
       /* @__PURE__ */ n(
@@ -1332,7 +1336,7 @@ const Rt = (e, t, l) => {
           style: {
             fontSize: H.xs,
             display: "block",
-            marginBottom: a.xs
+            marginBottom: s.xs
           },
           children: e
         }
@@ -1350,13 +1354,13 @@ const Rt = (e, t, l) => {
   rows: l,
   inputRows: r = 5,
   showAvatar: i = !0,
-  gap: d = a.lg,
+  gap: d = s.lg,
   className: o,
-  style: c,
-  footer: s
+  style: a,
+  footer: c
 }) => {
   const h = d, u = l ?? 6, p = l ?? 5;
-  return e === "stacked" ? /* @__PURE__ */ m("div", { className: o, style: { ...X(h), ...c }, children: [
+  return e === "stacked" ? /* @__PURE__ */ m("div", { className: o, style: { ...X(h), ...a }, children: [
     /* @__PURE__ */ n(F, { children: /* @__PURE__ */ n(
       E,
       {
@@ -1366,30 +1370,30 @@ const Rt = (e, t, l) => {
       }
     ) }),
     /* @__PURE__ */ n(F, { children: /* @__PURE__ */ n(E, { active: !0, paragraph: { rows: 4 } }) }),
-    s
-  ] }) : e === "content" ? /* @__PURE__ */ m("div", { className: o, style: { ...X(h), ...c }, children: [
+    c
+  ] }) : e === "content" ? /* @__PURE__ */ m("div", { className: o, style: { ...X(h), ...a }, children: [
     /* @__PURE__ */ n(F, { children: /* @__PURE__ */ n(E, { active: !0, title: !0, paragraph: { rows: u } }) }),
-    s
-  ] }) : e === "fields" ? /* @__PURE__ */ m("div", { className: o, style: { ...X(h), ...c }, children: [
+    c
+  ] }) : e === "fields" ? /* @__PURE__ */ m("div", { className: o, style: { ...X(h), ...a }, children: [
     /* @__PURE__ */ n(F, { children: /* @__PURE__ */ n(Y, { direction: "vertical", size: "middle", style: { width: "100%" }, children: Array.from({ length: r }).map((f, S) => /* @__PURE__ */ n(E.Input, { active: !0, size: "large", style: { width: S % 2 === 0 ? "100%" : "72%" } }, S)) }) }),
-    s
-  ] }) : e === "grid" ? /* @__PURE__ */ m("div", { className: o, style: { ...X(h), ...c }, children: [
+    c
+  ] }) : e === "grid" ? /* @__PURE__ */ m("div", { className: o, style: { ...X(h), ...a }, children: [
     /* @__PURE__ */ n(
       "div",
       {
         style: {
           display: "grid",
           gridTemplateColumns: `repeat(${Math.max(1, t)}, 1fr)`,
-          gap: a.md
+          gap: s.md
         },
         children: [...Array(Math.max(1, t))].map((f, S) => /* @__PURE__ */ n(F, { children: /* @__PURE__ */ n(E, { active: !0, paragraph: { rows: 1 }, title: { width: "60%" } }) }, S))
       }
     ),
-    s
-  ] }) : e === "rows" ? /* @__PURE__ */ m("div", { className: o, style: { ...X(h), ...c }, children: [
-    /* @__PURE__ */ n(F, { children: /* @__PURE__ */ n(Y, { direction: "vertical", style: { width: "100%" }, size: a.md, children: Array.from({ length: p }).map((f, S) => /* @__PURE__ */ n(E, { active: !0, title: !1, paragraph: { rows: 1, width: "100%" } }, S)) }) }),
-    s
-  ] }) : /* @__PURE__ */ m("div", { className: o, style: { ...X(h), ...c }, children: [
+    c
+  ] }) : e === "rows" ? /* @__PURE__ */ m("div", { className: o, style: { ...X(h), ...a }, children: [
+    /* @__PURE__ */ n(F, { children: /* @__PURE__ */ n(Y, { direction: "vertical", style: { width: "100%" }, size: s.md, children: Array.from({ length: p }).map((f, S) => /* @__PURE__ */ n(E, { active: !0, title: !1, paragraph: { rows: 1, width: "100%" } }, S)) }) }),
+    c
+  ] }) : /* @__PURE__ */ m("div", { className: o, style: { ...X(h), ...a }, children: [
     /* @__PURE__ */ n(F, { children: /* @__PURE__ */ n(
       E,
       {
@@ -1405,13 +1409,13 @@ const Rt = (e, t, l) => {
         style: {
           display: "grid",
           gridTemplateColumns: `repeat(${Math.max(1, t)}, 1fr)`,
-          gap: a.md
+          gap: s.md
         },
         children: [...Array(Math.max(1, t))].map((f, S) => /* @__PURE__ */ n(F, { children: /* @__PURE__ */ n(E, { active: !0, paragraph: { rows: 1 }, title: { width: "60%" } }) }, S))
       }
     ),
     /* @__PURE__ */ n(F, { children: /* @__PURE__ */ n(E, { active: !0, paragraph: { rows: 4 } }) }),
-    s
+    c
   ] });
 }, { Text: we } = A, En = ({ icon: e, title: t, description: l, action: r }) => /* @__PURE__ */ m(
   "div",
@@ -1421,14 +1425,14 @@ const Rt = (e, t, l) => {
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "center",
-      padding: `${a["3xl"]}px ${a["2xl"]}px`,
+      padding: `${s["3xl"]}px ${s["2xl"]}px`,
       textAlign: "center"
     },
     children: [
       e ?? /* @__PURE__ */ n(Ce, { image: Ce.PRESENTED_IMAGE_SIMPLE, description: null }),
-      /* @__PURE__ */ n(we, { strong: !0, style: { fontSize: H.lg, marginTop: e ? a.lg : 0, display: "block" }, children: t }),
-      l && /* @__PURE__ */ n(we, { type: "secondary", style: { marginTop: a.sm, display: "block", maxWidth: 400 }, children: l }),
-      r && /* @__PURE__ */ n("div", { style: { marginTop: a.lg }, children: r })
+      /* @__PURE__ */ n(we, { strong: !0, style: { fontSize: H.lg, marginTop: e ? s.lg : 0, display: "block" }, children: t }),
+      l && /* @__PURE__ */ n(we, { type: "secondary", style: { marginTop: s.sm, display: "block", maxWidth: 400 }, children: l }),
+      r && /* @__PURE__ */ n("div", { style: { marginTop: s.lg }, children: r })
     ]
   }
 ), Ot = (e) => ({
@@ -1438,20 +1442,18 @@ const Rt = (e, t, l) => {
   background: e
 }), Hn = ({
   items: e,
-  left: t,
-  right: l,
-  className: r,
-  gap: i = a.md,
-  dividerColor: d = "var(--color-border-light, rgba(0,0,0,0.06))"
+  className: t,
+  gap: l = s.md,
+  dividerColor: r = "var(--color-border-light, rgba(0,0,0,0.06))"
 }) => {
-  const o = e !== void 0 ? e : [t, l].filter((s) => s != null);
-  return o.length === 0 ? null : /* @__PURE__ */ n("div", { className: r, style: {
+  const i = e ?? [];
+  return i.length === 0 ? null : /* @__PURE__ */ n("div", { className: t, style: {
     display: "flex",
     alignItems: "stretch",
     width: "100%",
-    gap: i
-  }, children: o.map((s, h) => /* @__PURE__ */ m(Ze, { children: [
-    h > 0 ? /* @__PURE__ */ n("div", { style: Ot(d), "aria-hidden": !0 }) : null,
+    gap: l
+  }, children: i.map((o, a) => /* @__PURE__ */ m(Ze, { children: [
+    a > 0 ? /* @__PURE__ */ n("div", { style: Ot(r), "aria-hidden": !0 }) : null,
     /* @__PURE__ */ n(
       "div",
       {
@@ -1462,10 +1464,10 @@ const Rt = (e, t, l) => {
           justifyContent: "center",
           alignItems: "center"
         },
-        children: s
+        children: o
       }
     )
-  ] }, h)) });
+  ] }, a)) });
 }, On = ({
   width: e = 400,
   height: t = 200,
@@ -1474,21 +1476,21 @@ const Rt = (e, t, l) => {
   clearLabel: i,
   confirmLabel: d
 }) => {
-  const { t: o } = B(), c = q(null), [s, h] = j(!1), [u, p] = j(!1), f = J(() => {
-    const y = c.current;
+  const { t: o } = B(), a = q(null), [c, h] = j(!1), [u, p] = j(!1), f = J(() => {
+    const y = a.current;
     return y ? y.getContext("2d") : null;
   }, []), S = J(() => {
-    const y = f(), w = c.current;
+    const y = f(), w = a.current;
     !y || !w || (y.clearRect(0, 0, w.width, w.height), p(!1));
   }, [f]);
   Q(() => {
     const y = f();
     if (!y) return;
-    const w = getComputedStyle(c.current).getPropertyValue("--color-text-primary").trim();
+    const w = getComputedStyle(a.current).getPropertyValue("--color-text-primary").trim();
     y.strokeStyle = w || "#000", y.lineWidth = 2, y.lineCap = "round", y.lineJoin = "round";
   }, [f]);
   const T = (y) => {
-    const w = c.current;
+    const w = a.current;
     if (!w) return null;
     const g = w.getBoundingClientRect(), x = w.width / g.width, C = w.height / g.height;
     if ("touches" in y) {
@@ -1507,20 +1509,20 @@ const Rt = (e, t, l) => {
     const w = f(), g = T(y);
     !w || !g || (w.beginPath(), w.moveTo(g.x, g.y), h(!0));
   }, R = (y) => {
-    if (!s || r) return;
+    if (!c || r) return;
     const w = f(), g = T(y);
     !w || !g || (w.lineTo(g.x, g.y), w.stroke(), p(!0));
   }, k = () => {
     h(!1);
   }, D = () => {
-    const y = c.current;
+    const y = a.current;
     !y || !u || l(y.toDataURL("image/png"));
   };
-  return /* @__PURE__ */ m("div", { style: { display: "flex", flexDirection: "column", gap: a.xs }, children: [
+  return /* @__PURE__ */ m("div", { style: { display: "flex", flexDirection: "column", gap: s.xs }, children: [
     /* @__PURE__ */ n(
       "canvas",
       {
-        ref: c,
+        ref: a,
         width: e,
         height: t,
         style: {
@@ -1556,10 +1558,10 @@ const Rt = (e, t, l) => {
         background: "var(--color-highlight-bg, #f6f8fa)",
         border: "1px solid var(--color-highlight-border, #e1e4e8)",
         borderRadius: O.lg,
-        padding: `${a.md}px ${a["2xl"]}px`,
+        padding: `${s.md}px ${s["2xl"]}px`,
         display: "flex",
         alignItems: "center",
-        gap: a.xl
+        gap: s.xl
       },
       children: [
         /* @__PURE__ */ n(
@@ -1603,7 +1605,7 @@ const Rt = (e, t, l) => {
   error: "var(--color-error, #f5222d)",
   info: "var(--color-info, #1677ff)",
   default: "var(--color-text-muted, #d9d9d9)"
-}, Bn = ({ status: e, label: t }) => /* @__PURE__ */ m("span", { style: { display: "inline-flex", alignItems: "center", gap: a.sm }, children: [
+}, Bn = ({ status: e, label: t }) => /* @__PURE__ */ m("span", { style: { display: "inline-flex", alignItems: "center", gap: s.sm }, children: [
   /* @__PURE__ */ n(ne, { color: Bt[e] }),
   /* @__PURE__ */ n(At, { children: t })
 ] }), he = (e) => !(e == null || typeof e == "string" && e.trim() === ""), jt = (e) => Array.isArray(e) ? e : Object.entries(e).map(([t, l]) => ({
@@ -1629,8 +1631,8 @@ const Rt = (e, t, l) => {
   bordered: i = !1,
   layout: d,
   colon: o,
-  extra: c,
-  className: s,
+  extra: a,
+  className: c,
   style: h,
   styles: u,
   classNames: p,
@@ -1649,7 +1651,7 @@ const Rt = (e, t, l) => {
   }), [I]);
   if (t)
     return /* @__PURE__ */ n(E, { active: !0, paragraph: { rows: I.length }, title: !!r && { width: "30%" } });
-  const k = l ?? (T ? 1 : 2), D = d ?? (T ? "vertical" : "horizontal"), y = ["entity-info", s].filter(Boolean).join(" "), w = I.some((v) => !he(v.label)), g = I.some((v) => v.span != null), x = _t(l, T);
+  const k = l ?? (T ? 1 : 2), D = d ?? (T ? "vertical" : "horizontal"), y = ["entity-info", c].filter(Boolean).join(" "), w = I.some((v) => !he(v.label)), g = I.some((v) => v.span != null), x = _t(l, T);
   if (i && D === "horizontal" && !g && (w || x === 1)) {
     const v = T ? `${L}-small` : void 0, M = u && typeof u == "object" && "label" in u ? u.label : void 0, G = u && typeof u == "object" && "content" in u ? u.content : void 0;
     return /* @__PURE__ */ m(
@@ -1667,9 +1669,9 @@ const Rt = (e, t, l) => {
         ].filter(Boolean).join(" "),
         style: h,
         children: [
-          (r || c) && /* @__PURE__ */ m("div", { className: `${L}-header`, children: [
+          (r || a) && /* @__PURE__ */ m("div", { className: `${L}-header`, children: [
             r && /* @__PURE__ */ n("div", { className: `${L}-title`, children: r }),
-            c && /* @__PURE__ */ n("div", { className: `${L}-extra`, children: c })
+            a && /* @__PURE__ */ n("div", { className: `${L}-extra`, children: a })
           ] }),
           /* @__PURE__ */ n(
             Wt,
@@ -1690,7 +1692,7 @@ const Rt = (e, t, l) => {
     {
       id: S,
       title: r,
-      extra: c,
+      extra: a,
       column: k,
       bordered: i,
       layout: D,
@@ -1712,24 +1714,24 @@ function Wn({ children: e, theme: t }) {
 }
 const Yn = (e, t, l) => {
   const r = new FormData();
-  function i(o, c) {
-    if (!d(c))
-      if (c = c || "", o instanceof File)
-        r.append(c, o);
+  function i(o, a) {
+    if (!d(a))
+      if (a = a || "", o instanceof File)
+        r.append(a, o);
       else if (o instanceof ke)
-        o && r.append(c, o.toISOString());
+        o && r.append(a, o.toISOString());
       else if (Array.isArray(o))
-        for (let s = 0; s < o.length; s++)
-          i(o[s], c + "[" + s + "]");
+        for (let c = 0; c < o.length; c++)
+          i(o[c], a + "[" + c + "]");
       else if (typeof o == "object" && o !== null)
-        for (const s in o)
-          Object.prototype.hasOwnProperty.call(o, s) && (c === "" ? i(o[s], s) : i(o[s], c + "." + s));
+        for (const c in o)
+          Object.prototype.hasOwnProperty.call(o, c) && (a === "" ? i(o[c], c) : i(o[c], a + "." + c));
       else
-        o !== null && typeof o < "u" && r.append(c, String(o));
+        o !== null && typeof o < "u" && r.append(a, String(o));
   }
   function d(o) {
-    return Array.isArray(l) && l.some(function(c) {
-      return c === o;
+    return Array.isArray(l) && l.some(function(a) {
+      return a === o;
     });
   }
   return i(e, t || ""), r;
@@ -1806,7 +1808,7 @@ export {
   O as radius,
   Pt as registerLocale,
   fn as softwareifyTheme,
-  a as spacing,
+  s as spacing,
   wn as textSearchColumnProps,
   Sn as textSearchMultiFieldProps,
   mt as uriRegex,

@@ -40,6 +40,8 @@ interface ColumnManagerProps {
   onApply: () => void
 }
 
+// Using React.FC for consistent component interface with explicit return type
+// This component uses hooks (useLibTranslation) which require functional component syntax
 const ColumnManager: React.FC<ColumnManagerProps> = ({
   columns,
   moveColumn,

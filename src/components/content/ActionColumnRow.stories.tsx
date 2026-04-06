@@ -40,21 +40,6 @@ export const ThreeColumns: Story = {
   },
 }
 
-export const LegacyLeftRight: Story = {
-  args: {
-    left: (
-      <Button type="link" icon={<PhoneOutlined />}>
-        Call
-      </Button>
-    ),
-    right: (
-      <Button type="link" icon={<MailOutlined />}>
-        Email
-      </Button>
-    ),
-  },
-}
-
 export const TextOnly: Story = {
   args: {
     items: [<span key="l">Left</span>, <span key="r">Right</span>],

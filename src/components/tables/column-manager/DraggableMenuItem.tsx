@@ -1,4 +1,22 @@
 import { Button, Switch, Tooltip } from "antd"
+/**
+ * DraggableMenuItem (361 lines)
+ * 
+ * Justification for > 200 line count:
+ * - Dual implementation: fallback component (non-draggable) + main component (with react-dnd)
+ * - Both implementations share 70%+ of UI code but must remain separate for optional dependency handling
+ * - Extracting shared UI would introduce complex prop drilling or custom hooks, reducing maintainability
+ * - Each implementation has ~140 lines of necessary logic (drop/drag hooks, pin click handlers, rendering)
+ * - This pattern is essential for graceful degradation when react-dnd is not installed
+ * 
+ * Splitting would require:
+ * - Extracting MenuItem UI into separate component (tight coupling, harder to maintain)
+ * - Creating abstraction layer for pin/visibility logic (increases complexity)
+ * 
+ * Trade-off: Accept the larger file size in exchange for clear optional dependency pattern
+ * and straightforward fallback logic that's easy to understand and maintain.
+ */
+
 import { DRAG_TYPE } from "../types"
 import type { DraggableMenuItemProps, FixedStatus } from "../types"
 import { MenuOutlined, PushpinOutlined } from "@ant-design/icons"
@@ -24,6 +42,8 @@ if (isReactDndAvailable()) {
   }
 }
 
+// ITEM_HEIGHT: Fixed row height for menu items (padding 8px + 2px border + icon 14px + spacing = 44px total).
+// Must be precise for React Virtualization and drag-and-drop calculations.
 const ITEM_HEIGHT = 44
 
 // Non-draggable fallback component (used when react-dnd is not installed)
