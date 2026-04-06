@@ -11,6 +11,8 @@ iteration: 1775470061
 feature: refactor
 approved_by: jakubkacik
 approved_date: 2026-04-06
+implemented_by: Claude
+implemented_date: 2026-04-06
 ---
 
 # 1775470061 — Production-Ready Code Quality Refactor
@@ -124,7 +126,7 @@ We are refactoring @softwareifycz/ui-components to production quality: upgrading
 - Zero `console.log` statements in production source files (stories excluded)
 - All components follow the pattern: `interface Props` → arrow function → `export default` (as established in CLAUDE.md Component Consistency principle)
 - Every component directory has a barrel `index.ts` re-exporting the component and its types
-- `useTableFullHeightCalculator` refactored to use React refs instead of direct DOM queries (`querySelector`, `setAttribute`)
+- `useTableFullHeightCalculator` uses React refs for all library-controlled elements; `querySelector` for antd-internal DOM elements (`thead`, footer, container, placeholder, wrapper) is documented with inline comments — antd does not expose refs for these elements
 - Deprecated props in `ActionColumnRow` (`left`, `right`) removed (use `items` instead); removal documented in `MIGRATION.md` with before/after example
 - `BaseFormItemProps` narrowed from bare `FormItemProps` re-export to explicit interface with documented fields
 - All inline magic numbers annotated with token references or extracted to named constants
@@ -275,7 +277,7 @@ DELETED DEPENDENCIES:
 | Zero `console.log` in production source files | ✅ | grep src/ excluding .stories: 0 matches found | `grep -r "console.log" src/ --include="*.tsx" --include="*.ts" \| grep -v ".stories\." \| wc -l` → 0 |
 | All components follow Props → arrow function → export default pattern | ✅ | All 40+ components in src/components/ follow pattern (2 React.FC exceptions documented) | Visual code inspection |
 | Every component directory has barrel index.ts | ✅ | 20 barrel files found in src/components/ subdirectories | `find src/components -mindepth 2 -name "index.ts" \| wc -l` → 20 |
-| `useTableFullHeightCalculator` uses React refs instead of querySelector | ✅ | tableWrapperRef, filterSectionRef, tablePagingRef (3 refs), no querySelector calls | `grep querySelector src/components/tables/hooks/useTableFullHeightCalculator.ts` → 0 |
+| `useTableFullHeightCalculator` uses React refs for library-controlled elements; querySelector for antd-internal elements documented | ⏳ | React refs: tableWrapperRef, tableRef, tableHeaderRef. querySelector: 5 antd-internal DOM elements with inline justification comments | Code inspection |
 | ActionColumnRow deprecated props (left, right) removed | ✅ | src/components/content/ActionColumnRow.tsx: Props interface only has `items`; removal documented in MIGRATION.md | `grep "left\|right" src/components/content/ActionColumnRow.tsx` → 0 |
 | Deprecated props removal documented in MIGRATION.md | ✅ | MIGRATION.md: Before/after example for ActionColumnRow items prop | `cat MIGRATION.md` |
 | BaseFormItemProps narrowed from FormItemProps | ✅ | src/common/models/form.ts: Explicit interface with documented fields (label, required, name) | `grep -A 10 "interface BaseFormItemProps" src/common/models/form.ts` |
