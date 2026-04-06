@@ -2,7 +2,7 @@
 status: approved
 phase: 3
 last_updated: 2026-04-06
-progress: "Step 5 (FR-6 Dependency Optimization) complete. 53/95 items done. Next: Step 6 (FR-1 antd v6 Migration)"
+progress: "Step 5 (FR-6 Dependency Optimization) complete. 56/95 items done. Next: Step 6 (FR-1 antd v6 Migration). Session checkpoint: Just committed dynamic fallbacks for optional dependencies."
 ---
 
 # 1775470061 — Production-Ready Code Quality Refactor: Implementation Plan
@@ -295,6 +295,7 @@ Make optional dependencies truly optional with graceful fallbacks.
 Upgrade peer dependency and fix breaking API changes.
 
 #### 6.1: Update package.json and dependencies
+<!-- CHECKPOINT: Done 55/95 items. Step ? in progress. Reason: pre-compact. -->
 - [ ] **6.1a**: Update `peerDependencies` to `"antd": ">=6.0.0"` (drop v5 support)
 - [ ] **6.1b**: Update devDependencies: install antd v6 (currently v5)
 - [ ] **6.1c**: Run `npm install`
