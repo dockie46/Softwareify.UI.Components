@@ -1,8 +1,4 @@
-import { ReactNode } from 'react';
-type SectionHeaderProps = {
-    title: ReactNode;
-    filters?: ReactNode;
-    actions?: ReactNode;
-};
-declare const SectionHeader: ({ title, filters, actions }: SectionHeaderProps) => import("react/jsx-runtime").JSX.Element;
+import { MainHeaderProps } from './MainHeader';
+export type SectionHeaderProps = Pick<MainHeaderProps, 'title' | 'filters' | 'actions'>;
+declare const SectionHeader: (props: SectionHeaderProps) => import("react/jsx-runtime").JSX.Element;
 export default SectionHeader;

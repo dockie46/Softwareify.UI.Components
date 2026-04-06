@@ -8,11 +8,13 @@ export {
   TimePickerFormItem,
   CheckboxFormItem,
 } from './components/forms/inputs'
-export { FormItem, FormItemWrapper } from './components/forms'
+export { FormItem, FormItemWrapper, FormSection } from './components/forms'
+export type { FormSectionProps } from './components/forms'
 
 
 export {
   MainTable,
+  MainTableToolbar,
   ColumnManager,
   DraggableHeader,
   DraggableMenuItem,
@@ -34,6 +36,8 @@ export {
 export type {
   TableFilterType,
   TableSorterType,
+  MainTableProps,
+  MainTableToolbarProps,
 } from './components/tables'
 export type {
   FixedStatus,
@@ -44,22 +48,36 @@ export type {
 } from './components/tables'
 
 // ─── Modal Components ───────────────────────────────────────
-export { BaseEditModal, FullscreenMobileModal } from './components/modals'
+export { BaseModal, FullscreenMobileModal, ConfirmModal } from './components/modals'
+export type { BaseModalProps, FullscreenMobileModalProps, ConfirmModalProps } from './components/modals'
 
-// ─── Header Components (from CDL) ──────────────────────────
-export { SectionHeader, HeroHeaderCard } from './components/headers'
+// ─── Header Components ─────────────────────────────────────
+export { MainHeader, SectionHeader, PageHeader } from './components/headers'
+export type {
+  MainHeaderProps,
+  MainHeaderVariant,
+  PageHeaderProps,
+  SectionHeaderProps,
+} from './components/headers'
 
 // ─── Card Components ────────────────────────────────────────
 export { StatCard, SkeletonCard } from './components/cards'
 
-// ─── Mobile Components (from CDL) ──────────────────────────
-export { MobileActionSplitRow } from './components/mobile'
-
-// ─── Loader Components ──────────────────────────────────────
-export { DetailSkeleton } from './components/loaders'
+// ─── Content (loaders, empty states, action rows) ───────────
+export { ContentLoader, ContentState, ActionColumnRow } from './components/content'
+export type {
+  ContentLoaderProps,
+  ContentLoaderVariant,
+  ContentStateProps,
+  ActionColumnRowProps,
+} from './components/content'
 
 // ─── Shared Components ──────────────────────────────────────
 export { SignatureCanvas, PrimaryKey } from './components/shared'
+
+// ─── Data Display Components ───────────────────────────────
+export { StatusBadge, EntityInfo } from './components/data-display'
+export type { StatusBadgeProps, EntityInfoProps, EntityInfoItem, EntityInfoSource } from './components/data-display'
 
 // ─── Hooks ──────────────────────────────────────────────────
 export { useResponsive } from './common/responsive'

@@ -1,6 +1,7 @@
 import { useRef, useEffect, useCallback, useState } from 'react'
 import { Button, Space } from 'antd'
 import { ClearOutlined } from '@ant-design/icons'
+import { useTranslation } from 'react-i18next'
 
 type SignatureCanvasProps = {
   width?: number
@@ -16,9 +17,10 @@ const SignatureCanvas = ({
   height = 200,
   onSign,
   disabled = false,
-  clearLabel = 'Clear',
-  confirmLabel = 'Confirm',
+  clearLabel,
+  confirmLabel,
 }: SignatureCanvasProps) => {
+  const { t } = useTranslation()
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [isDrawing, setIsDrawing] = useState(false)
   const [hasDrawn, setHasDrawn] = useState(false)
@@ -40,7 +42,8 @@ const SignatureCanvas = ({
   useEffect(() => {
     const ctx = getCtx()
     if (!ctx) return
-    ctx.strokeStyle = '#000'
+    const computedColor = getComputedStyle(canvasRef.current!).getPropertyValue('--color-text-primary').trim()
+    ctx.strokeStyle = computedColor || '#000'
     ctx.lineWidth = 2
     ctx.lineCap = 'round'
     ctx.lineJoin = 'round'
@@ -104,7 +107,7 @@ const SignatureCanvas = ({
         width={width}
         height={height}
         style={{
-          border: '1px solid #d9d9d9',
+          border: '1px solid var(--color-border, #d9d9d9)',
           borderRadius: 8,
           cursor: disabled ? 'default' : 'crosshair',
           touchAction: 'none',
@@ -124,10 +127,10 @@ const SignatureCanvas = ({
       {!disabled && (
         <Space>
           <Button size="small" icon={<ClearOutlined />} onClick={clearCanvas} disabled={!hasDrawn}>
-            {clearLabel}
+            {clearLabel ?? t('global.btns.clear')}
           </Button>
           <Button size="small" type="primary" onClick={handleConfirm} disabled={!hasDrawn}>
-            {confirmLabel}
+            {confirmLabel ?? t('global.btns.confirm')}
           </Button>
         </Space>
       )}

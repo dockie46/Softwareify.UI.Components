@@ -1,39 +1,43 @@
-import type { Reference } from 'rc-table/lib/interface'
-import { useRef } from 'react'
-import { useResizeDetector } from 'react-resize-detector'
+import type { Reference } from "rc-table/lib/interface"
+import { useRef } from "react"
+import { useResizeDetector } from "react-resize-detector"
 
+/**
+ * Measures the wrapper and header filter row so the table body gets a usable `scroll.y`.
+ * When `scrollY` is set, that value wins; otherwise height is derived from the container.
+ */
 export const useTableFullHeightCalculator = (
   scrollY: string | number | undefined,
-  tableHeaderRef: React.RefObject<HTMLDivElement>,
-  screens: Record<string, boolean>,
+  tableHeaderRef: React.RefObject<HTMLDivElement | null>,
+  isMobile: boolean,
 ) => {
   const tableRef = useRef<Reference>(null)
 
   const tableWrapperResizeDetector = useResizeDetector<HTMLDivElement>({
-    refreshMode: 'debounce',
+    refreshMode: "debounce",
     onResize: () => recalculateTableHeight(),
     refreshRate: 1,
   })
 
   const recalculateTableHeight = (): number | string => {
-    const tableWrapper = tableWrapperResizeDetector.ref.current?.querySelector('div.ant-table-wrapper')
+    const tableWrapper = tableWrapperResizeDetector.ref.current?.querySelector("div.ant-table-wrapper")
     const tableHeader =
-      tableWrapperResizeDetector.ref.current?.querySelector('thead.ant-table-thead')?.clientHeight ?? 0
+      tableWrapperResizeDetector.ref.current?.querySelector("thead.ant-table-thead")?.clientHeight ?? 0
 
     const containerPadding = 8
 
     if (scrollY) {
-      const emptyPlaceholder = tableWrapperResizeDetector.ref.current?.querySelector('div.ant-table-placeholder')
+      const emptyPlaceholder = tableWrapperResizeDetector.ref.current?.querySelector("div.ant-table-placeholder")
       emptyPlaceholder?.setAttribute(
-        'style',
+        "style",
         `min-height: ${+scrollY + tableHeader - containerPadding}px; max-height: ${
           +scrollY + tableHeader - containerPadding
         }px`,
       )
 
-      const spinLoading = tableWrapperResizeDetector.ref.current?.querySelector('div.ant-table-container')
+      const spinLoading = tableWrapperResizeDetector.ref.current?.querySelector("div.ant-table-container")
       spinLoading?.setAttribute(
-        'style',
+        "style",
         `min-height: ${+scrollY + tableHeader - containerPadding}px; max-height: ${
           +scrollY + tableHeader - containerPadding
         }px`,
@@ -43,8 +47,8 @@ export const useTableFullHeightCalculator = (
     }
 
     const tableFooter =
-      tableWrapperResizeDetector.ref.current?.querySelector('div.ant-table-footer')?.clientHeight ?? 0
-    const tablePaging = screens.xs ? 24 : 40
+      tableWrapperResizeDetector.ref.current?.querySelector("div.ant-table-footer")?.clientHeight ?? 0
+    const tablePaging = isMobile ? 24 : 40
 
     const container = tableWrapperResizeDetector.ref.current?.clientHeight ?? 0
     const filterSection = tableHeaderRef.current?.clientHeight ?? 0
@@ -55,7 +59,7 @@ export const useTableFullHeightCalculator = (
       container - tableHeader - tableFooter - filterSection - containerPadding - filterSectionMargin - tablePaging
 
     if (tableWrapper) {
-      tableWrapper.setAttribute('style', `max-height:${height + tableHeader}px;height: 100%`)
+      tableWrapper.setAttribute("style", `max-height:${height + tableHeader}px;height: 100%`)
     }
 
     return height
