@@ -19,6 +19,8 @@ last_updated: 2026-04-06
 Critical first step because type fixes unblock other refactors.
 
 #### 1.1: Fix `any` types in core utilities
+<!-- CHECKPOINT: Done 0
+0/92 items. Step ? in progress. Reason: pre-compact. -->
 - [ ] **1.1a**: Update `objectToFormData` in `src/common/helpers/formDataHelpers.ts`
   - Add generic: `function objectToFormData<T extends Record<string, unknown>>(obj: T, ...)`
   - Replace `any` param types and return type with proper typing
