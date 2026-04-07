@@ -5,7 +5,7 @@ import FormItemWrapper from './FormItemWrapper'
 const meta: Meta<typeof FormItemWrapper> = {
   title: 'Forms/FormItemWrapper',
   component: FormItemWrapper,
-  decorators: [(Story) => <Form><Story /></Form>],
+  decorators: [(Story) => <Form layout="vertical"><Story /></Form>],
 }
 
 export default meta

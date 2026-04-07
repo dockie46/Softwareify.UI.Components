@@ -5,7 +5,7 @@ import NumberFormItem from './NumberFormItem'
 const meta: Meta<typeof NumberFormItem> = {
   title: 'Forms/NumberFormItem',
   component: NumberFormItem,
-  decorators: [(Story) => <Form><Story /></Form>],
+  decorators: [(Story) => <Form layout="vertical"><Story /></Form>],
 }
 
 export default meta

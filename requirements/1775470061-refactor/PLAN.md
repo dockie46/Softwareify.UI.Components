@@ -7,8 +7,6 @@ approved_by: jakubkacik
 approved_date: 2026-04-06
 # Reverted to approved by /capture-findings Revision 1 (2026-04-06) — see FINDINGS.md
 ---
-<!-- SDD-EXECUTING: phases 9 -->
-
 # 1775470061 — Production-Ready Code Quality Refactor: Implementation Plan
 
 **Approved Requirements**: `requirements/1775470061-refactor/REQUIREMENTS.md` (status: approved)
@@ -525,16 +523,15 @@ Fixes 5 findings from visual QA review (Storybook audit vs OCPP Server reference
 
 #### 9.3: Fix form story decorators to vertical layout (FND-3)
 
-<!-- CHECKPOINT: Done 105/111 items. Step ? in progress. Authorized-scope: phases 9. Reason: pre-compact. -->
-- [ ] [FND-3/FR-7] In all 10 form story files (`InputFormItem.stories.tsx`, `CheckboxFormItem.stories.tsx`, `SelectFormItem.stories.tsx`, `SwitchFormItem.stories.tsx`, `NumberFormItem.stories.tsx`, `DateFormItem.stories.tsx`, `TimePickerFormItem.stories.tsx`, `TextAreaFormItem.stories.tsx`, `FormItemWrapper.stories.tsx`, `FormSection.stories.tsx`), change decorator from `<Form>` to `<Form layout="vertical">`
-- [ ] [FND-3/FR-7] Verify InputFormItem Default story shows label above input in Storybook
-- [ ] [FND-3/FR-7] Verify CheckboxFormItem Default story shows checkbox control with label
-- [ ] [FND-3/FR-7] Run `npm run build` ← VERIFY_COMMAND
+- [x] [FND-3/FR-7] In all 10 form story files (`InputFormItem.stories.tsx`, `CheckboxFormItem.stories.tsx`, `SelectFormItem.stories.tsx`, `SwitchFormItem.stories.tsx`, `NumberFormItem.stories.tsx`, `DateFormItem.stories.tsx`, `TimePickerFormItem.stories.tsx`, `TextAreaFormItem.stories.tsx`, `FormItemWrapper.stories.tsx`, `FormSection.stories.tsx`), change decorator from `<Form>` to `<Form layout="vertical">`
+- [x] [FND-3/FR-7] Verify InputFormItem Default story shows label above input in Storybook
+- [x] [FND-3/FR-7] Verify CheckboxFormItem Default story shows checkbox control with label
+- [x] [FND-3/FR-7] Run `npm run build` ← VERIFY_COMMAND
 
 #### 9.4: Align borderRadius with OCPP Server (FND-5)
 
-- [ ] [FND-5/FR-3] In `src/config/designTokens.ts`, change `radius.md` from `6` to `4` to match OCPP Server's `borderRadius: 4`
-- [ ] [FND-5/FR-3] Run `npm run build` ← VERIFY_COMMAND
+- [x] [FND-5/FR-3] In `src/config/designTokens.ts`, change `radius.md` from `6` to `4` to match OCPP Server's `borderRadius: 4`
+- [x] [FND-5/FR-3] Run `npm run build` ← VERIFY_COMMAND
 
 ---
 

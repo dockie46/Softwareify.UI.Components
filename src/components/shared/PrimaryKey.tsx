@@ -33,17 +33,17 @@ const PrimaryKey = ({ value, label, copyTooltip, copiedTooltip }: PrimaryKeyProp
           fontWeight: fontWeight.bold,
           color: 'var(--color-highlight-text, #586069)',
           textTransform: 'uppercase',
-          letterSpacing: 1.5,
+          letterSpacing: 1.5, // Wide tracking for uppercase label readability
           flexShrink: 0,
         }}
       >
-        {label ?? t('global.labels.primaryKey')}
+        {label ?? t('labels.primaryKey')}
       </Text>
       <Text
         copyable={{
           tooltips: [
-            copyTooltip ?? t('global.btns.copy'),
-            copiedTooltip ?? t('global.btns.copied'),
+            copyTooltip ?? t('btns.copy'),
+            copiedTooltip ?? t('btns.copied'),
           ],
         }}
         style={{

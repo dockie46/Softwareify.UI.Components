@@ -45,7 +45,7 @@ const SignatureCanvas = ({
     if (!ctx) return
     const computedColor = getComputedStyle(canvasRef.current!).getPropertyValue('--color-text-primary').trim()
     ctx.strokeStyle = computedColor || '#000'
-    ctx.lineWidth = 2
+    ctx.lineWidth = 2 // Pen stroke width: 2px for natural handwriting feel
     ctx.lineCap = 'round'
     ctx.lineJoin = 'round'
   }, [getCtx])
@@ -127,11 +127,11 @@ const SignatureCanvas = ({
       />
       {!disabled && (
         <Space>
-          <Button size="small" icon={<ClearOutlined />} onClick={clearCanvas} disabled={!hasDrawn}>
-            {clearLabel ?? t('global.btns.clear')}
+          <Button icon={<ClearOutlined />} onClick={clearCanvas} disabled={!hasDrawn}>
+            {clearLabel ?? t('btns.clear')}
           </Button>
-          <Button size="small" type="primary" onClick={handleConfirm} disabled={!hasDrawn}>
-            {confirmLabel ?? t('global.btns.confirm')}
+          <Button type="primary" onClick={handleConfirm} disabled={!hasDrawn}>
+            {confirmLabel ?? t('btns.confirm')}
           </Button>
         </Space>
       )}

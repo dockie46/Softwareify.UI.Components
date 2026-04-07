@@ -2,7 +2,7 @@ import { Badge, Button, Divider, Tooltip, Typography } from "antd"
 import DraggableMenuItem from "./DraggableMenuItem"
 import type { FixedStatus } from "../types"
 import { TABLE_THEME } from "../theme"
-import { spacing } from "@/config"
+import { fontSize, radius, spacing } from "@/config"
 import { UndoOutlined } from "@ant-design/icons"
 import { useLibTranslation } from "@/common/i18n"
 
@@ -40,9 +40,7 @@ interface ColumnManagerProps {
   onApply: () => void
 }
 
-// Using React.FC for consistent component interface with explicit return type
-// This component uses hooks (useLibTranslation) which require functional component syntax
-const ColumnManager: React.FC<ColumnManagerProps> = ({
+const ColumnManager = ({
   columns,
   moveColumn,
   toggleVisibility,
@@ -50,7 +48,7 @@ const ColumnManager: React.FC<ColumnManagerProps> = ({
   resetToDefault,
   onCancel,
   onApply,
-}) => {
+}: ColumnManagerProps) => {
   const visibleCount = columns.filter((col) => col.visible).length
   const totalCount = columns.length
   const { t } = useLibTranslation()
@@ -63,8 +61,10 @@ const ColumnManager: React.FC<ColumnManagerProps> = ({
       style={{
         backgroundColor: '#fff',
         boxShadow: '0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08)',
-        borderRadius: 8,
+        borderRadius: radius.lg,
+        // Dropdown panel width: 320px matches common column-manager UIs (enough for column names + controls)
         width: 320,
+        // Max height: 500px prevents the panel from consuming the full viewport on large column sets
         maxHeight: 500,
         display: 'flex',
         flexDirection: 'column',
@@ -75,7 +75,7 @@ const ColumnManager: React.FC<ColumnManagerProps> = ({
         style={{
           background: TABLE_THEME.secondary,
           padding: spacing.md,
-          fontWeight: 700,
+          fontWeight: 700, // fontWeight.bold — header title emphasis
           borderBottom: `1px solid ${TABLE_THEME.border}`,
           display: 'flex',
           justifyContent: 'space-between',
@@ -110,7 +110,7 @@ const ColumnManager: React.FC<ColumnManagerProps> = ({
             overflowCount={999}
             style={{ marginRight: spacing.sm }}
           />
-          <Typography.Text type="secondary" style={{ fontSize: 12 }}>
+          <Typography.Text type="secondary" style={{ fontSize: fontSize.xs }}>
             {t("texts.columnsVisible", { count: visibleCount, total: totalCount })}
           </Typography.Text>
         </div>
@@ -150,7 +150,7 @@ const ColumnManager: React.FC<ColumnManagerProps> = ({
           paddingRight: spacing.lg,
           display: 'flex',
           justifyContent: 'flex-end',
-          gap: spacing.xs,
+          gap: spacing.sm,
           background: TABLE_THEME.secondary,
         }}
       >

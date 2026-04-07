@@ -9,6 +9,7 @@ import { DndProvider } from "react-dnd"
 import DraggableHeader from "../column-manager/DraggableHeader"
 import { HTML5Backend } from "react-dnd-html5-backend"
 import { defaultTablePageSize } from "@/common/constants"
+import { spacing } from "@/config"
 import { useColumnManager } from "../hooks/useColumnManager"
 import { useResponsive } from "@/common/responsive/hooks"
 import { useTableFullHeightCalculator } from "../hooks/useTableFullHeightCalculator"
@@ -110,7 +111,8 @@ const MainTable = <T extends BaseModel<number | string>>({
           onCell: () => ({
             style: {
               whiteSpace: isMobile ? "normal" : ("nowrap" as const),
-              padding: isMobile ? "8px 4px" : undefined,
+              // Mobile cell padding: spacing.sm (8px) vertical, spacing.xs (4px) horizontal for compact layout
+              padding: isMobile ? `${spacing.sm}px ${spacing.xs}px` : undefined,
             },
           }),
         }

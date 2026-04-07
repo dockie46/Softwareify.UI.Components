@@ -5,7 +5,7 @@ import SwitchFormItem from './SwitchFormItem'
 const meta: Meta<typeof SwitchFormItem> = {
   title: 'Forms/SwitchFormItem',
   component: SwitchFormItem,
-  decorators: [(Story) => <Form><Story /></Form>],
+  decorators: [(Story) => <Form layout="vertical"><Story /></Form>],
 }
 
 export default meta

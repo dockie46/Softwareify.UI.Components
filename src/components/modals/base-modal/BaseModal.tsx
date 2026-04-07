@@ -34,10 +34,10 @@ const BaseModal = ({
   const defaultFooter = (
     <Row align="middle" justify="space-between">
       <Button disabled={loading} onClick={() => onCancel()} type="default">
-        {btns?.cancel?.label ?? t("global.btns.cancelChanges")}
+        {btns?.cancel?.label ?? t("btns.cancelChanges")}
       </Button>
       <Button disabled={loading} onClick={onFormSubmit} block={false} type="primary" loading={loading}>
-        {btns?.save?.label ?? t("global.btns.saveChanges")}
+        {btns?.save?.label ?? t("btns.saveChanges")}
       </Button>
     </Row>
   )

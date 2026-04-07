@@ -5,7 +5,7 @@ import SelectFormItem from './SelectFormItem'
 const meta: Meta<typeof SelectFormItem> = {
   title: 'Forms/SelectFormItem',
   component: SelectFormItem,
-  decorators: [(Story) => <Form><Story /></Form>],
+  decorators: [(Story) => <Form layout="vertical"><Story /></Form>],
 }
 
 export default meta

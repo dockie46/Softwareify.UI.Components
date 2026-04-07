@@ -47,7 +47,7 @@ if (isReactDndAvailable()) {
 const ITEM_HEIGHT = 44
 
 // Non-draggable fallback component (used when react-dnd is not installed)
-const DraggableMenuItemFallback: React.FC<DraggableMenuItemProps> = ({
+const DraggableMenuItemFallback = ({
   columnKey,
   index,
   isVisible,
@@ -55,7 +55,7 @@ const DraggableMenuItemFallback: React.FC<DraggableMenuItemProps> = ({
   title,
   toggleVisibility,
   setFixedStatus,
-}) => {
+}: DraggableMenuItemProps) => {
   const { t } = useLibTranslation()
 
   const getPinColor = () => {
@@ -100,7 +100,8 @@ const DraggableMenuItemFallback: React.FC<DraggableMenuItemProps> = ({
             left: 0,
             top: 0,
             bottom: 0,
-            width: 3,
+            width: 3, // Pin indicator bar: thin accent line (design choice, not a spacing token)
+
             backgroundColor: fixed ? getPinColor() : "transparent",
           }}
         />
@@ -111,7 +112,7 @@ const DraggableMenuItemFallback: React.FC<DraggableMenuItemProps> = ({
           marginRight: spacing.md,
           cursor: "default",
           color: TABLE_THEME.muted,
-          fontSize: 14,
+          fontSize: fontSize.base, // fontSize.base = 14
           opacity: 0.3,
         }}
       />
@@ -135,6 +136,7 @@ const DraggableMenuItemFallback: React.FC<DraggableMenuItemProps> = ({
             alignItems: "center",
             overflow: "hidden",
             textOverflow: "ellipsis",
+            // 100px reserved for pin button + visibility switch on the right side
             maxWidth: "calc(100% - 100px)",
           }}
         >
@@ -143,7 +145,7 @@ const DraggableMenuItemFallback: React.FC<DraggableMenuItemProps> = ({
               style={{
                 marginRight: spacing.xs,
                 fontSize: fontSize.xs,
-                padding: `1px ${spacing.xs}px`,
+                padding: `1px ${spacing.xs}px`, // 1px vertical: minimal badge padding for compact label
                 background: fixed === "left" ? TABLE_THEME.accent : "#f6ffed",
                 color: fixed === "left" ? TABLE_THEME.primary : TABLE_THEME.success,
                 borderRadius: radius.sm,
@@ -190,7 +192,7 @@ const DraggableMenuItemFallback: React.FC<DraggableMenuItemProps> = ({
 }
 
 // Draggable component (only when react-dnd is available)
-const DraggableMenuItemWithDnd: React.FC<DraggableMenuItemProps> = ({
+const DraggableMenuItemWithDnd = ({
   columnKey,
   index,
   isVisible,
@@ -199,7 +201,7 @@ const DraggableMenuItemWithDnd: React.FC<DraggableMenuItemProps> = ({
   moveColumn,
   toggleVisibility,
   setFixedStatus,
-}) => {
+}: DraggableMenuItemProps) => {
   const ref = useRef<HTMLDivElement>(null)
   const { t } = useLibTranslation()
 
@@ -283,7 +285,8 @@ const DraggableMenuItemWithDnd: React.FC<DraggableMenuItemProps> = ({
             left: 0,
             top: 0,
             bottom: 0,
-            width: 3,
+            width: 3, // Pin indicator bar: thin accent line (design choice, not a spacing token)
+
             backgroundColor: fixed ? getPinColor() : "transparent",
           }}
         />
@@ -294,7 +297,7 @@ const DraggableMenuItemWithDnd: React.FC<DraggableMenuItemProps> = ({
           marginRight: spacing.md,
           cursor: "grab",
           color: TABLE_THEME.muted,
-          fontSize: 14,
+          fontSize: fontSize.base, // fontSize.base = 14
         }}
       />
 
@@ -317,6 +320,7 @@ const DraggableMenuItemWithDnd: React.FC<DraggableMenuItemProps> = ({
             alignItems: "center",
             overflow: "hidden",
             textOverflow: "ellipsis",
+            // 100px reserved for pin button + visibility switch on the right side
             maxWidth: "calc(100% - 100px)",
           }}
         >
@@ -325,7 +329,7 @@ const DraggableMenuItemWithDnd: React.FC<DraggableMenuItemProps> = ({
               style={{
                 marginRight: spacing.xs,
                 fontSize: fontSize.xs,
-                padding: `1px ${spacing.xs}px`,
+                padding: `1px ${spacing.xs}px`, // 1px vertical: minimal badge padding for compact label
                 background: fixed === "left" ? TABLE_THEME.accent : "#f6ffed",
                 color: fixed === "left" ? TABLE_THEME.primary : TABLE_THEME.success,
                 borderRadius: radius.sm,
@@ -371,7 +375,7 @@ const DraggableMenuItemWithDnd: React.FC<DraggableMenuItemProps> = ({
   )
 }
 
-const DraggableMenuItem: React.FC<DraggableMenuItemProps> = (props) => {
+const DraggableMenuItem = (props: DraggableMenuItemProps) => {
   if (isReactDndEnabled) {
     return <DraggableMenuItemWithDnd {...props} />
   }

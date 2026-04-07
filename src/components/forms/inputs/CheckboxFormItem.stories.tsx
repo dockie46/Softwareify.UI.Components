@@ -5,7 +5,7 @@ import CheckboxFormItem from './CheckboxFormItem'
 const meta: Meta<typeof CheckboxFormItem> = {
   title: 'Forms/CheckboxFormItem',
   component: CheckboxFormItem,
-  decorators: [(Story) => <Form><Story /></Form>],
+  decorators: [(Story) => <Form layout="vertical"><Story /></Form>],
 }
 
 export default meta

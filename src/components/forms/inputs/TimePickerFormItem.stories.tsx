@@ -5,7 +5,7 @@ import TimePickerFormItem from './TimePickerFormItem'
 const meta: Meta<typeof TimePickerFormItem> = {
   title: 'Forms/TimePickerFormItem',
   component: TimePickerFormItem,
-  decorators: [(Story) => <Form><Story /></Form>],
+  decorators: [(Story) => <Form layout="vertical"><Story /></Form>],
 }
 
 export default meta

@@ -2,7 +2,7 @@ import { Button, Dropdown, Input, Space, Tooltip } from "antd"
 import type { LegacyRef, ReactNode } from "react"
 import { MenuOutlined, SearchOutlined, TableOutlined } from "@ant-design/icons"
 import { TABLE_THEME } from "../theme"
-import { radius, spacing } from "@/config"
+import { fontSize, radius, spacing } from "@/config"
 
 export type MainTableToolbarProps = {
   headerRef: LegacyRef<HTMLDivElement>
@@ -56,11 +56,11 @@ const MainTableToolbar = ({
           <Input
             placeholder={searchLabel}
             allowClear
-            prefix={<SearchOutlined style={{ color: TABLE_THEME.primary, fontSize: 16 }} />}
+            prefix={<SearchOutlined style={{ color: TABLE_THEME.primary, fontSize: fontSize.lg }} />}
             style={{
               borderRadius: radius.md,
               padding: `${spacing.sm}px ${spacing.md}px`,
-              boxShadow: "0 2px 5px rgba(0, 0, 0, 0.03)",
+              boxShadow: "0 2px 5px rgba(0, 0, 0, 0.03)", // Subtle input shadow matching antd style
               border: `1px solid ${TABLE_THEME.border}`,
               width: "100%",
             }}
@@ -70,7 +70,7 @@ const MainTableToolbar = ({
         </div>
       )}
       <Space
-        size={isMobile ? "small" : "middle"}
+        size={spacing.sm}
         direction={isMobile ? "vertical" : "horizontal"}
         style={{
           width: isMobile ? "100%" : "auto",
@@ -96,8 +96,6 @@ const MainTableToolbar = ({
                 borderColor: columnMenuOpen ? TABLE_THEME.primary : TABLE_THEME.border,
                 color: columnMenuOpen ? TABLE_THEME.primary : "inherit",
                 boxShadow: columnMenuOpen ? `0 0 0 2px ${TABLE_THEME.accent}` : "none",
-                padding: isMobile ? `${spacing.xs}px ${spacing.md}px` : `${spacing.xs}px ${spacing.lg}px`,
-                height: "auto",
                 width: isMobile ? "100%" : "auto",
                 justifyContent: isMobile ? "center" : "flex-start",
               }}

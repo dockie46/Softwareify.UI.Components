@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { Button, Space } from 'antd'
+import { Button } from 'antd'
 import PageHeader from './PageHeader'
 
 const meta: Meta<typeof PageHeader> = {
@@ -50,10 +50,10 @@ export const WithBreadcrumbAndExtraActions: Story = {
       ],
     },
     breadcrumbExtra: (
-      <Space>
+      <>
         <Button>Share</Button>
         <Button type="primary">Publish</Button>
-      </Space>
+      </>
     ),
     onBack: () => {},
   },
@@ -64,10 +64,10 @@ export const WithActions: Story = {
     title: 'Invoices',
     subtitle: '24 total',
     actions: (
-      <Space>
+      <>
         <Button>Export</Button>
         <Button type="primary">Create Invoice</Button>
-      </Space>
+      </>
     ),
   },
 }
@@ -85,10 +85,10 @@ export const FullExample: Story = {
     },
     onBack: () => {},
     actions: (
-      <Space>
+      <>
         <Button danger>Delete</Button>
         <Button type="primary">Save</Button>
-      </Space>
+      </>
     ),
   },
 }

@@ -34,8 +34,9 @@ export const TextFilterDropdown = ({
         style={{ marginBottom: spacing.sm, display: "block" }}
       />
       <Space>
+        {/* Filter button width: 90px ensures OK/Reset buttons are equal width in the dropdown */}
         <Button type="primary" onClick={() => confirm()} size="small" style={{ width: 90 }}>
-          {t("global.btns.ok")}
+          {t("btns.ok")}
         </Button>
         <Button
           onClick={() => {
@@ -45,7 +46,7 @@ export const TextFilterDropdown = ({
           size="small"
           style={{ width: 90 }}
         >
-          {t("global.btns.reset")}
+          {t("btns.reset")}
         </Button>
       </Space>
     </div>

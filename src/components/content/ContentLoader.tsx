@@ -2,6 +2,9 @@ import { Card, Skeleton, Space } from "antd"
 import type { CSSProperties, ReactNode } from "react"
 import { spacing } from "@/config"
 
+// Skeleton width percentages (30%, 45%, 60%, 72%, etc.) and row counts are visual approximations
+// for loading placeholders. They mimic realistic content widths, not design tokens.
+
 const rootStyle = (gap: number): CSSProperties => ({
   display: "flex",
   flexDirection: "column",

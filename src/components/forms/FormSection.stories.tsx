@@ -5,7 +5,7 @@ import FormSection from './FormSection'
 const meta: Meta<typeof FormSection> = {
   title: 'Forms/FormSection',
   component: FormSection,
-  decorators: [(Story) => <Form><Story /></Form>],
+  decorators: [(Story) => <Form layout="vertical"><Story /></Form>],
 }
 
 export default meta

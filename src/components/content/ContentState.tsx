@@ -31,7 +31,11 @@ const ContentState = ({ icon, title, description, action }: ContentStateProps) =
         {title}
       </Text>
       {description && (
-        <Text type="secondary" style={{ marginTop: spacing.sm, display: "block", maxWidth: 400 }}>
+        <Text type="secondary" style={{
+          marginTop: spacing.sm,
+          display: "block",
+          maxWidth: 400, // Constrains description text for readable line length (~60 chars)
+        }}>
           {description}
         </Text>
       )}
