@@ -28,7 +28,7 @@ export default defineConfig({
       fileName: format => `index.${format}.js`
     },
     rollupOptions: {
-      external: ['react', 'react-dom', 'react/jsx-runtime', 'antd', 'antd/es/table/interface', 'antd/es/form/interface', 'antd/es/grid/row', 'antd/es/select', 'antd/lib', '@ant-design/icons', 'dayjs', 'i18next', 'react-i18next', 'react-dnd', 'react-dnd-html5-backend', 'react-resize-detector', 'react-string-format', 'rc-table/lib/interface']
+      external: ['react', 'react-dom', 'react/jsx-runtime', 'antd', 'antd/es/table/interface', 'antd/es/form/interface', 'antd/es/grid/row', 'antd/es/select', 'antd/lib', '@ant-design/icons', 'dayjs', 'i18next', 'react-i18next', 'react-dnd', 'react-dnd-html5-backend', 'react-resize-detector', 'rc-table/lib/interface']
     }
   },
   test: {

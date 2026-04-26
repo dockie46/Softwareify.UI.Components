@@ -5,7 +5,7 @@ import InputFormItem from './InputFormItem'
 const meta: Meta<typeof InputFormItem> = {
   title: 'Forms/InputFormItem',
   component: InputFormItem,
-  decorators: [(Story) => <Form><Story /></Form>],
+  decorators: [(Story) => <Form layout="vertical"><Story /></Form>],
 }
 
 export default meta

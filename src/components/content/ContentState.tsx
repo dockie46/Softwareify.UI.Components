@@ -1,5 +1,6 @@
 import { Empty, Typography } from "antd"
 import type { ReactNode } from "react"
+import { fontSize, spacing } from "@/config"
 
 const { Text } = Typography
 
@@ -21,20 +22,24 @@ const ContentState = ({ icon, title, description, action }: ContentStateProps) =
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        padding: "48px 24px",
+        padding: `${spacing['3xl']}px ${spacing['2xl']}px`,
         textAlign: "center",
       }}
     >
       {icon ?? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description={null} />}
-      <Text strong style={{ fontSize: 16, marginTop: icon ? 16 : 0, display: "block" }}>
+      <Text strong style={{ fontSize: fontSize.lg, marginTop: icon ? spacing.lg : 0, display: "block" }}>
         {title}
       </Text>
       {description && (
-        <Text type="secondary" style={{ marginTop: 8, display: "block", maxWidth: 400 }}>
+        <Text type="secondary" style={{
+          marginTop: spacing.sm,
+          display: "block",
+          maxWidth: 400, // Constrains description text for readable line length (~60 chars)
+        }}>
           {description}
         </Text>
       )}
-      {action && <div style={{ marginTop: 16 }}>{action}</div>}
+      {action && <div style={{ marginTop: spacing.lg }}>{action}</div>}
     </div>
   )
 }

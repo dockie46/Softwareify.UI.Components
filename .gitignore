@@ -1,5 +1,12 @@
 node_modules
+dist
 .DS_Store
 
 *storybook.log
 storybook-static
+
+# Playwright MCP artifacts
+.playwright-mcp/
+
+# Debug/audit screenshots
+*.png

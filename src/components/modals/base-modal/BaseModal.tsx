@@ -1,7 +1,7 @@
 import { Button, Modal, Row, Spin, Typography } from "antd"
 import type React from "react"
 import type { ReactNode } from "react"
-import { useTranslation } from "react-i18next"
+import { useLibTranslation } from "@/common/i18n"
 
 export type BaseModalProps = React.PropsWithChildren<{
   onCancel: () => void
@@ -29,15 +29,15 @@ const BaseModal = ({
   loading = false,
   btns,
 }: BaseModalProps) => {
-  const { t } = useTranslation()
+  const { t } = useLibTranslation()
 
   const defaultFooter = (
     <Row align="middle" justify="space-between">
       <Button disabled={loading} onClick={() => onCancel()} type="default">
-        {btns?.cancel?.label ?? t("global.btns.cancelChanges")}
+        {btns?.cancel?.label ?? t("btns.cancelChanges")}
       </Button>
       <Button disabled={loading} onClick={onFormSubmit} block={false} type="primary" loading={loading}>
-        {btns?.save?.label ?? t("global.btns.saveChanges")}
+        {btns?.save?.label ?? t("btns.saveChanges")}
       </Button>
     </Row>
   )

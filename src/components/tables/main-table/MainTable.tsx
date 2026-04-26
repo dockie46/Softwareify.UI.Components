@@ -9,10 +9,11 @@ import { DndProvider } from "react-dnd"
 import DraggableHeader from "../column-manager/DraggableHeader"
 import { HTML5Backend } from "react-dnd-html5-backend"
 import { defaultTablePageSize } from "@/common/constants"
+import { spacing } from "@/config"
 import { useColumnManager } from "../hooks/useColumnManager"
 import { useResponsive } from "@/common/responsive/hooks"
 import { useTableFullHeightCalculator } from "../hooks/useTableFullHeightCalculator"
-import { useTranslation } from "react-i18next"
+import { useLibTranslation } from "@/common/i18n"
 import MainTableToolbar from "./MainTableToolbar"
 
 export type TableFilterType = Record<string, FilterValue | null>
@@ -34,7 +35,7 @@ const MainTable = <T extends BaseModel<number | string>>({
 }: MainTableProps<T>) => {
   const tableHeaderRef = useRef<HTMLDivElement>(null)
   const searchTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
-  const { t } = useTranslation()
+  const { t } = useLibTranslation()
   const { isMobile } = useResponsive()
   const { tableWrapperRef, tableRef, getTableHeight } = useTableFullHeightCalculator(
     restProps.scroll?.y,
@@ -110,7 +111,8 @@ const MainTable = <T extends BaseModel<number | string>>({
           onCell: () => ({
             style: {
               whiteSpace: isMobile ? "normal" : ("nowrap" as const),
-              padding: isMobile ? "8px 4px" : undefined,
+              // Mobile cell padding: spacing.sm (8px) vertical, spacing.xs (4px) horizontal for compact layout
+              padding: isMobile ? `${spacing.sm}px ${spacing.xs}px` : undefined,
             },
           }),
         }
@@ -136,9 +138,9 @@ const MainTable = <T extends BaseModel<number | string>>({
         <MainTableToolbar
           headerRef={tableHeaderRef}
           isMobile={isMobile}
-          searchLabel={t("global.labels.search")}
-          columnsLabel={t("global.btns.columns")}
-          customizeColumnsTooltip={t("global.labels.customizeTableColumns")}
+          searchLabel={t("labels.search")}
+          columnsLabel={t("btns.columns")}
+          customizeColumnsTooltip={t("labels.customizeTableColumns")}
           onSearchInputChange={onSearch ? handleSearchChange : undefined}
           searchText={searchText}
           columnMenuOpen={isDropdownOpen}
@@ -161,17 +163,18 @@ const MainTable = <T extends BaseModel<number | string>>({
             {...restProps}
             columns={draggableColumns}
             virtual={restProps.virtual ?? true}
-            ref={tableRef}
             pagination={{
               position: ["bottomCenter"],
               total: totalCount ?? 0,
               defaultPageSize: defaultTablePageSize,
               showSizeChanger: false,
-              size: isMobile ? "small" : "default",
+              size: isMobile ? "small" : "middle",
               ...(restProps.pagination || {}),
             }}
             className={`w-full h-full ${restProps.className || ""}`}
             scroll={{
+              // Column width multipliers: Mobile friendly (150px per column) vs Desktop (200px per column).
+              // These ensure horizontal scrolling area is sized for content without layout thrashing.
               x: restProps.scroll?.x ?? (draggableColumns?.length ?? 0) * (isMobile ? 150 : 200),
               y: getTableHeight(),
             }}

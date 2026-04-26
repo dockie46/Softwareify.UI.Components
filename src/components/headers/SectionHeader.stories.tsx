@@ -19,7 +19,7 @@ export const Default: Story = {
 export const WithActions: Story = {
   args: {
     title: 'Users',
-    actions: <Button type="primary" size="small">Add User</Button>,
+    actions: <Button type="primary">Add User</Button>,
   },
 }
 
@@ -27,11 +27,11 @@ export const WithFilters: Story = {
   args: {
     title: 'Orders',
     filters: (
-      <Select placeholder="Status" size="small" style={{ width: 120 }} options={[
+      <Select placeholder="Status" style={{ width: 120 }} options={[
         { label: 'Active', value: 'active' },
         { label: 'Closed', value: 'closed' },
       ]} />
     ),
-    actions: <Button size="small">Export</Button>,
+    actions: <Button>Export</Button>,
   },
 }

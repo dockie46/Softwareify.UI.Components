@@ -2,7 +2,8 @@ import { Input, Button, Space } from "antd"
 import { SearchOutlined } from "@ant-design/icons"
 import type { ColumnType } from "antd/es/table"
 import type { FilterDropdownProps } from "antd/es/table/interface"
-import { useTranslation } from "react-i18next"
+import { spacing } from "@/config"
+import { useLibTranslation } from "@/common/i18n"
 
 type FilterMode = "client" | "server"
 
@@ -21,20 +22,21 @@ export const TextFilterDropdown = ({
   clearFilters,
   placeholder,
 }: TextFilterDropdownProps) => {
-  const { t } = useTranslation()
+  const { t } = useLibTranslation()
 
   return (
-    <div style={{ padding: 8 }}>
+    <div style={{ padding: spacing.sm }}>
       <Input
-        placeholder={placeholder ?? t("global.labels.search")}
+        placeholder={placeholder ?? t("labels.search")}
         value={selectedKeys[0]}
         onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
         onPressEnter={() => confirm()}
-        style={{ marginBottom: 8, display: "block" }}
+        style={{ marginBottom: spacing.sm, display: "block" }}
       />
       <Space>
+        {/* Filter button width: 90px ensures OK/Reset buttons are equal width in the dropdown */}
         <Button type="primary" onClick={() => confirm()} size="small" style={{ width: 90 }}>
-          {t("global.btns.ok")}
+          {t("btns.ok")}
         </Button>
         <Button
           onClick={() => {
@@ -44,7 +46,7 @@ export const TextFilterDropdown = ({
           size="small"
           style={{ width: 90 }}
         >
-          {t("global.btns.reset")}
+          {t("btns.reset")}
         </Button>
       </Space>
     </div>

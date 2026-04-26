@@ -1,0 +1,38 @@
+{
+  "btns": {
+    "save": "Save",
+    "saveChanges": "Save Changes",
+    "cancel": "Cancel",
+    "cancelChanges": "Cancel Changes",
+    "confirm": "Confirm",
+    "clear": "Clear",
+    "reset": "Reset",
+    "apply": "Apply",
+    "columns": "Columns",
+    "ok": "OK",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "delete": "Delete"
+  },
+  "labels": {
+    "search": "Search...",
+    "customizeTableColumns": "Customize columns",
+    "primaryKey": "Primary Key",
+    "pinColumn": "Pin column",
+    "fixedLeft": "Fixed left",
+    "fixedRight": "Fixed right",
+    "left": "LEFT",
+    "right": "RIGHT"
+  },
+  "texts": {
+    "columnsVisible": "{{count}} of {{total}} visible"
+  },
+  "validations": {
+    "input": {
+      "isRequiredField": "is required",
+      "common": "This field is required",
+      "incorrectFormat": "{{fieldName}} has incorrect format",
+      "field": "Field"
+    }
+  }
+}

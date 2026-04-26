@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { Button, Space } from 'antd'
+import { Button } from 'antd'
 import MainHeader from './MainHeader'
 
 const meta: Meta<typeof MainHeader> = {
@@ -18,11 +18,7 @@ export const Page: Story = {
     variant: 'page',
     title: 'Page title',
     subtitle: 'Optional subtitle',
-    actions: (
-      <Space>
-        <Button type="primary">Action</Button>
-      </Space>
-    ),
+    actions: <Button type="primary">Action</Button>,
   },
 }
 
@@ -34,12 +30,10 @@ export const PageWithBreadcrumbAndButtons: Story = {
       items: [{ title: 'App' }, { title: 'Settings' }],
     },
     breadcrumbExtra: (
-      <Space>
-        <Button size="small">Help</Button>
-        <Button type="primary" size="small">
-          Save
-        </Button>
-      </Space>
+      <>
+        <Button>Help</Button>
+        <Button type="primary">Save</Button>
+      </>
     ),
   },
 }
@@ -48,7 +42,7 @@ export const Section: Story = {
   args: {
     variant: 'section',
     title: 'Section title',
-    filters: <Button size="small">Filter</Button>,
-    actions: <Button size="small">Export</Button>,
+    filters: <Button>Filter</Button>,
+    actions: <Button>Export</Button>,
   },
 }

@@ -5,7 +5,7 @@ import DateFormItem from './DateFormItem'
 const meta: Meta<typeof DateFormItem> = {
   title: 'Forms/DateFormItem',
   component: DateFormItem,
-  decorators: [(Story) => <Form><Story /></Form>],
+  decorators: [(Story) => <Form layout="vertical"><Story /></Form>],
 }
 
 export default meta

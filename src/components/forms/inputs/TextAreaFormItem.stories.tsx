@@ -5,7 +5,7 @@ import TextAreaFormItem from './TextAreaFormItem'
 const meta: Meta<typeof TextAreaFormItem> = {
   title: 'Forms/TextAreaFormItem',
   component: TextAreaFormItem,
-  decorators: [(Story) => <Form><Story /></Form>],
+  decorators: [(Story) => <Form layout="vertical"><Story /></Form>],
 }
 
 export default meta

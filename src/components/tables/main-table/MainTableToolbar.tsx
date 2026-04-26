@@ -2,6 +2,7 @@ import { Button, Dropdown, Input, Space, Tooltip } from "antd"
 import type { LegacyRef, ReactNode } from "react"
 import { MenuOutlined, SearchOutlined, TableOutlined } from "@ant-design/icons"
 import { TABLE_THEME } from "../theme"
+import { fontSize, radius, spacing } from "@/config"
 
 export type MainTableToolbarProps = {
   headerRef: LegacyRef<HTMLDivElement>
@@ -36,28 +37,30 @@ const MainTableToolbar = ({
     <div
       ref={headerRef}
       style={{
-        marginBottom: 16,
+        marginBottom: spacing.lg,
         display: "flex",
         flexDirection: isMobile ? "column" : "row",
         justifyContent: "space-between",
         alignItems: isMobile ? "stretch" : "center",
         background: TABLE_THEME.secondary,
-        padding: isMobile ? "12px 12px" : "12px 16px",
-        borderRadius: 8,
+        padding: isMobile ? `${spacing.sm}px` : `${spacing.sm}px ${spacing.md}px`,
+        borderRadius: radius.lg,
         boxShadow: "0 2px 8px rgba(0, 0, 0, 0.05)",
-        gap: isMobile ? 12 : 0,
+        gap: isMobile ? spacing.sm : 0,
       }}
     >
       {showSearch && (
+        // Search input width: 320px is optimal for desktop (enough for typical search terms without taking space).
+        // On mobile, expands to 100% for touch-friendly interaction.
         <div style={{ position: "relative", width: isMobile ? "100%" : 320 }}>
           <Input
             placeholder={searchLabel}
             allowClear
-            prefix={<SearchOutlined style={{ color: TABLE_THEME.primary, fontSize: 16 }} />}
+            prefix={<SearchOutlined style={{ color: TABLE_THEME.primary, fontSize: fontSize.lg }} />}
             style={{
-              borderRadius: 6,
-              padding: "8px 12px",
-              boxShadow: "0 2px 5px rgba(0, 0, 0, 0.03)",
+              borderRadius: radius.md,
+              padding: `${spacing.sm}px ${spacing.md}px`,
+              boxShadow: "0 2px 5px rgba(0, 0, 0, 0.03)", // Subtle input shadow matching antd style
               border: `1px solid ${TABLE_THEME.border}`,
               width: "100%",
             }}
@@ -67,7 +70,7 @@ const MainTableToolbar = ({
         </div>
       )}
       <Space
-        size={isMobile ? "small" : "middle"}
+        size={spacing.sm}
         direction={isMobile ? "vertical" : "horizontal"}
         style={{
           width: isMobile ? "100%" : "auto",
@@ -85,16 +88,14 @@ const MainTableToolbar = ({
             <Button
               icon={isMobile ? <MenuOutlined /> : <TableOutlined />}
               style={{
-                borderRadius: 6,
+                borderRadius: radius.md,
                 display: "flex",
                 alignItems: "center",
-                gap: 8,
+                gap: spacing.sm,
                 backgroundColor: columnMenuOpen ? TABLE_THEME.accent : "white",
                 borderColor: columnMenuOpen ? TABLE_THEME.primary : TABLE_THEME.border,
                 color: columnMenuOpen ? TABLE_THEME.primary : "inherit",
                 boxShadow: columnMenuOpen ? `0 0 0 2px ${TABLE_THEME.accent}` : "none",
-                padding: isMobile ? "6px 12px" : "6px 16px",
-                height: "auto",
                 width: isMobile ? "100%" : "auto",
                 justifyContent: isMobile ? "center" : "flex-start",
               }}

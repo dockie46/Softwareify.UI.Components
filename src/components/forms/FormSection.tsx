@@ -1,6 +1,7 @@
 import { Card, Col, Row, Skeleton, Typography } from 'antd'
 import type { ReactNode } from 'react'
 import { useResponsive } from '@/common/responsive/hooks'
+import { spacing } from '@/config'
 
 const { Title, Text } = Typography
 
@@ -23,13 +24,13 @@ const FormSection = ({
   const effectiveColumns = isMobile ? 1 : columns
 
   return (
-    <Card style={{ marginBottom: 16 }}>
-      <div style={{ marginBottom: 16 }}>
+    <Card style={{ marginBottom: spacing.lg }}>
+      <div style={{ marginBottom: spacing.lg }}>
         <Title level={5} style={{ margin: 0 }}>
           {title}
         </Title>
         {subtitle && (
-          <Text type="secondary" style={{ display: 'block', marginTop: 4 }}>
+          <Text type="secondary" style={{ display: 'block', marginTop: spacing.xs }}>
             {subtitle}
           </Text>
         )}
@@ -37,7 +38,7 @@ const FormSection = ({
       {loading ? (
         <Skeleton active paragraph={{ rows: 4 }} />
       ) : (
-        <Row gutter={24}>
+        <Row gutter={spacing['2xl']}>
           {effectiveColumns === 1 ? (
             <Col span={24}>{children}</Col>
           ) : (

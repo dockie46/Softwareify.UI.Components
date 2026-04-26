@@ -1,7 +1,8 @@
 import { useRef, useEffect, useCallback, useState } from 'react'
 import { Button, Space } from 'antd'
 import { ClearOutlined } from '@ant-design/icons'
-import { useTranslation } from 'react-i18next'
+import { radius, spacing } from '@/config'
+import { useLibTranslation } from '@/common/i18n'
 
 type SignatureCanvasProps = {
   width?: number
@@ -20,7 +21,7 @@ const SignatureCanvas = ({
   clearLabel,
   confirmLabel,
 }: SignatureCanvasProps) => {
-  const { t } = useTranslation()
+  const { t } = useLibTranslation()
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [isDrawing, setIsDrawing] = useState(false)
   const [hasDrawn, setHasDrawn] = useState(false)
@@ -44,7 +45,7 @@ const SignatureCanvas = ({
     if (!ctx) return
     const computedColor = getComputedStyle(canvasRef.current!).getPropertyValue('--color-text-primary').trim()
     ctx.strokeStyle = computedColor || '#000'
-    ctx.lineWidth = 2
+    ctx.lineWidth = 2 // Pen stroke width: 2px for natural handwriting feel
     ctx.lineCap = 'round'
     ctx.lineJoin = 'round'
   }, [getCtx])
@@ -101,14 +102,14 @@ const SignatureCanvas = ({
   }
 
   return (
-    <div className="flex flex-col gap-2">
+    <div style={{ display: 'flex', flexDirection: 'column', gap: spacing.xs }}>
       <canvas
         ref={canvasRef}
         width={width}
         height={height}
         style={{
           border: '1px solid var(--color-border, #d9d9d9)',
-          borderRadius: 8,
+          borderRadius: radius.lg,
           cursor: disabled ? 'default' : 'crosshair',
           touchAction: 'none',
           width: '100%',
@@ -126,11 +127,11 @@ const SignatureCanvas = ({
       />
       {!disabled && (
         <Space>
-          <Button size="small" icon={<ClearOutlined />} onClick={clearCanvas} disabled={!hasDrawn}>
-            {clearLabel ?? t('global.btns.clear')}
+          <Button icon={<ClearOutlined />} onClick={clearCanvas} disabled={!hasDrawn}>
+            {clearLabel ?? t('btns.clear')}
           </Button>
-          <Button size="small" type="primary" onClick={handleConfirm} disabled={!hasDrawn}>
-            {confirmLabel ?? t('global.btns.confirm')}
+          <Button type="primary" onClick={handleConfirm} disabled={!hasDrawn}>
+            {confirmLabel ?? t('btns.confirm')}
           </Button>
         </Space>
       )}

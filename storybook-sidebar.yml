@@ -1,0 +1,31 @@
+- generic [ref=e3]:
+  - generic [ref=e4]:
+    - banner "Storybook" [ref=e6]:
+      - heading "Storybook" [level=1] [ref=e7]
+      - img
+      - generic [ref=e11]:
+        - generic [ref=e13]
+        - generic [ref=e26]: Search for components
+        - search [ref=e27]
+        - navigation "Stories" [ref=e35]
+    - separator "Sidebar resize handle" [ref=e311]
+  - generic [ref=e313]:
+    - region "Toolbar" [ref=e314]:
+      - heading "Toolbar" [level=2] [ref=e315]
+      - toolbar [ref=e316]:
+        - generic [ref=e317]
+        - generic [ref=e338]
+    - main "Main preview area" [ref=e347]:
+      - heading "Main preview area" [level=2] [ref=e348]
+      - generic [ref=e352]:
+        - link "Skip to sidebar" [ref=e353] [cursor=pointer]:
+          - /url: "#tables-maintable--empty"
+        - iframe [ref=e357]:
+          
+  - generic [ref=e358]:
+    - separator "Addon panel resize handle" [ref=e359]
+    - region "Addon panel" [ref=e361]:
+      - heading "Addon panel" [level=2] [ref=e362]
+      - generic [ref=e363]:
+        - generic [ref=e364]
+        - tabpanel "Controls 6" [ref=e442]

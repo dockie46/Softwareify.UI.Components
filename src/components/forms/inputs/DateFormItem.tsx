@@ -2,17 +2,19 @@ import type { BaseFormItemProps, FormItemWrapperProps } from '@/common/models/fo
 import { DatePicker, Form } from 'antd'
 import { dateFormat, dateTimeFormat } from '@/common/constants/constants'
 import type { DatePickerProps } from 'antd/lib'
-import { getRules } from '@/common/helpers/formDataHelpers'
+import { useFormRules } from '@/common/hooks'
 
 interface Props extends FormItemWrapperProps<BaseFormItemProps, DatePickerProps> {}
 
 const DateFormItem = ({ formProps, elementProps }: Props) => {
+  const rules = useFormRules(formProps)
+
   return (
-    <Form.Item {...formProps} rules={formProps?.rules ?? getRules(formProps)}>
+    <Form.Item {...formProps} rules={formProps?.rules ?? rules}>
       <DatePicker
         {...elementProps}
         format={elementProps?.format ?? elementProps?.showTime ? dateTimeFormat : dateFormat}
-        className="w-full"
+        style={{ width: '100%', ...elementProps?.style }}
       />
     </Form.Item>
   )

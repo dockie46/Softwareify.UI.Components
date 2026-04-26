@@ -1,7 +1,8 @@
 import { Modal, Button, Row, Typography } from "antd"
 import { ExclamationCircleOutlined } from "@ant-design/icons"
 import type { ReactNode } from "react"
-import { useTranslation } from "react-i18next"
+import { fontSize, spacing } from "@/config"
+import { useLibTranslation } from "@/common/i18n"
 
 const { Text } = Typography
 
@@ -40,7 +41,7 @@ const ConfirmModal = ({
   icon,
   children,
 }: ConfirmModalProps) => {
-  const { t } = useTranslation()
+  const { t } = useLibTranslation()
 
   return (
     <Modal
@@ -49,18 +50,18 @@ const ConfirmModal = ({
       centered
       maskClosable={false}
       title={
-        <Row align="middle" style={{ gap: 8 }}>
-          {icon ?? <ExclamationCircleOutlined style={{ color: "var(--color-warning, #faad14)", fontSize: 20 }} />}
+        <Row align="middle" style={{ gap: spacing.sm }}>
+          {icon ?? <ExclamationCircleOutlined style={{ color: "var(--color-warning, #faad14)", fontSize: fontSize.xl }} />}
           <span>{title}</span>
         </Row>
       }
       footer={
-        <Row align="middle" justify="end" style={{ gap: 8 }}>
+        <Row align="middle" justify="end" style={{ gap: spacing.sm }}>
           <Button disabled={loading} onClick={onCancel}>
-            {cancelLabel ?? t("global.btns.cancel")}
+            {cancelLabel ?? t("btns.cancel")}
           </Button>
           <Button type="primary" {...variantButtonType[variant]} loading={loading} onClick={onConfirm}>
-            {confirmLabel ?? t("global.btns.confirm")}
+            {confirmLabel ?? t("btns.confirm")}
           </Button>
         </Row>
       }
